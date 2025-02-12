@@ -21,6 +21,9 @@ public partial class Block : MeshInstance3D
   [Export]
   PackedScene BlockCutoffPrefab;
 
+  [Export]
+  PackedScene PerfectEffectPrefab;
+
   public bool Moving = false;
   public int MoveSign = 1;
   public float MoveSpeed = 2;
@@ -81,6 +84,12 @@ public partial class Block : MeshInstance3D
         block.Position.Z
       );
       Size = block.Size;
+
+      var effect = PerfectEffectPrefab.Instantiate<Node3D>();
+      GetParent().GetParent().AddChild(effect);
+
+      effect.Scale = new Vector3(Size.X, 1, Size.Y);
+      effect.Position = new Vector3(Position.X, Position.Y - Height / 2, Position.Z);
 
       return CutResult.Perfect;
     }
