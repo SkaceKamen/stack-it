@@ -82,19 +82,22 @@ public partial class GameManager : Node3D
 
   private void BlockStopped(Block block)
   {
-    if (!block.CutAccordingTo(LastBlock))
-    {
-      GD.Print("Game Over");
-    }
-    else
-    {
-      LastBlock = block;
-      Height += block.Height;
-      Score += 1;
+    var cutResult = block.CutAccordingTo(LastBlock);
 
-      UIManager.UpdateScore(Score);
-
-      SpawnBlock();
+    if (cutResult == Block.CutResult.Missed)
+    {
+      // UIManager.ShowGameOver();
+      return;
     }
+
+
+    LastBlock = block;
+    Height += block.Height;
+    Score += cutResult == Block.CutResult.Perfect ? 2 : 1;
+
+    UIManager.UpdateScore(Score);
+
+    SpawnBlock();
+
   }
 }
