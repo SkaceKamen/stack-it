@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5xxv7xrp8brk"]
+[gd_scene load_steps=6 format=3 uid="uid://c5xxv7xrp8brk"]
 
 [ext_resource type="Script" path="res://Block.cs" id="1_e00ni"]
 [ext_resource type="PackedScene" uid="uid://ggs5bxnpy16c" path="res://BlockCutoffPrefab.tscn" id="2_tuo22"]
+[ext_resource type="PackedScene" uid="uid://dxn0k71cgi7pt" path="res://PerfectEffectPrefab.tscn" id="3_gtbwx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_mtgyi"]
 size = Vector3(1, 0.2, 1)
@@ -14,6 +15,7 @@ mesh = SubResource("BoxMesh_mtgyi")
 skeleton = NodePath("../..")
 script = ExtResource("1_e00ni")
 BlockCutoffPrefab = ExtResource("2_tuo22")
+PerfectEffectPrefab = ExtResource("3_gtbwx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

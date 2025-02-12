@@ -86,7 +86,7 @@ public partial class GameManager : Node3D
 
     if (cutResult == Block.CutResult.Missed)
     {
-      // UIManager.ShowGameOver();
+      UIManager.ShowGameOver();
       return;
     }
 
@@ -95,7 +95,7 @@ public partial class GameManager : Node3D
     Height += block.Height;
     Score += cutResult == Block.CutResult.Perfect ? 2 : 1;
 
-    UIManager.UpdateScore(Score);
+    UIManager.UpdateScore(Score, cutResult == Block.CutResult.Perfect);
 
     SpawnBlock();
 
