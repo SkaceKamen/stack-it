@@ -67,11 +67,11 @@ public partial class Block : MeshInstance3D
     GD.Print("diff: " + diff + "\n");
 
     var cutoff = BlockCutoffPrefab.Instantiate<BlockCutoff>();
-    GetParent().AddChild(cutoff);
+    GetParent().GetParent().AddChild(cutoff);
 
     if (mySize - Math.Abs(diff) <= 0)
     {
-      cutoff.Scale = new Vector3(Scale.X, Scale.Y, Scale.Z);
+      cutoff.SetSize(Size);
       cutoff.Position = new Vector3(Position.X, Position.Y, Position.Z);
 
       QueueFree();
@@ -85,7 +85,7 @@ public partial class Block : MeshInstance3D
       Scale = new Vector3(Scale.X, Scale.Y, Size.Y);
       Position = new Vector3(Position.X, Position.Y, Position.Z - diff / 2);
 
-      cutoff.Scale = new Vector3(Scale.X, Scale.Y, Math.Abs(diff));
+      cutoff.SetSize(new Vector2(Size.X, Math.Abs(diff)));
       cutoff.Position = new Vector3(Position.X, Position.Y, Position.Z + diff - diff / 2);
     }
     else
@@ -94,7 +94,7 @@ public partial class Block : MeshInstance3D
       Scale = new Vector3(Size.X, Scale.Y, Scale.Z);
       Position = new Vector3(Position.X - diff / 2, Position.Y, Position.Z);
 
-      cutoff.Scale = new Vector3(Math.Abs(diff), Scale.Y, Scale.Z);
+      cutoff.SetSize(new Vector2(Math.Abs(diff), Size.Y));
       cutoff.Position = new Vector3(Position.X + diff - diff / 2, Position.Y, Position.Z);
     }
 
