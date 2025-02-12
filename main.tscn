@@ -26,7 +26,7 @@ UIManager = NodePath("UIManager")
 Camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.707107, 0.345013, -0.617224, 0, 0.872887, 0.487923, 0.707107, -0.345013, 0.617224, -1, 0.682, 1)
+transform = Transform3D(0.707107, -0.345013, 0.617224, 0, 0.872887, 0.487922, -0.707107, -0.345013, 0.617224, 1, 0.682, 1)
 projection = 1
 size = 3.915
 
