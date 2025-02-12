@@ -17,11 +17,15 @@ public partial class GameManager : Node3D
   [Export]
   Camera3D Camera;
 
-  private float Height = 0;
 
-  private Block LastBlock;
+  float Height = 0;
 
-  private int Score = 0;
+  Block LastBlock;
+
+  Block CurrentBlock;
+
+  int Score = 0;
+
 
   Vector3 BaseCameraPosition;
 
@@ -37,6 +41,27 @@ public partial class GameManager : Node3D
   {
     // BlocksContainer.Position = new Vector3(0, Mathf.Lerp(BlocksContainer.Position.Y, -Height, 10 * (float)delta), 0);
     Camera.Position = new Vector3(Camera.Position.X, Mathf.Lerp(Camera.Position.Y, BaseCameraPosition.Y + Height, 10 * (float)delta), Camera.Position.Z);
+
+    if (CurrentBlock != null)
+    {
+      if (Input.IsActionJustPressed("ui_select"))
+      {
+        CurrentBlock.Stop();
+      }
+    }
+  }
+
+  public override void _Input(InputEvent @event)
+  {
+    base._Input(@event);
+
+    if (@event is InputEventScreenTouch touchEvent)
+    {
+      if (touchEvent.Pressed)
+      {
+        CurrentBlock.Stop();
+      }
+    }
   }
 
   private void SpawnBlock()
@@ -51,6 +76,8 @@ public partial class GameManager : Node3D
     block.Moving = true;
     block.Size = new Vector2(LastBlock.Size.X, LastBlock.Size.Y);
     block.Scale = new Vector3(LastBlock.Scale.X, LastBlock.Scale.Y, LastBlock.Scale.Z);
+
+    CurrentBlock = block;
   }
 
   private void BlockStopped(Block block)
