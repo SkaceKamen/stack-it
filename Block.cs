@@ -21,7 +21,7 @@ public partial class Block : MeshInstance3D
 
   Vector3 MoveDirection => MoveAxis == 0 ? new Vector3(0, 0, MoveSign) : new Vector3(MoveSign, 0, 0);
 
-  public Vector2 Size = new Vector2(1, 1);
+  public Vector2 Size = new(1, 1);
 
   public override void _Ready()
   {
@@ -34,14 +34,11 @@ public partial class Block : MeshInstance3D
       // Move the block
       Position += MoveDirection * MoveSpeed * (float)delta;
 
-      if (Math.Abs(Position.Z) >= 1 || Math.Abs(Position.X) >= 1)
+      if ((MoveAxis == 0 && Math.Abs(Position.Z) > 1) || (MoveAxis == 1 && Math.Abs(Position.X) > 1))
       {
-        MoveSign *= -1;
-      }
+        GD.Print("Switching direction " + MoveSign + " to " + -MoveSign + " from " + Position);
 
-      if (Input.IsActionJustPressed("ui_select"))
-      {
-        Stop();
+        MoveSign *= -1;
       }
     }
   }
@@ -49,12 +46,14 @@ public partial class Block : MeshInstance3D
   public bool CutAccordingTo(Block block)
   {
     var myPosition = MoveAxis == 0 ? Position.Z : Position.X;
+    var sign = (myPosition < 0 ? -1 : 1);
+
     var mySize = MoveAxis == 0 ? Size.Y : Size.X;
-    var myPoint = (myPosition + (myPosition < 0 ? -1 : 1) * mySize);
+    var myPoint = myPosition + sign * mySize / 2;
 
     var otherPosition = MoveAxis == 0 ? block.Position.Z : block.Position.X;
     var otherSize = MoveAxis == 0 ? block.Size.Y : block.Size.X;
-    var otherPoint = (otherPosition + (myPosition < 0 ? -1 : 1) * otherSize);
+    var otherPoint = otherPosition + sign * otherSize / 2;
 
     var diff = myPoint - otherPoint;
 
@@ -79,6 +78,8 @@ public partial class Block : MeshInstance3D
       return false;
     }
 
+    var previousSize = Size;
+
     if (MoveAxis == 0)
     {
       Size.Y -= Math.Abs(diff);
@@ -86,7 +87,7 @@ public partial class Block : MeshInstance3D
       Position = new Vector3(Position.X, Position.Y, Position.Z - diff / 2);
 
       cutoff.SetSize(new Vector2(Size.X, Math.Abs(diff)));
-      cutoff.Position = new Vector3(Position.X, Position.Y, Position.Z + diff - diff / 2);
+      cutoff.Position = new Vector3(Position.X, Position.Y, Position.Z + sign * (previousSize.Y / 2f) - diff / 2);
     }
     else
     {
@@ -95,13 +96,13 @@ public partial class Block : MeshInstance3D
       Position = new Vector3(Position.X - diff / 2, Position.Y, Position.Z);
 
       cutoff.SetSize(new Vector2(Math.Abs(diff), Size.Y));
-      cutoff.Position = new Vector3(Position.X + diff - diff / 2, Position.Y, Position.Z);
+      cutoff.Position = new Vector3(Position.X + sign * (previousSize.X / 2f) - diff / 2, Position.Y, Position.Z);
     }
 
     return true;
   }
 
-  private void Stop()
+  public void Stop()
   {
     if (!Moving)
     {
