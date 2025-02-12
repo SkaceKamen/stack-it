@@ -46,12 +46,13 @@ public partial class Block : MeshInstance3D
   public bool CutAccordingTo(Block block)
   {
     var myPosition = MoveAxis == 0 ? Position.Z : Position.X;
-    var sign = (myPosition < 0 ? -1 : 1);
+    var otherPosition = MoveAxis == 0 ? block.Position.Z : block.Position.X;
+
+    var sign = (myPosition - otherPosition) < 0 ? -1 : 1;
 
     var mySize = MoveAxis == 0 ? Size.Y : Size.X;
     var myPoint = myPosition + sign * mySize / 2;
 
-    var otherPosition = MoveAxis == 0 ? block.Position.Z : block.Position.X;
     var otherSize = MoveAxis == 0 ? block.Size.Y : block.Size.X;
     var otherPoint = otherPosition + sign * otherSize / 2;
 
@@ -64,6 +65,18 @@ public partial class Block : MeshInstance3D
     GD.Print("myPoint: " + myPoint);
     GD.Print("otherPoint: " + otherPoint);
     GD.Print("diff: " + diff + "\n");
+
+    if (Math.Abs(diff) < 0.02f)
+    {
+      Position = new Vector3(
+        block.Position.X,
+        Position.Y,
+        block.Position.Z
+      );
+      Size = block.Size;
+
+      return true;
+    }
 
     var cutoff = BlockCutoffPrefab.Instantiate<BlockCutoff>();
     GetParent().GetParent().AddChild(cutoff);
@@ -87,7 +100,7 @@ public partial class Block : MeshInstance3D
       Position = new Vector3(Position.X, Position.Y, Position.Z - diff / 2);
 
       cutoff.SetSize(new Vector2(Size.X, Math.Abs(diff)));
-      cutoff.Position = new Vector3(Position.X, Position.Y, Position.Z + sign * (previousSize.Y / 2f) - diff / 2);
+      cutoff.Position = new Vector3(Position.X, Position.Y, Position.Z + sign * (previousSize.Y / 2f));
     }
     else
     {
@@ -96,7 +109,7 @@ public partial class Block : MeshInstance3D
       Position = new Vector3(Position.X - diff / 2, Position.Y, Position.Z);
 
       cutoff.SetSize(new Vector2(Math.Abs(diff), Size.Y));
-      cutoff.Position = new Vector3(Position.X + sign * (previousSize.X / 2f) - diff / 2, Position.Y, Position.Z);
+      cutoff.Position = new Vector3(Position.X + sign * (previousSize.X / 2f), Position.Y, Position.Z);
     }
 
     return true;
