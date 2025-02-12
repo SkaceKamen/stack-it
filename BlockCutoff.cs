@@ -3,18 +3,27 @@ using System;
 
 namespace Stacking;
 
-public partial class BlockCutoff : MeshInstance3D
+public partial class BlockCutoff : RigidBody3D
 {
-  float Velocity = 0;
+  [Export]
+  MeshInstance3D Mesh;
+
+  [Export]
+  CollisionShape3D CollisionShape;
 
   public override void _Process(double delta)
   {
-    Velocity += (float)delta * 0.1f;
-    Position = new Vector3(Position.X, Position.Y - Velocity, Position.Z);
+    base._Process(delta);
 
     if (Position.Y < -10)
     {
       QueueFree();
     }
+  }
+
+  public void SetSize(Vector2 size)
+  {
+    Mesh.Scale = new Vector3(size.X, 1, size.Y);
+    CollisionShape.Scale = new Vector3(size.X, 1, size.Y);
   }
 }

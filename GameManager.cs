@@ -11,22 +11,32 @@ public partial class GameManager : Node3D
   [Export]
   Node3D BlocksContainer;
 
+  [Export]
+  UIManager UIManager;
+
+  [Export]
+  Camera3D Camera;
+
   private float Height = 0;
 
   private Block LastBlock;
 
   private int Score = 0;
 
+  Vector3 BaseCameraPosition;
+
   public override void _Ready()
   {
     LastBlock = BlocksContainer.GetChild<Block>(0);
+    BaseCameraPosition = Camera.Position * 1f;
 
     SpawnBlock();
   }
 
   public override void _Process(double delta)
   {
-    BlocksContainer.Position = new Vector3(0, Mathf.Lerp(BlocksContainer.Position.Y, -Height, 10 * (float)delta), 0);
+    // BlocksContainer.Position = new Vector3(0, Mathf.Lerp(BlocksContainer.Position.Y, -Height, 10 * (float)delta), 0);
+    Camera.Position = new Vector3(Camera.Position.X, Mathf.Lerp(Camera.Position.Y, BaseCameraPosition.Y + Height, 10 * (float)delta), Camera.Position.Z);
   }
 
   private void SpawnBlock()
@@ -54,6 +64,9 @@ public partial class GameManager : Node3D
       LastBlock = block;
       Height += block.Height;
       Score += 1;
+
+      UIManager.UpdateScore(Score);
+
       SpawnBlock();
     }
   }
