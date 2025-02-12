@@ -7,6 +7,8 @@
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_brclc"]
 sky_top_color = Color(0.309804, 0.376471, 0.894118, 1)
 sky_horizon_color = Color(0.572549, 0.690196, 0.592157, 1)
+sky_curve = 0.106066
+sky_cover_modulate = Color(0.380392, 0.607843, 0.941176, 1)
 ground_bottom_color = Color(0.137255, 0.164706, 0.294118, 1)
 ground_horizon_color = Color(0.266667, 0.686275, 1, 1)
 ground_curve = 0.269087
@@ -26,7 +28,7 @@ UIManager = NodePath("UIManager")
 Camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.707107, -0.345013, 0.617224, 0, 0.872887, 0.487922, -0.707107, -0.345013, 0.617224, 1, 0.682, 1)
+transform = Transform3D(0.707107, -0.345013, 0.617224, 0, 0.872887, 0.487922, -0.707107, -0.345013, 0.617224, 1, 1.1869, 1)
 projection = 1
 size = 3.915
 
