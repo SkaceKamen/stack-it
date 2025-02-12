@@ -8,6 +8,9 @@ public partial class UIManager : CanvasLayer
   [Export]
   Label ScoreLabel;
 
+  [Export]
+  AnimationPlayer AnimationPlayer;
+
   public override void _Ready()
   {
     ScoreLabel.Text = "0";
@@ -16,5 +19,7 @@ public partial class UIManager : CanvasLayer
   public void UpdateScore(int score)
   {
     ScoreLabel.Text = score.ToString();
+    AnimationPlayer.Stop();
+    AnimationPlayer.Play("Score");
   }
 }
