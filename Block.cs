@@ -5,6 +5,13 @@ namespace Stacking;
 
 public partial class Block : MeshInstance3D
 {
+  public enum CutResult
+  {
+    Perfect,
+    Missed,
+    Partial,
+  }
+
   [Signal]
   public delegate void BlockStoppedEventHandler(Block block);
 
@@ -43,7 +50,7 @@ public partial class Block : MeshInstance3D
     }
   }
 
-  public bool CutAccordingTo(Block block)
+  public CutResult CutAccordingTo(Block block)
   {
     var myPosition = MoveAxis == 0 ? Position.Z : Position.X;
     var otherPosition = MoveAxis == 0 ? block.Position.Z : block.Position.X;
@@ -75,7 +82,7 @@ public partial class Block : MeshInstance3D
       );
       Size = block.Size;
 
-      return true;
+      return CutResult.Perfect;
     }
 
     var cutoff = BlockCutoffPrefab.Instantiate<BlockCutoff>();
@@ -88,7 +95,7 @@ public partial class Block : MeshInstance3D
 
       QueueFree();
 
-      return false;
+      return CutResult.Missed;
     }
 
     var previousSize = Size;
@@ -112,7 +119,7 @@ public partial class Block : MeshInstance3D
       cutoff.Position = new Vector3(Position.X + sign * (previousSize.X / 2f), Position.Y, Position.Z);
     }
 
-    return true;
+    return CutResult.Partial;
   }
 
   public void Stop()
