@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://blw8ke1yno3hd"]
+
+[ext_resource type="Script" path="res://GameManager.cs" id="1_vkaln"]
+[ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://BlockPrefab.tscn" id="2_7slrr"]
+[ext_resource type="PackedScene" uid="uid://ggs5bxnpy16c" path="res://BlockCutoffPrefab.tscn" id="3_3fmtk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_brclc"]
+sky_top_color = Color(0.309804, 0.376471, 0.894118, 1)
+sky_horizon_color = Color(0.572549, 0.690196, 0.592157, 1)
+ground_bottom_color = Color(0.137255, 0.164706, 0.294118, 1)
+ground_horizon_color = Color(0.266667, 0.686275, 1, 1)
+ground_curve = 0.269087
+
+[sub_resource type="Sky" id="Sky_ayt6h"]
+sky_material = SubResource("ProceduralSkyMaterial_brclc")
+
+[sub_resource type="Environment" id="Environment_ade2i"]
+background_mode = 2
+sky = SubResource("Sky_ayt6h")
+
+[node name="GameManager" type="Node3D" node_paths=PackedStringArray("BlocksContainer")]
+script = ExtResource("1_vkaln")
+BlockPrefab = ExtResource("2_7slrr")
+BlocksContainer = NodePath("Blocks")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, 0.345013, -0.617224, 0, 0.872887, 0.487923, 0.707107, -0.345013, 0.617224, -1, 0.682, 1)
+projection = 1
+size = 2.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ade2i")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.91679, 0.240219, -0.319047, 0, 0.798876, 0.601496, 0.39937, -0.551446, 0.732401, 0, 2.78224, 3.51052)
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="Block" parent="Blocks" instance=ExtResource("2_7slrr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+BlockCutoffPrefab = ExtResource("3_3fmtk")
+
+[node name="BlockCutoff" parent="." instance=ExtResource("3_3fmtk")]

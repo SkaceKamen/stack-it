@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5xxv7xrp8brk"]
+
+[ext_resource type="Script" path="res://Block.cs" id="1_e00ni"]
+[ext_resource type="PackedScene" uid="uid://ggs5bxnpy16c" path="res://BlockCutoffPrefab.tscn" id="2_tuo22"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mtgyi"]
+size = Vector3(1, 0.2, 1)
+
+[node name="Block" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_mtgyi")
+skeleton = NodePath("../..")
+script = ExtResource("1_e00ni")
+BlockCutoffPrefab = ExtResource("2_tuo22")

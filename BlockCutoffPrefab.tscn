@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ggs5bxnpy16c"]
+
+[ext_resource type="Script" path="res://BlockCutoff.cs" id="1_wnld5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dqmbj"]
+size = Vector3(1, 0.2, 1)
+
+[node name="BlockCutoff" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_dqmbj")
+script = ExtResource("1_wnld5")
