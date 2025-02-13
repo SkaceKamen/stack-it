@@ -5,6 +5,9 @@ namespace Stacking;
 
 public partial class UIManager : CanvasLayer
 {
+  [Signal]
+  public delegate void RestartRequestedEventHandler();
+
   [Export]
   Label ScoreLabel;
 
@@ -12,23 +15,47 @@ public partial class UIManager : CanvasLayer
   AnimationPlayer AnimationPlayer;
 
   [Export]
-  Control GameEndScreen;
+  Control Ingame;
 
   [Export]
-  Button RestartButton;
+  Control MenuScreen;
+
+  [Export]
+  GameEndScreen GameEndScreen;
+
+  [Export]
+  Button StartButton;
 
   public override void _Ready()
   {
     ScoreLabel.Text = "0";
-    RestartButton.Pressed += () =>
+
+    GameEndScreen.RestartRequested += () =>
     {
-      GetTree().ReloadCurrentScene();
+      EmitSignal(SignalName.RestartRequested);
+      Ingame.Visible = true;
+      GameEndScreen.Visible = false;
     };
+
+    GameEndScreen.MenuRequested += () =>
+    {
+      Ingame.Visible = false;
+      GameEndScreen.Visible = false;
+      MenuScreen.Visible = true;
+    };
+
+    StartButton.Pressed += () =>
+    {
+      Ingame.Visible = true;
+      MenuScreen.Visible = false;
+    };
+
   }
 
-  public void ShowGameOver()
+  public void ShowGameOver(int finalScore, bool isHighScore)
   {
-    GameEndScreen.Visible = true;
+    Ingame.Visible = false;
+    GameEndScreen.Show(finalScore, isHighScore);
   }
 
   public void UpdateScore(int score, bool highlight)

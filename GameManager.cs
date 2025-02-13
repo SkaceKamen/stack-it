@@ -34,6 +34,8 @@ public partial class GameManager : Node3D
     LastBlock = BlocksContainer.GetChild<Block>(0);
     BaseCameraPosition = Camera.Position * 1f;
 
+    UIManager.RestartRequested += Reset;
+
     SpawnBlock();
   }
 
@@ -64,6 +66,33 @@ public partial class GameManager : Node3D
     }
   }
 
+  public void Reset()
+  {
+    Score = 0;
+    Height = 0;
+    LastBlock = null;
+    CurrentBlock = null;
+
+    for (int i = 0; i < BlocksContainer.GetChildCount(); i++)
+    {
+      BlocksContainer.GetChild<Node>(i).QueueFree();
+    }
+
+    SpawnInitialBlock();
+    SpawnBlock();
+  }
+
+  private void SpawnInitialBlock()
+  {
+    Block block = BlockPrefab.Instantiate<Block>();
+    BlocksContainer.AddChild(block);
+
+    block.Position = new Vector3(0, -block.Height, 0);
+
+    CurrentBlock = block;
+    LastBlock = block;
+  }
+
   private void SpawnBlock()
   {
     var newAxis = LastBlock.MoveAxis == 0 ? 1 : 0;
@@ -86,10 +115,9 @@ public partial class GameManager : Node3D
 
     if (cutResult == Block.CutResult.Missed)
     {
-      UIManager.ShowGameOver();
+      GameOver();
       return;
     }
-
 
     LastBlock = block;
     Height += block.Height;
@@ -98,6 +126,25 @@ public partial class GameManager : Node3D
     UIManager.UpdateScore(Score, cutResult == Block.CutResult.Perfect);
 
     SpawnBlock();
+  }
 
+  private void GameOver()
+  {
+    var userData = DataStore.Data;
+    userData.Scores.Add(new DataStore.UserData.ScoreItem
+    {
+      Score = Score,
+      Date = DateTime.Now
+    });
+
+    var isNewHighScore = false;
+
+    if (!userData.HighScore.HasValue || Score > userData.HighScore)
+    {
+      userData.HighScore = Score;
+      isNewHighScore = true;
+    }
+
+    UIManager.ShowGameOver(Score, isNewHighScore);
   }
 }

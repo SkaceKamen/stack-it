@@ -1,8 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://blw8ke1yno3hd"]
+[gd_scene load_steps=19 format=3 uid="uid://blw8ke1yno3hd"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_vkaln"]
 [ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://BlockPrefab.tscn" id="2_7slrr"]
 [ext_resource type="Script" path="res://UIManager.cs" id="3_3uxi8"]
+[ext_resource type="Script" path="res://GameEndScreen.cs" id="4_xbyyg"]
+[ext_resource type="Texture2D" uid="uid://b45lfdsjav165" path="res://ArrowPath.svg" id="5_b752k"]
+[ext_resource type="Texture2D" uid="uid://7snokm877tm7" path="res://Play.svg" id="6_lhf5m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_brclc"]
 sky_top_color = Color(0.309804, 0.376471, 0.894118, 1)
@@ -25,7 +28,7 @@ length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UIManager/Score:scale:x")
+tracks/0/path = NodePath("UIManager/Ingame/Score:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -36,7 +39,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UIManager/Score:scale:y")
+tracks/1/path = NodePath("UIManager/Ingame/Score:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -47,7 +50,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("UIManager/Score/ScoreLabel:self_modulate")
+tracks/2/path = NodePath("UIManager/Ingame/Score/ScoreLabel:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -63,7 +66,7 @@ length = 0.75
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UIManager/Score:scale:x")
+tracks/0/path = NodePath("UIManager/Ingame/Score:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -74,7 +77,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UIManager/Score:scale:y")
+tracks/1/path = NodePath("UIManager/Ingame/Score:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -89,7 +92,7 @@ length = 0.75
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UIManager/Score:scale:x")
+tracks/0/path = NodePath("UIManager/Ingame/Score:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -100,7 +103,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UIManager/Score:scale:y")
+tracks/1/path = NodePath("UIManager/Ingame/Score:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -111,7 +114,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("UIManager/Score/ScoreLabel:self_modulate")
+tracks/2/path = NodePath("UIManager/Ingame/Score/ScoreLabel:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -127,6 +130,96 @@ _data = {
 "Score": SubResource("Animation_s5vfo"),
 "ScorePerfect": SubResource("Animation_wsile")
 }
+
+[sub_resource type="Animation" id="Animation_n06x5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UIManager/GameEndScreen/Inner/Panel:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.266667)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UIManager/GameEndScreen/Inner/Control/RestartButton:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UIManager/GameEndScreen/Inner/Control/RestartButton:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3mrp2"]
+resource_name = "Show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UIManager/GameEndScreen/Inner/Panel:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.266667)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UIManager/GameEndScreen/Inner/Control/RestartButton:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UIManager/GameEndScreen/Inner/Control/RestartButton:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gb0ew"]
+_data = {
+"RESET": SubResource("Animation_n06x5"),
+"Show": SubResource("Animation_3mrp2")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2xe7"]
+bg_color = Color(0, 0, 0, 0.266667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yusg0"]
+bg_color = Color(0, 0, 0, 0.211765)
 
 [node name="GameManager" type="Node3D" node_paths=PackedStringArray("BlocksContainer", "UIManager", "Camera")]
 script = ExtResource("1_vkaln")
@@ -151,22 +244,33 @@ transform = Transform3D(0.91679, 0.240219, -0.319047, 0, 0.798876, 0.601496, 0.3
 [node name="Block" parent="Blocks" instance=ExtResource("2_7slrr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 
-[node name="UIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("ScoreLabel", "AnimationPlayer", "GameEndScreen", "RestartButton")]
+[node name="UIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("ScoreLabel", "AnimationPlayer", "Ingame", "MenuScreen", "GameEndScreen", "StartButton")]
 script = ExtResource("3_3uxi8")
-ScoreLabel = NodePath("Score/ScoreLabel")
-AnimationPlayer = NodePath("AnimationPlayer")
+ScoreLabel = NodePath("Ingame/Score/ScoreLabel")
+AnimationPlayer = NodePath("Ingame/AnimationPlayer")
+Ingame = NodePath("Ingame")
+MenuScreen = NodePath("MenuScreen")
 GameEndScreen = NodePath("GameEndScreen")
-RestartButton = NodePath("GameEndScreen/Button")
+StartButton = NodePath("MenuScreen/Button")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UIManager"]
-root_node = NodePath("../..")
+[node name="Ingame" type="Control" parent="UIManager"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UIManager/Ingame"]
+root_node = NodePath("../../..")
 libraries = {
 "": SubResource("AnimationLibrary_uohg3")
 }
 speed_scale = 5.0
 
-[node name="Score" type="Control" parent="UIManager"]
-layout_mode = 3
+[node name="Score" type="Control" parent="UIManager/Ingame"]
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 68.0
@@ -174,7 +278,7 @@ offset_bottom = 193.0
 grow_horizontal = 2
 pivot_offset = Vector2(270, 62)
 
-[node name="ScoreLabel" type="Label" parent="UIManager/Score"]
+[node name="ScoreLabel" type="Label" parent="UIManager/Ingame/Score"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -188,26 +292,191 @@ text = "0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameEndScreen" type="Control" parent="UIManager"]
+[node name="GameEndScreen" type="Control" parent="UIManager" node_paths=PackedStringArray("AnimationPlayer", "RestartButton", "MenuButton", "NormalScoreLabel", "HighScoreLabel", "ScoreValueLabel")]
 visible = false
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -88.5
-offset_top = -35.0
-offset_right = 88.5
-offset_bottom = 35.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_xbyyg")
+AnimationPlayer = NodePath("AnimationPlayer")
+RestartButton = NodePath("Inner/Control/RestartButton")
+MenuButton = NodePath("Inner/Control/MenuButton")
+NormalScoreLabel = NodePath("Inner/Control/NormalScoreLabel")
+HighScoreLabel = NodePath("Inner/Control/HighScoreLabel")
+ScoreValueLabel = NodePath("Inner/Control/ScoreValueLabel")
 
-[node name="Button" type="Button" parent="UIManager/GameEndScreen"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UIManager/GameEndScreen"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_gb0ew")
+}
+autoplay = "Show"
+speed_scale = 5.0
+
+[node name="Inner" type="Control" parent="UIManager/GameEndScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Restart"
+
+[node name="Panel" type="Panel" parent="UIManager/GameEndScreen/Inner"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v2xe7")
+
+[node name="Control" type="Control" parent="UIManager/GameEndScreen/Inner"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -86.5
+offset_right = 124.0
+offset_bottom = 86.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartButton" type="Button" parent="UIManager/GameEndScreen/Inner/Control"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -59.0
+offset_right = 52.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("5_b752k")
+
+[node name="MenuButton" type="Button" parent="UIManager/GameEndScreen/Inner/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = 137.0
+offset_right = 82.0
+offset_bottom = 201.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Menu"
+
+[node name="NormalScoreLabel" type="Label" parent="UIManager/GameEndScreen/Inner/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -319.0
+offset_right = 78.0
+offset_bottom = -277.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="UIManager/GameEndScreen/Inner/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -319.0
+offset_right = 78.0
+offset_bottom = -277.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NEW HIGHSCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreValueLabel" type="Label" parent="UIManager/GameEndScreen/Inner/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -288.0
+offset_right = 57.0
+offset_bottom = -151.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuScreen" type="Control" parent="UIManager"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UIManager/MenuScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yusg0")
+
+[node name="Button" type="Button" parent="UIManager/MenuScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -94.0
+offset_right = 64.5
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIManager/MenuScreen/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UIManager/MenuScreen/Button/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_lhf5m")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="UIManager/MenuScreen/Button/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1

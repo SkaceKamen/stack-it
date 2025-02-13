@@ -86,7 +86,7 @@ public partial class Block : MeshInstance3D
       Size = block.Size;
 
       var effect = PerfectEffectPrefab.Instantiate<Node3D>();
-      GetParent().GetParent().AddChild(effect);
+      GetParent().AddChild(effect);
 
       effect.Scale = new Vector3(Size.X, 1, Size.Y);
       effect.Position = new Vector3(Position.X, Position.Y - Height / 2, Position.Z);
@@ -95,7 +95,7 @@ public partial class Block : MeshInstance3D
     }
 
     var cutoff = BlockCutoffPrefab.Instantiate<BlockCutoff>();
-    GetParent().GetParent().AddChild(cutoff);
+    GetParent().AddChild(cutoff);
 
     if (mySize - Math.Abs(diff) <= 0)
     {

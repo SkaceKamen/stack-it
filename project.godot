@@ -27,6 +27,10 @@ window/handheld/orientation=1
 
 project/assembly_name="stacking"
 
+[gui]
+
+theme/custom="res://DefaultTheme.tres"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
