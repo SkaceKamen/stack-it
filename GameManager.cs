@@ -5,6 +5,12 @@ namespace Stacking;
 
 public partial class GameManager : Node3D
 {
+  public enum State
+  {
+    Playing,
+    Menu
+  }
+
   [Export]
   PackedScene BlockPrefab;
 
@@ -17,7 +23,6 @@ public partial class GameManager : Node3D
   [Export]
   Camera3D Camera;
 
-
   float Height = 0;
 
   Block LastBlock;
@@ -26,17 +31,23 @@ public partial class GameManager : Node3D
 
   int Score = 0;
 
-
   Vector3 BaseCameraPosition;
+
+  State CurrentState = State.Menu;
 
   public override void _Ready()
   {
     LastBlock = BlocksContainer.GetChild<Block>(0);
     BaseCameraPosition = Camera.Position * 1f;
 
-    UIManager.RestartRequested += Reset;
-
-    SpawnBlock();
+    UIManager.RestartRequested += () =>
+    {
+      Reset();
+    };
+    UIManager.StartRequested += () =>
+    {
+      Reset();
+    };
   }
 
   public override void _Process(double delta)
@@ -44,7 +55,7 @@ public partial class GameManager : Node3D
     // BlocksContainer.Position = new Vector3(0, Mathf.Lerp(BlocksContainer.Position.Y, -Height, 10 * (float)delta), 0);
     Camera.Position = new Vector3(Camera.Position.X, Mathf.Lerp(Camera.Position.Y, BaseCameraPosition.Y + Height, 10 * (float)delta), Camera.Position.Z);
 
-    if (CurrentBlock != null)
+    if (CurrentState == State.Playing && CurrentBlock != null)
     {
       if (Input.IsActionJustPressed("ui_select"))
       {
@@ -56,6 +67,11 @@ public partial class GameManager : Node3D
   public override void _Input(InputEvent @event)
   {
     base._Input(@event);
+
+    if (CurrentState != State.Playing)
+    {
+      return;
+    }
 
     if (@event is InputEventScreenTouch touchEvent)
     {
@@ -80,6 +96,8 @@ public partial class GameManager : Node3D
 
     SpawnInitialBlock();
     SpawnBlock();
+
+    CurrentState = State.Playing;
   }
 
   private void SpawnInitialBlock()
@@ -146,5 +164,9 @@ public partial class GameManager : Node3D
     }
 
     UIManager.ShowGameOver(Score, isNewHighScore);
+
+    CurrentState = State.Menu;
+
+    DataStore.Data = userData;
   }
 }

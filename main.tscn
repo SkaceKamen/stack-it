@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://blw8ke1yno3hd"]
+[gd_scene load_steps=20 format=3 uid="uid://blw8ke1yno3hd"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_vkaln"]
 [ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://BlockPrefab.tscn" id="2_7slrr"]
 [ext_resource type="Script" path="res://UIManager.cs" id="3_3uxi8"]
 [ext_resource type="Script" path="res://GameEndScreen.cs" id="4_xbyyg"]
 [ext_resource type="Texture2D" uid="uid://b45lfdsjav165" path="res://ArrowPath.svg" id="5_b752k"]
+[ext_resource type="Script" path="res://MenuScreen.cs" id="6_bxyia"]
 [ext_resource type="Texture2D" uid="uid://7snokm877tm7" path="res://Play.svg" id="6_lhf5m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_brclc"]
@@ -157,18 +158,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UIManager/GameEndScreen/Inner/Control/RestartButton:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_3mrp2"]
 resource_name = "Show"
@@ -195,18 +184,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UIManager/GameEndScreen/Inner/Control/RestartButton:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gb0ew"]
@@ -431,15 +408,18 @@ text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuScreen" type="Control" parent="UIManager"]
+[node name="MenuScreen" type="Control" parent="UIManager" node_paths=PackedStringArray("StartButton", "HighScoreLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_bxyia")
+StartButton = NodePath("Button")
+HighScoreLabel = NodePath("Highscore")
 
-[node name="Panel" type="Panel" parent="UIManager/MenuScreen"]
+[node name="StartButton" type="Panel" parent="UIManager/MenuScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -478,5 +458,40 @@ stretch_mode = 3
 [node name="Label" type="Label" parent="UIManager/MenuScreen/Button/VBoxContainer"]
 layout_mode = 2
 text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="UIManager/MenuScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.5
+offset_top = -328.0
+offset_right = 108.5
+offset_bottom = -286.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Highscore"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Highscore" type="Label" parent="UIManager/MenuScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -308.0
+offset_right = 28.5
+offset_bottom = -171.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1

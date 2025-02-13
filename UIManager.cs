@@ -8,6 +8,9 @@ public partial class UIManager : CanvasLayer
   [Signal]
   public delegate void RestartRequestedEventHandler();
 
+  [Signal]
+  public delegate void StartRequestedEventHandler();
+
   [Export]
   Label ScoreLabel;
 
@@ -18,7 +21,7 @@ public partial class UIManager : CanvasLayer
   Control Ingame;
 
   [Export]
-  Control MenuScreen;
+  MenuScreen MenuScreen;
 
   [Export]
   GameEndScreen GameEndScreen;
@@ -44,8 +47,9 @@ public partial class UIManager : CanvasLayer
       MenuScreen.Visible = true;
     };
 
-    StartButton.Pressed += () =>
+    MenuScreen.StartRequested += () =>
     {
+      EmitSignal(SignalName.StartRequested);
       Ingame.Visible = true;
       MenuScreen.Visible = false;
     };
