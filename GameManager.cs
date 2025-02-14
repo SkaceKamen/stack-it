@@ -25,6 +25,8 @@ public partial class GameManager : Node3D
 
   float Height = 0;
 
+  Godot.Collections.Array<Block> Blocks = new();
+
   Block LastBlock;
 
   Block CurrentBlock;
@@ -84,6 +86,8 @@ public partial class GameManager : Node3D
 
   public void Reset()
   {
+    Blocks.Clear();
+
     Score = 0;
     Height = 0;
     LastBlock = null;
@@ -109,6 +113,15 @@ public partial class GameManager : Node3D
 
     CurrentBlock = block;
     LastBlock = block;
+
+    Blocks.Add(block);
+  }
+
+  private float GetMovementSpeed()
+  {
+    var blockCount = Blocks.Count;
+
+    return 1.5f + Mathf.Round(blockCount / 10f) / 10f;
   }
 
   private void SpawnBlock()
@@ -123,8 +136,11 @@ public partial class GameManager : Node3D
     block.Moving = true;
     block.Size = new Vector2(LastBlock.Size.X, LastBlock.Size.Y);
     block.Scale = new Vector3(LastBlock.Scale.X, LastBlock.Scale.Y, LastBlock.Scale.Z);
+    block.MoveSpeed = GetMovementSpeed();
 
     CurrentBlock = block;
+
+    Blocks.Add(block);
   }
 
   private void BlockStopped(Block block)

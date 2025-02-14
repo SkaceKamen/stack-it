@@ -31,6 +31,10 @@ public partial class UIManager : CanvasLayer
 
   public override void _Ready()
   {
+    Ingame.Visible = false;
+    GameEndScreen.Visible = false;
+    MenuScreen.Visible = true;
+
     ScoreLabel.Text = "0";
 
     GameEndScreen.RestartRequested += () =>

@@ -1,12 +1,20 @@
-[gd_scene load_steps=20 format=3 uid="uid://blw8ke1yno3hd"]
+[gd_scene load_steps=22 format=3 uid="uid://blw8ke1yno3hd"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_vkaln"]
 [ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://BlockPrefab.tscn" id="2_7slrr"]
 [ext_resource type="Script" path="res://UIManager.cs" id="3_3uxi8"]
 [ext_resource type="Script" path="res://GameEndScreen.cs" id="4_xbyyg"]
-[ext_resource type="Texture2D" uid="uid://b45lfdsjav165" path="res://ArrowPath.svg" id="5_b752k"]
+[ext_resource type="Texture2D" uid="uid://br6i7sfxht3ni" path="res://ArrowPath.png" id="5_gxu3u"]
 [ext_resource type="Script" path="res://MenuScreen.cs" id="6_bxyia"]
 [ext_resource type="Texture2D" uid="uid://7snokm877tm7" path="res://Play.svg" id="6_lhf5m"]
+
+[sub_resource type="Gradient" id="Gradient_qv60d"]
+colors = PackedColorArray(9.62615e-08, 0.676969, 0.691997, 1, 0.413557, 0.307453, 0.635338, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yd1gm"]
+gradient = SubResource("Gradient_qv60d")
+fill_from = Vector2(0.536697, 0)
+fill_to = Vector2(0.522936, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_brclc"]
 sky_top_color = Color(0.309804, 0.376471, 0.894118, 1)
@@ -21,8 +29,11 @@ ground_curve = 0.269087
 sky_material = SubResource("ProceduralSkyMaterial_brclc")
 
 [sub_resource type="Environment" id="Environment_ade2i"]
-background_mode = 2
+background_mode = 3
+background_canvas_max_layer = -100
 sky = SubResource("Sky_ayt6h")
+ambient_light_source = 2
+ambient_light_color = Color(0.556863, 0.533333, 0.937255, 1)
 
 [sub_resource type="Animation" id="Animation_ivkry"]
 length = 0.001
@@ -205,6 +216,17 @@ BlocksContainer = NodePath("Blocks")
 UIManager = NodePath("UIManager")
 Camera = NodePath("Camera3D")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_yd1gm")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, -0.345013, 0.617224, 0, 0.872887, 0.487922, -0.707107, -0.345013, 0.617224, 1, 1.1869, 1)
 projection = 1
@@ -222,6 +244,7 @@ transform = Transform3D(0.91679, 0.240219, -0.319047, 0, 0.798876, 0.601496, 0.3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 
 [node name="UIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("ScoreLabel", "AnimationPlayer", "Ingame", "MenuScreen", "GameEndScreen", "StartButton")]
+layer = 3
 script = ExtResource("3_3uxi8")
 ScoreLabel = NodePath("Ingame/Score/ScoreLabel")
 AnimationPlayer = NodePath("Ingame/AnimationPlayer")
@@ -338,7 +361,7 @@ offset_right = 52.0
 offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
-icon = ExtResource("5_b752k")
+icon = ExtResource("5_gxu3u")
 
 [node name="MenuButton" type="Button" parent="UIManager/GameEndScreen/Inner/Control"]
 layout_mode = 1
@@ -469,9 +492,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -108.5
-offset_top = -328.0
+offset_top = -353.0
 offset_right = 108.5
-offset_bottom = -286.0
+offset_bottom = -311.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Highscore"
