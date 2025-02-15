@@ -23,7 +23,12 @@ public partial class GameManager : Node3D
   [Export]
   Camera3D Camera;
 
+  [Export]
+  BackgroundLayer BackgroundLayer;
+
   float Height = 0;
+
+  int Count = 0;
 
   Godot.Collections.Array<Block> Blocks = new();
 
@@ -54,7 +59,6 @@ public partial class GameManager : Node3D
 
   public override void _Process(double delta)
   {
-    // BlocksContainer.Position = new Vector3(0, Mathf.Lerp(BlocksContainer.Position.Y, -Height, 10 * (float)delta), 0);
     Camera.Position = new Vector3(Camera.Position.X, Mathf.Lerp(Camera.Position.Y, BaseCameraPosition.Y + Height, 10 * (float)delta), Camera.Position.Z);
 
     if (CurrentState == State.Playing && CurrentBlock != null)
@@ -119,9 +123,7 @@ public partial class GameManager : Node3D
 
   private float GetMovementSpeed()
   {
-    var blockCount = Blocks.Count;
-
-    return 1.5f + Mathf.Round(blockCount / 10f) / 10f;
+    return 1.5f + Mathf.Round(Count / 10f) / 10f;
   }
 
   private void SpawnBlock()
@@ -156,7 +158,9 @@ public partial class GameManager : Node3D
     LastBlock = block;
     Height += block.Height;
     Score += cutResult == Block.CutResult.Perfect ? 2 : 1;
+    Count++;
 
+    BackgroundLayer.SetTarget(Count / 30f);
     UIManager.UpdateScore(Score, cutResult == Block.CutResult.Perfect);
 
     SpawnBlock();

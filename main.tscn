@@ -1,20 +1,48 @@
-[gd_scene load_steps=22 format=3 uid="uid://blw8ke1yno3hd"]
+[gd_scene load_steps=31 format=3 uid="uid://blw8ke1yno3hd"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_vkaln"]
 [ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://BlockPrefab.tscn" id="2_7slrr"]
 [ext_resource type="Script" path="res://UIManager.cs" id="3_3uxi8"]
+[ext_resource type="Script" path="res://BackgroundLayer.cs" id="3_y213r"]
 [ext_resource type="Script" path="res://GameEndScreen.cs" id="4_xbyyg"]
 [ext_resource type="Texture2D" uid="uid://br6i7sfxht3ni" path="res://ArrowPath.png" id="5_gxu3u"]
 [ext_resource type="Script" path="res://MenuScreen.cs" id="6_bxyia"]
 [ext_resource type="Texture2D" uid="uid://7snokm877tm7" path="res://Play.svg" id="6_lhf5m"]
 
+[sub_resource type="Gradient" id="Gradient_mwp3e"]
+colors = PackedColorArray(0.633593, 0.618866, 1, 1, 6.06447e-06, 0.61791, 0.699729, 1)
+
+[sub_resource type="Gradient" id="Gradient_tivq2"]
+colors = PackedColorArray(0.729243, 0.664932, 0.993114, 1, 0.35778, 0.81335, 0.711805, 1)
+
+[sub_resource type="Gradient" id="Gradient_6dvsi"]
+colors = PackedColorArray(0.893111, 0.501013, 0.998511, 1, 0.636222, 0.727729, 0.490493, 1)
+
+[sub_resource type="Gradient" id="Gradient_jfo47"]
+colors = PackedColorArray(0.999085, 0.730445, 0.72213, 1, 0.888731, 0.528967, 0.334523, 1)
+
+[sub_resource type="Gradient" id="Gradient_sxvrg"]
+colors = PackedColorArray(1, 0.625747, 0.524758, 1, 0.979343, 0.42418, 0.52024, 1)
+
 [sub_resource type="Gradient" id="Gradient_qv60d"]
-colors = PackedColorArray(9.62615e-08, 0.676969, 0.691997, 1, 0.413557, 0.307453, 0.635338, 1)
+colors = PackedColorArray(9.62615e-08, 0.676969, 0.691997, 1, 0.840773, 0.807218, 0.94851, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yd1gm"]
 gradient = SubResource("Gradient_qv60d")
 fill_from = Vector2(0.536697, 0)
 fill_to = Vector2(0.522936, 1)
+
+[sub_resource type="Animation" id="Animation_hlaah"]
+resource_name = "test"
+
+[sub_resource type="Animation" id="Animation_qnlk1"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b746v"]
+_data = {
+"RESET": SubResource("Animation_qnlk1"),
+"test": SubResource("Animation_hlaah")
+}
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_brclc"]
 sky_top_color = Color(0.309804, 0.376471, 0.894118, 1)
@@ -209,23 +237,32 @@ bg_color = Color(0, 0, 0, 0.266667)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yusg0"]
 bg_color = Color(0, 0, 0, 0.211765)
 
-[node name="GameManager" type="Node3D" node_paths=PackedStringArray("BlocksContainer", "UIManager", "Camera")]
+[node name="GameManager" type="Node3D" node_paths=PackedStringArray("BlocksContainer", "UIManager", "Camera", "BackgroundLayer")]
 script = ExtResource("1_vkaln")
 BlockPrefab = ExtResource("2_7slrr")
 BlocksContainer = NodePath("Blocks")
 UIManager = NodePath("UIManager")
 Camera = NodePath("Camera3D")
+BackgroundLayer = NodePath("BackgroundLayer")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BackgroundLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("BackgroundTexture")]
 layer = -100
+script = ExtResource("3_y213r")
+BackgroundTexture = NodePath("TextureRect")
+Gradients = [SubResource("Gradient_mwp3e"), SubResource("Gradient_tivq2"), SubResource("Gradient_6dvsi"), SubResource("Gradient_jfo47"), SubResource("Gradient_sxvrg")]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="BackgroundLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_yd1gm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BackgroundLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_b746v")
+}
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, -0.345013, 0.617224, 0, 0.872887, 0.487922, -0.707107, -0.345013, 0.617224, 1, 1.1869, 1)
