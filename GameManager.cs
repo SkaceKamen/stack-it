@@ -145,7 +145,11 @@ public partial class GameManager : Node3D
 
     Blocks.Add(block);
 
-    // TODO: Clear blocks that are out of view
+    if (Blocks.Count > 10)
+    {
+      Blocks[0].QueueFree();
+      Blocks.RemoveAt(0);
+    }
   }
 
   private void BlockStopped(Block block)
