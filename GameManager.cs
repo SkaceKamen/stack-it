@@ -92,6 +92,7 @@ public partial class GameManager : Node3D
   {
     Blocks.Clear();
 
+    Count = 0;
     Score = 0;
     Height = 0;
     LastBlock = null;
@@ -143,6 +144,8 @@ public partial class GameManager : Node3D
     CurrentBlock = block;
 
     Blocks.Add(block);
+
+    // TODO: Clear blocks that are out of view
   }
 
   private void BlockStopped(Block block)
