@@ -67,13 +67,7 @@ jobs:
         run: |
           set -e
           mkdir -p ./build/windows
-          ./Godot_v${GODOT_VERSION}-stable_mono_linux_x86_64/Godot_v${GODOT_VERSION}-stable_mono_linux.x86_64 --headless --verbose --export-release "Windows" "./build/android/stacking.exe"
-
-      - name: Prepare android build
-        run: |
-          set -e
-          base64 -d <<< "$KEYSTORE_ENCODED" > release
-          envsubst < export_credentials.template > .godot/export_credentials.cfg
+          ./Godot_v${GODOT_VERSION}-stable_mono_linux_x86_64/Godot_v${GODOT_VERSION}-stable_mono_linux.x86_64 --headless --verbose --export-release "Windows" "./build/windows/stacking.exe"
 
       - name: Build android version
         env:
@@ -82,6 +76,8 @@ jobs:
         run: |
           set -e
           mkdir -p ./build/android
+          base64 -d <<< "$KEYSTORE_ENCODED" > release
+          envsubst < export_credentials.template > .godot/export_credentials.cfg
           ./Godot_v${GODOT_VERSION}-stable_mono_linux_x86_64/Godot_v${GODOT_VERSION}-stable_mono_linux.x86_64 --headless --verbose --export-release "Android" "./build/android/stacking.apk"
 
       - name: Upload linux
