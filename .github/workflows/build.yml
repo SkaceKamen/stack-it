@@ -3,11 +3,14 @@ name: "Build project"
 env:
   GODOT_VERSION: "4.2.1"
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+# Disabled because every version has an issue:
+#  WINDOWS: missing icon, broken release for some reason
+#  ANDROID: completely broken, crashes on start on missing NET assemblies
+#on:
+#  push:
+#    branches:
+#      - main
+#  workflow_dispatch:
 
 jobs:
   build:
