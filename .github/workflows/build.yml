@@ -95,5 +95,5 @@ jobs:
       - name: Upload android
         uses: actions/upload-artifact@v4
         with:
-          name: stacking.apk
+          name: stacking-android
           path: build/android/stacking.apk
