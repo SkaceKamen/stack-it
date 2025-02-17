@@ -33,7 +33,7 @@ jobs:
         id: cache-godot
         uses: actions/cache@v4
         with:
-          path: ./Godot_v${{ env.GODOT_VERSION }}-stable_linux_x86_64/
+          path: ./Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64
           key: ${{ runner.os }}-${{ env.GODOT_VERSION }}-godot
 
       - name: Initialize Godot
@@ -47,7 +47,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
-          key: ${{ runner.os }}${{ env.GODOT_VERSION }}-templates
+          key: ${{ runner.os }}-${{ env.GODOT_VERSION }}-templates
 
       - name: Initialize export templates
         if: steps.cache-godot-templates.outputs.cache-hit != 'true'
