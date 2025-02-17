@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://coaea6xflebpp"]
+
+[ext_resource type="PackedScene" uid="uid://2m63hvaa5rmy" path="res://gradient_skin.tscn" id="1_8wjhd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_manhf"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_v710x"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_manhf")
+size = Vector3(1, 0.2, 1)
+
+[node name="gradient_skin" instance=ExtResource("1_8wjhd")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+mesh = SubResource("BoxMesh_v710x")

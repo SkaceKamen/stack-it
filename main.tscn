@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_qtoss"]
 [ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://BlockPrefab.tscn" id="2_7slrr"]
-[ext_resource type="PackedScene" uid="uid://2m63hvaa5rmy" path="res://rainbow_skin.tscn" id="3_pjtf1"]
+[ext_resource type="PackedScene" uid="uid://coaea6xflebpp" path="res://blue_skin.tscn" id="3_g8yc7"]
 [ext_resource type="Script" path="res://background_layer.gd" id="3_s2lpx"]
 [ext_resource type="Script" path="res://ui_manager.gd" id="4_6npex"]
 [ext_resource type="Script" path="res://game_end_screen.gd" id="5_g4lna"]
@@ -229,7 +229,7 @@ bg_color = Color(0, 0, 0, 0.211765)
 [node name="GameManager" type="Node3D" node_paths=PackedStringArray("blocks_container", "ui_manager", "camera", "background_layer")]
 script = ExtResource("1_qtoss")
 block_prefab = ExtResource("2_7slrr")
-default_skin_prefab = ExtResource("3_pjtf1")
+default_skin_prefab = ExtResource("3_g8yc7")
 blocks_container = NodePath("Blocks")
 ui_manager = NodePath("UIManager")
 camera = NodePath("Camera3D")

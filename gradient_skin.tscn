@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://2m63hvaa5rmy"]
 
-[ext_resource type="Script" path="res://rainbow_skin.gd" id="1_37e0w"]
+[ext_resource type="Script" path="res://gradient_skin.gd" id="1_37e0w"]
 
 [sub_resource type="Gradient" id="Gradient_wt8hh"]
-offsets = PackedFloat32Array(0, 0.478261, 1)
-colors = PackedColorArray(0.949856, 0, 0.174104, 1, 0.797074, 0.892404, 0, 1, 0.333532, 0.00100921, 0.802968, 1)
+offsets = PackedFloat32Array(0, 0.504202, 1)
+colors = PackedColorArray(0.666961, 0.67052, 0.990465, 1, 0.768031, 0.464275, 0.908528, 1, 0.470079, 0.354864, 0.853899, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_in454"]
 resource_local_to_scene = true
@@ -14,7 +14,7 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_in454")
 size = Vector3(1, 0.2, 1)
 
-[node name="rainbow_skin" type="Node3D" node_paths=PackedStringArray("mesh")]
+[node name="gradient_skin" type="Node3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_37e0w")
 resetHeight = 15.0
 gradient = SubResource("Gradient_wt8hh")

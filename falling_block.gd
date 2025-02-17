@@ -74,9 +74,9 @@ func cut_according_to(block: FallingBlock, stack_height: float, stack_count: int
 
     return CutResult.Perfect
 
-  var cutoff = block_cutoff_prefab.instantiate()
+  var cutoff = block_cutoff_prefab.instantiate() as BlockCutoff
   get_parent().add_child(cutoff)
-  cutoff.set_skin(skin, stack_count, stack_height)
+  cutoff.set_skin(skin, stack_height, stack_count)
 
   if my_size - abs(diff) <= 0:
     cutoff.set_size(size)
