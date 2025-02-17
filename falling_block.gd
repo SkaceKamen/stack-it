@@ -31,7 +31,7 @@ func cut_according_to(block: FallingBlock) -> CutResult:
   var my_position = position.z if move_axis == 0 else position.x
   var other_position = block.position.z if move_axis == 0 else block.position.x
 
-  var my_sign = 1 if my_position - other_position < 0 else -1
+  var my_sign = -1 if my_position - other_position < 0 else 1
 
   var my_size = size.y if move_axis == 0 else size.x
   var my_point = my_position + my_sign * my_size / 2
@@ -72,7 +72,7 @@ func cut_according_to(block: FallingBlock) -> CutResult:
 
     return CutResult.Missed
 
-  var previous_size = size
+  var previous_size = size * 1
 
   if move_axis == 0:
     size.y -= abs(diff)
@@ -81,7 +81,6 @@ func cut_according_to(block: FallingBlock) -> CutResult:
 
     cutoff.set_size(Vector2(size.x, abs(diff)))
     cutoff.position = Vector3(position.x, position.y, position.z + my_sign * (previous_size.y / 2))
-
   else:
     size.x -= abs(diff)
     scale = Vector3(size.x, scale.y, scale.z)
@@ -89,7 +88,6 @@ func cut_according_to(block: FallingBlock) -> CutResult:
 
     cutoff.set_size(Vector2(abs(diff), size.y))
     cutoff.position = Vector3(position.x + my_sign * (previous_size.x / 2), position.y, position.z)
-
 
   return CutResult.Partial;
   

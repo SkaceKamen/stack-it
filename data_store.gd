@@ -1,7 +1,7 @@
 extends Node
 class_name DataStore
 
-static var data_file_path = "user://user_data.json"
+static var data_file_path = "user://data.json"
 
 static func load_data() -> Dictionary:
   if not FileAccess.file_exists(data_file_path):
