@@ -15,6 +15,9 @@ var move_speed = 2
 var move_axis = 0
 var size = Vector2(1, 1)
 
+var skin: PackedScene = null
+var skin_instance: BlockSkin = null
+
 func get_move_direction() -> Vector3:
   return Vector3(0, 0, move_sign) if move_axis == 0 else Vector3(move_sign, 0, 0)
 
@@ -27,7 +30,17 @@ func _process(delta):
 
       move_sign *= -1
 
-func cut_according_to(block: FallingBlock) -> CutResult:
+func set_skin(skin_prefab: PackedScene, stack_height: float, stack_count: int):
+  if skin_instance != null:
+    skin_instance.queue_free()
+  
+  skin = skin_prefab
+  skin_instance = skin.instantiate() as BlockSkin
+  add_child(skin_instance)
+
+  skin_instance.set_state(stack_height, stack_count)
+
+func cut_according_to(block: FallingBlock, stack_height: float, stack_count: int) -> CutResult:
   var my_position = position.z if move_axis == 0 else position.x
   var other_position = block.position.z if move_axis == 0 else block.position.x
 
@@ -63,6 +76,7 @@ func cut_according_to(block: FallingBlock) -> CutResult:
 
   var cutoff = block_cutoff_prefab.instantiate()
   get_parent().add_child(cutoff)
+  cutoff.set_skin(skin, stack_count, stack_height)
 
   if my_size - abs(diff) <= 0:
     cutoff.set_size(size)

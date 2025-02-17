@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://2m63hvaa5rmy"]
+
+[ext_resource type="Script" path="res://rainbow_skin.gd" id="1_37e0w"]
+
+[sub_resource type="Gradient" id="Gradient_wt8hh"]
+offsets = PackedFloat32Array(0, 0.478261, 1)
+colors = PackedColorArray(0.949856, 0, 0.174104, 1, 0.797074, 0.892404, 0, 1, 0.333532, 0.00100921, 0.802968, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_in454"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_kdxkb"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_in454")
+size = Vector3(1, 0.2, 1)
+
+[node name="rainbow_skin" type="Node3D" node_paths=PackedStringArray("mesh")]
+script = ExtResource("1_37e0w")
+resetHeight = 15.0
+gradient = SubResource("Gradient_wt8hh")
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_kdxkb")

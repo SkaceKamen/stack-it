@@ -4,6 +4,7 @@ class_name GameManager
 enum State {Playing, Menu}
 
 @export() var block_prefab: PackedScene
+@export() var default_skin_prefab: PackedScene
 @export() var blocks_container: Node3D
 @export() var ui_manager: UIManager
 @export() var camera: Camera3D
@@ -23,11 +24,12 @@ var base_camera_position: Vector3
 var current_state = State.Menu
 
 func _ready():
-  last_block = blocks_container.get_child(0) as FallingBlock
   base_camera_position = camera.position * 1
 
   ui_manager.restart_requested.connect(reset)
   ui_manager.start_requested.connect(reset)
+
+  spawn_initial_block()
   
 func _process(delta: float) -> void:
   camera.position = Vector3(camera.position.x, lerp(camera.position.y, base_camera_position.y + height, 10 * delta), camera.position.z)
@@ -64,6 +66,7 @@ func spawn_initial_block() -> void:
   blocks_container.add_child(block)
 
   block.position = Vector3(0, -block.height, 0)
+  block.set_skin(default_skin_prefab, height, count)
 
   current_block = block
   last_block = block
@@ -79,23 +82,24 @@ func spawn_block() -> void:
   var block = block_prefab.instantiate() as FallingBlock
   blocks_container.add_child(block)
 
-  block.position = Vector3(last_block.position.x, height, last_block.position.z) if new_axis == 0 else Vector3(last_block.position.x, height, last_block.position.z)
+  block.position = Vector3(last_block.position.x, height, -1) if new_axis == 0 else Vector3(-1, height, last_block.position.z)
   block.block_stopped.connect(block_stopped)
   block.move_axis = new_axis
   block.moving = true
   block.size = Vector2(last_block.size.x, last_block.size.y)
   block.scale = Vector3(last_block.scale.x, last_block.scale.y, last_block.scale.z)
   block.move_speed = get_movement_speed()
+  block.set_skin(default_skin_prefab, height, count)
 
   current_block = block
 
   blocks.append(block)
 
-  if blocks.size() > 10:
+  if blocks.size() > 15:
     blocks.pop_front().queue_free()
 
 func block_stopped(block: FallingBlock) -> void:
-  var cut_result = block.cut_according_to(last_block)
+  var cut_result = block.cut_according_to(last_block, height, count)
 
   if cut_result == FallingBlock.CutResult.Missed:
     game_over()

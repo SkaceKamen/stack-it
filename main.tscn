@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://blw8ke1yno3hd"]
+[gd_scene load_steps=29 format=3 uid="uid://blw8ke1yno3hd"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_qtoss"]
 [ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://BlockPrefab.tscn" id="2_7slrr"]
+[ext_resource type="PackedScene" uid="uid://2m63hvaa5rmy" path="res://rainbow_skin.tscn" id="3_pjtf1"]
 [ext_resource type="Script" path="res://background_layer.gd" id="3_s2lpx"]
 [ext_resource type="Script" path="res://ui_manager.gd" id="4_6npex"]
 [ext_resource type="Script" path="res://game_end_screen.gd" id="5_g4lna"]
@@ -228,6 +229,7 @@ bg_color = Color(0, 0, 0, 0.211765)
 [node name="GameManager" type="Node3D" node_paths=PackedStringArray("blocks_container", "ui_manager", "camera", "background_layer")]
 script = ExtResource("1_qtoss")
 block_prefab = ExtResource("2_7slrr")
+default_skin_prefab = ExtResource("3_pjtf1")
 blocks_container = NodePath("Blocks")
 ui_manager = NodePath("UIManager")
 camera = NodePath("Camera3D")
@@ -259,10 +261,6 @@ environment = SubResource("Environment_ade2i")
 transform = Transform3D(0.91679, 0.240219, -0.319047, 0, 0.798876, 0.601496, 0.39937, -0.551446, 0.732401, 0, 2.78224, 3.51052)
 
 [node name="Blocks" type="Node3D" parent="."]
-
-[node name="Block" parent="Blocks" instance=ExtResource("2_7slrr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
-script = null
 
 [node name="UIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("score_label", "animation_player", "ingame", "menu_screen", "game_end_screen")]
 layer = 3

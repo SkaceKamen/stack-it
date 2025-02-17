@@ -39,7 +39,7 @@ jobs:
       - name: Initialize Godot
         if: steps.cache-godot.outputs.cache-hit != 'true'
         run: |
-          curl -f -L -o godot.zip https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux_x86_64.zip
+          curl -f -L -o godot.zip https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
           unzip ./godot.zip
 
       - name: Cache downloaded templates
@@ -61,13 +61,13 @@ jobs:
         run: |
           set -e
           mkdir -p ./build/linux
-          ./Godot_v${GODOT_VERSION}-stable_linux_x86_64/Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --verbose --export-release "Linux/X11" "./build/linux/stacking"
+          ./Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --verbose --export-release "Linux/X11" "./build/linux/stacking"
 
       - name: Build windows version
         run: |
           set -e
           mkdir -p ./build/windows
-          ./Godot_v${GODOT_VERSION}-stable_linux_x86_64/Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --verbose --export-release "Windows" "./build/windows/stacking.exe"
+          ./Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --verbose --export-release "Windows" "./build/windows/stacking.exe"
 
       - name: Build android version
         env:
@@ -78,7 +78,7 @@ jobs:
           mkdir -p ./build/android
           base64 -d <<< "$KEYSTORE_ENCODED" > release
           envsubst < export_credentials.template > .godot/export_credentials.cfg
-          ./Godot_v${GODOT_VERSION}-stable_linux_x86_64/Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --verbose --export-release "Android" "./build/android/stacking.apk"
+          ./Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --verbose --export-release "Android" "./build/android/stacking.apk"
 
       - name: Upload linux
         uses: actions/upload-artifact@v4
