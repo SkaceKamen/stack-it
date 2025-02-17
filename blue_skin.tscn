@@ -1,6 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://coaea6xflebpp"]
+[gd_scene load_steps=5 format=3 uid="uid://coaea6xflebpp"]
 
 [ext_resource type="PackedScene" uid="uid://2m63hvaa5rmy" path="res://gradient_skin.tscn" id="1_8wjhd"]
+
+[sub_resource type="Gradient" id="Gradient_iaff2"]
+offsets = PackedFloat32Array(0, 0.507003, 1)
+colors = PackedColorArray(0.557864, 0.626491, 1, 1, 0.701885, 0.710451, 0.932726, 1, 0, 0.518732, 0.875375, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_manhf"]
 resource_local_to_scene = true
@@ -11,6 +15,7 @@ material = SubResource("StandardMaterial3D_manhf")
 size = Vector3(1, 0.2, 1)
 
 [node name="gradient_skin" instance=ExtResource("1_8wjhd")]
+gradient = SubResource("Gradient_iaff2")
 
 [node name="MeshInstance3D" parent="." index="0"]
 mesh = SubResource("BoxMesh_v710x")

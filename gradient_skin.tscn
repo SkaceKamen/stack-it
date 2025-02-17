@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://gradient_skin.gd" id="1_37e0w"]
 
 [sub_resource type="Gradient" id="Gradient_wt8hh"]
-offsets = PackedFloat32Array(0, 0.504202, 1)
-colors = PackedColorArray(0.666961, 0.67052, 0.990465, 1, 0.768031, 0.464275, 0.908528, 1, 0.470079, 0.354864, 0.853899, 1)
+offsets = PackedFloat32Array(0, 0.498599, 1)
+colors = PackedColorArray(0.557864, 0.626491, 1, 1, 0.549788, 0.847815, 0, 1, 1, 0.200034, 0.466463, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_in454"]
 resource_local_to_scene = true
