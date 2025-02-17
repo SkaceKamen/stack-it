@@ -1,9 +1,9 @@
 extends Node3D
-class_name Block
+class_name FallingBlock
 
 enum CutResult {Perfect, Missed, Partial}
 
-signal block_stopped(block: Block)
+signal block_stopped(block: FallingBlock)
 
 @export() var height = 0.2
 @export() var block_cutoff_prefab: PackedScene
@@ -19,15 +19,15 @@ func get_move_direction() -> Vector3:
   return Vector3(0, 0, move_sign) if move_axis == 0 else Vector3(move_sign, 0, 0)
 
 func _process(delta):
-    if moving:
-      var move_direction = get_move_direction()
-      position += move_direction * move_speed * delta
+  if moving:
+    var move_direction = get_move_direction()
+    position += move_direction * move_speed * delta
 
-      if (move_axis == 0 and abs(position.z) > 1) or (move_axis == 1 and abs(position.x) > 1):
+    if (move_axis == 0 and abs(position.z) > 1) or (move_axis == 1 and abs(position.x) > 1):
 
-        move_sign *= -1
+      move_sign *= -1
 
-func cut_according_to(block: Block) -> CutResult:
+func cut_according_to(block: FallingBlock) -> CutResult:
   var my_position = position.z if move_axis == 0 else position.x
   var other_position = block.position.z if move_axis == 0 else block.position.x
 

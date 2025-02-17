@@ -11,10 +11,10 @@ enum State {Playing, Menu}
 
 var height = 0
 var count = 0
-var blocks: Array[Block] = []
+var blocks: Array[FallingBlock] = []
 
-var last_block: Block
-var current_block: Block
+var last_block: FallingBlock
+var current_block: FallingBlock
 
 var score = 0
 
@@ -60,7 +60,7 @@ func reset() -> void:
   current_state = State.Playing
 
 func spawn_initial_block() -> void:
-  var block = block_prefab.instance() as Block
+  var block = block_prefab.instance() as FallingBlock
   blocks_container.add_child(block)
 
   block.position = Vector3(0, -block.height, 0)
@@ -76,7 +76,7 @@ func get_movement_speed() -> float:
 func spawn_block() -> void:
   var new_axis = 1 if last_block.move_axis == 0 else 0
 
-  var block = block_prefab.instance() as Block
+  var block = block_prefab.instance() as FallingBlock
   blocks_container.add_child(block)
 
   block.position = Vector3(last_block.position.x, height, last_block.position.z) if new_axis == 0 else Vector3(last_block.position.x, height, last_block.position.z)
@@ -94,20 +94,20 @@ func spawn_block() -> void:
   if blocks.size() > 10:
     blocks.pop_front().queue_free()
 
-func block_stopped(block: Block) -> void:
+func block_stopped(block: FallingBlock) -> void:
   var cut_result = block.cut_according_to(last_block)
 
-  if cut_result == Block.CutResult.Missed:
+  if cut_result == FallingBlock.CutResult.Missed:
     game_over()
     return
 
   last_block = block
   height += block.height
-  score += 2 if cut_result == Block.CutResult.Perfect else 1
+  score += 2 if cut_result == FallingBlock.CutResult.Perfect else 1
   count += 1
 
   background_layer.set_target(count / 30.0)
-  ui_manager.update_score(score, cut_result == Block.CutResult.Perfect)
+  ui_manager.update_score(score, cut_result == FallingBlock.CutResult.Perfect)
 
   spawn_block()
 
