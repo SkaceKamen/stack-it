@@ -1,16 +1,17 @@
 name: "Build project"
 
 env:
-  GODOT_VERSION: "4.2.1"
+  GODOT_VERSION: "4.3"
 
 # Disabled because every version has an issue:
 #  WINDOWS: missing icon, broken release for some reason
 #  ANDROID: completely broken, crashes on start on missing NET assemblies
-#on:
-#  push:
-#    branches:
-#      - main
-#  workflow_dispatch:
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  pull_request:
 
 jobs:
   build:
@@ -18,10 +19,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 6.0.x
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
