@@ -41,19 +41,19 @@ func cut_according_to(block: FallingBlock) -> CutResult:
 
   var diff = my_point - other_point
 
-  print("myPosition: " + my_position)
-  print("mySize: " + my_size)
-  print("otherPosition: " + other_position)
-  print("otherSize: " + other_size)
-  print("myPoint: " + my_point)
-  print("otherPoint: " + other_point)
-  print("diff: " + diff + "\n")
+  print("myPosition: " + str(my_position))
+  print("mySize: " + str(my_size))
+  print("otherPosition: " + str(other_position))
+  print("otherSize: " + str(other_size))
+  print("myPoint: " + str(my_point))
+  print("otherPoint: " + str(other_point))
+  print("diff: " + str(diff) + "\n")
 
   if abs(diff) < 0.02:
     position = Vector3(block.position.x, position.y, block.position.z)
     size = block.size
 
-    var effect = perfect_effect_prefab.instance()
+    var effect = perfect_effect_prefab.instantiate()
     get_parent().add_child(effect)
 
     effect.scale = Vector3(size.x, 1, size.y)
@@ -61,11 +61,11 @@ func cut_according_to(block: FallingBlock) -> CutResult:
 
     return CutResult.Perfect
 
-  var cutoff = block_cutoff_prefab.instance()
+  var cutoff = block_cutoff_prefab.instantiate()
   get_parent().add_child(cutoff)
 
   if my_size - abs(diff) <= 0:
-    cutoff.size = size
+    cutoff.set_size(size)
     cutoff.position = Vector3(position.x, position.y, position.z)
 
     queue_free()
@@ -79,7 +79,7 @@ func cut_according_to(block: FallingBlock) -> CutResult:
     scale = Vector3(scale.x, scale.y, size.y)
     position = Vector3(position.x, position.y, position.z - diff / 2)
 
-    cutoff.size = Vector2(size.x, abs(diff))
+    cutoff.set_size(Vector2(size.x, abs(diff)))
     cutoff.position = Vector3(position.x, position.y, position.z + my_sign * (previous_size.y / 2))
 
   else:
@@ -87,7 +87,7 @@ func cut_according_to(block: FallingBlock) -> CutResult:
     scale = Vector3(size.x, scale.y, scale.z)
     position = Vector3(position.x - diff / 2, position.y, position.z)
 
-    cutoff.size = Vector2(abs(diff), size.y)
+    cutoff.set_size(Vector2(abs(diff), size.y))
     cutoff.position = Vector3(position.x + my_sign * (previous_size.x / 2), position.y, position.z)
 
 

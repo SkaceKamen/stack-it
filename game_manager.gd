@@ -23,7 +23,7 @@ var base_camera_position: Vector3
 var current_state = State.Menu
 
 func _ready():
-  last_block = blocks_container.get_child(0)
+  last_block = blocks_container.get_child(0) as FallingBlock
   base_camera_position = camera.position * 1
 
   ui_manager.restart_requested.connect(reset)
@@ -60,7 +60,7 @@ func reset() -> void:
   current_state = State.Playing
 
 func spawn_initial_block() -> void:
-  var block = block_prefab.instance() as FallingBlock
+  var block = block_prefab.instantiate() as FallingBlock
   blocks_container.add_child(block)
 
   block.position = Vector3(0, -block.height, 0)
@@ -76,11 +76,11 @@ func get_movement_speed() -> float:
 func spawn_block() -> void:
   var new_axis = 1 if last_block.move_axis == 0 else 0
 
-  var block = block_prefab.instance() as FallingBlock
+  var block = block_prefab.instantiate() as FallingBlock
   blocks_container.add_child(block)
 
   block.position = Vector3(last_block.position.x, height, last_block.position.z) if new_axis == 0 else Vector3(last_block.position.x, height, last_block.position.z)
-  block.block_stopped += block_stopped
+  block.block_stopped.connect(block_stopped)
   block.move_axis = new_axis
   block.moving = true
   block.size = Vector2(last_block.size.x, last_block.size.y)
@@ -123,7 +123,7 @@ func game_over() -> void:
 
   var is_new_high_score = false
 
-  if !user_data.high_score.HasValue || score > user_data.high_score:
+  if user_data.high_score == null || score > user_data.high_score:
     user_data.high_score = score
     is_new_high_score = true
 

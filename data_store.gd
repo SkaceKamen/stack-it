@@ -6,7 +6,8 @@ static var data_file_path = "user://user_data.json"
 static func load_data() -> Dictionary:
   if not FileAccess.file_exists(data_file_path):
     return {
-      "scores": []
+      "scores": [],
+      "high_score": null
     }
 
   return _load_from_file(data_file_path)
@@ -16,7 +17,8 @@ static func save_data(data: Dictionary) -> void:
 
 static func _load_from_file(path: String) -> Dictionary:
   var data = {
-  "scores": []
+    "scores": [],
+    "high_score": null,
   }
 
   var file = FileAccess.open(path, FileAccess.READ)
@@ -24,33 +26,34 @@ static func _load_from_file(path: String) -> Dictionary:
   if file == null:
     return data
 
-  var json = JSON.new().parse(file.get_as_text())
+  var file_data = JSON.parse_string(file.get_as_text())
 
-  if "high_score" in json:
-    data["high_score"] = json["high_score"]
+  if file_data.has("high_score"):
+    data["high_score"] = file_data["high_score"]
 
-  for score_item in json["scores"]:
+  for score_item in file_data["scores"]:
     data["scores"].append({
       "score": score_item["score"],
       "date": score_item["date"]
     })
 
-  return data
+  return file_data
 
 static func _save_to_file(path: String, data: Dictionary) -> void:
-  var json = {
-  "scores": []
+  var jsonData = {
+    "scores": [],
+    "high_score": null,
   }
 
-  if "high_score" in data:
-    json["high_score"] = data["high_score"]
+  if data.has("high_score"):
+    jsonData["high_score"] = data["high_score"]
 
   for score in data["scores"]:
-    json["scores"].append({
+    jsonData["scores"].append({
       "score": score["score"],
       "date": score["date"]
     })
 
   var file = FileAccess.open(path, FileAccess.WRITE)
-  file.store_string(json.to_json())
+  file.store_string(JSON.stringify(jsonData))
   file.close()
