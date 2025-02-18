@@ -37,8 +37,8 @@ class UserData:
 
   static func from_dict(data: Dictionary) -> UserData:
     var user_data = UserData.new()
-    user_data.high_score = data["high_score"]
-    user_data.money = data["money"]
+    user_data.high_score = data["high_score"] if data.has("high_score") else null
+    user_data.money = data["money"] if data.has("money") else 0
 
     for score in data["scores"]:
       user_data.scores.append(UserDataScore.from_dict(score))
@@ -46,7 +46,6 @@ class UserData:
     return user_data
 
 static var data_file_path = "user://data.json"
-
 
 static var _user_data: UserData
 
