@@ -116,13 +116,13 @@ func block_stopped(block: FallingBlock) -> void:
   spawn_block()
 
 func game_over() -> void:
-  var user_data = DataStore.load_data()
-  
+  var user_data = DataStore.user_data
+
   user_data.scores.append(
-    {
-    "score": score,
-    "date": Time.get_datetime_string_from_system()
-    }
+    DataStore.UserDataScore.new(
+      score,
+      Time.get_datetime_string_from_system()
+    )
   )
 
   var is_new_high_score = false
@@ -135,4 +135,4 @@ func game_over() -> void:
 
   current_state = State.Menu
 
-  DataStore.save_data(user_data)
+  DataStore.user_data = user_data

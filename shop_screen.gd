@@ -20,6 +20,13 @@ func refresh_items():
 
     # Add skins
     for skin_data in game_data.skins:
-        var skin_item = skin_item_prefab.instantiate()
+        var skin_item = skin_item_prefab.instantiate() as SkinShopItem
         skin_item.set_data(skin_data)
         skin_items_container.add_child(skin_item)
+        skin_item.skin_pressed.connect(buy_skin)
+
+func buy_skin(skin_data: SkinData):
+    if game_data.money >= skin_data.cost:
+        game_data.money -= skin_data.cost
+        game_data.equipped_skin = skin_data
+        refresh_items()
