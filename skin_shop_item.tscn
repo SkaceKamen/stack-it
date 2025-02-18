@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyt7x2tqupmy"]
+[gd_scene load_steps=4 format=3 uid="uid://cyt7x2tqupmy"]
 
 [ext_resource type="Texture2D" uid="uid://bo1fbr5cmfv6r" path="res://icon.svg" id="1_a3oga"]
 [ext_resource type="Script" path="res://skin_shop_item.gd" id="1_aqcaj"]
+[ext_resource type="StyleBox" uid="uid://bjirsjp5b605g" path="res://skin_shop_item_selected.tres" id="1_v477e"]
 
 [node name="SkinShopItem" type="Button" node_paths=PackedStringArray("name_label", "cost_label", "icon_texture")]
 custom_minimum_size = Vector2(200, 220)
@@ -16,6 +17,7 @@ script = ExtResource("1_aqcaj")
 name_label = NodePath("SkinItem/Name")
 cost_label = NodePath("SkinItem/Cost")
 icon_texture = NodePath("SkinItem/Icon")
+selected_style = ExtResource("1_v477e")
 
 [node name="SkinItem" type="VBoxContainer" parent="."]
 layout_mode = 1
