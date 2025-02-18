@@ -3,12 +3,13 @@ class_name GameManager
 
 enum State {Playing, Menu}
 
-@export() var block_prefab: PackedScene
-@export() var default_skin_prefab: PackedScene
-@export() var blocks_container: Node3D
-@export() var ui_manager: UIManager
-@export() var camera: Camera3D
-@export() var background_layer: BackgroundLayer
+@export var game_data: GameData
+@export var block_prefab: PackedScene
+@export var default_skin_prefab: PackedScene
+@export var blocks_container: Node3D
+@export var ui_manager: UIManager
+@export var camera: Camera3D
+@export var background_layer: BackgroundLayer
 
 var height = 0
 var count = 0
@@ -61,12 +62,20 @@ func reset() -> void:
 
   current_state = State.Playing
 
+func get_current_skin() -> PackedScene:
+  if DataStore.user_data.current_skin != '':
+    for skin in game_data.skins:
+      if skin.id == DataStore.user_data.current_skin:
+        return load(skin.prefab_path)
+  
+  return default_skin_prefab
+
 func spawn_initial_block() -> void:
   var block = block_prefab.instantiate() as FallingBlock
   blocks_container.add_child(block)
 
   block.position = Vector3(0, -block.height, 0)
-  block.set_skin(default_skin_prefab, height, count)
+  block.set_skin(get_current_skin(), height, count)
 
   current_block = block
   last_block = block
@@ -89,7 +98,7 @@ func spawn_block() -> void:
   block.size = Vector2(last_block.size.x, last_block.size.y)
   block.scale = Vector3(last_block.scale.x, last_block.scale.y, last_block.scale.z)
   block.move_speed = get_movement_speed()
-  block.set_skin(default_skin_prefab, height, count)
+  block.set_skin(get_current_skin(), height, count)
 
   current_block = block
 

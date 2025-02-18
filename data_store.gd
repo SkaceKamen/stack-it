@@ -22,12 +22,16 @@ class UserData:
   var scores: Array[UserDataScore] = []
   var high_score: int
   var money = 0
+  var owned_skins: Array = []
+  var current_skin: String
 
   func to_dict() -> Dictionary:
     var data = {
       "scores": [],
       "high_score": high_score,
       "money": money,
+      "owned_skins": owned_skins,
+      "current_skin": current_skin
     }
 
     for score in scores:
@@ -39,6 +43,8 @@ class UserData:
     var user_data = UserData.new()
     user_data.high_score = data["high_score"] if data.has("high_score") else null
     user_data.money = data["money"] if data.has("money") else 0
+    user_data.owned_skins = (data["owned_skins"] if data.has("owned_skins") else []) as Array[String]
+    user_data.current_skin = data["current_skin"] if data.has("current_skin") else ''
 
     for score in data["scores"]:
       user_data.scores.append(UserDataScore.from_dict(score))
@@ -84,3 +90,6 @@ static func _save_to_file(path: String, data: UserData) -> void:
   var file = FileAccess.open(path, FileAccess.WRITE)
   file.store_string(JSON.stringify(data.to_dict()))
   file.close()
+
+static func save_user_data():
+  _save_data(_user_data)

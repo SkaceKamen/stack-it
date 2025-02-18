@@ -233,6 +233,7 @@ bg_color = Color(0, 0, 0, 0.211765)
 
 [node name="GameManager" type="Node3D" node_paths=PackedStringArray("blocks_container", "ui_manager", "camera", "background_layer")]
 script = ExtResource("1_qtoss")
+game_data = ExtResource("11_jwuxf")
 block_prefab = ExtResource("2_7slrr")
 default_skin_prefab = ExtResource("3_g8yc7")
 blocks_container = NodePath("Blocks")
