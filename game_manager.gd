@@ -134,14 +134,18 @@ func game_over() -> void:
     )
   )
 
+  var money_earned = floor(score / 10.0)
+  user_data.money += money_earned
+
   var is_new_high_score = false
 
   if user_data.high_score == null || score > user_data.high_score:
     user_data.high_score = score
     is_new_high_score = true
 
+
   ui_manager.show_game_over(score, is_new_high_score)
 
   current_state = State.Menu
 
-  DataStore.user_data = user_data
+  DataStore.save_user_data()

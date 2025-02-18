@@ -628,7 +628,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShopScreen" type="Control" parent="UIManager" node_paths=PackedStringArray("skin_items_container", "back_button")]
+[node name="ShopScreen" type="Control" parent="UIManager" node_paths=PackedStringArray("money_label", "skin_items_container", "back_button")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -638,6 +638,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("10_03ngn")
 game_data = ExtResource("11_jwuxf")
+money_label = NodePath("Label")
 skin_items_container = NodePath("Scroll/SkinItems")
 skin_item_prefab = ExtResource("12_xjjeo")
 back_button = NodePath("Back")

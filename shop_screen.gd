@@ -4,17 +4,21 @@ class_name ShopScreen
 signal menu_requested
 
 @export var game_data: GameData
+@export var money_label: Label
 @export var skin_items_container: Container
 @export var skin_item_prefab: PackedScene
 @export var back_button: Button
 
 func _ready():
-    refresh_items()
+    refresh()
 
     back_button.pressed.connect(func(): menu_requested.emit())
+    visibility_changed.connect(func(): refresh())
 
-func refresh_items():
+func refresh():
     var user_data = DataStore.user_data
+
+    money_label.text = str(user_data.money)
 
     for child in skin_items_container.get_children():
         child.queue_free()
@@ -31,7 +35,7 @@ func buy_skin(skin_data: SkinData):
     if user_data.owned_skins.has(skin_data.id):
         user_data.current_skin = skin_data.id
 
-        refresh_items()
+        refresh()
 
         return
 
@@ -42,4 +46,4 @@ func buy_skin(skin_data: SkinData):
 
         DataStore.save_user_data()
 
-        refresh_items()
+        refresh()
