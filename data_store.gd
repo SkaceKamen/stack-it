@@ -3,12 +3,16 @@ class_name DataStore
 
 static var data_file_path = "user://data.json"
 
+static func _get_default_data():
+  return {
+    "scores": [],
+    "high_score": null,
+    "money": 0,
+  }
+
 static func load_data() -> Dictionary:
   if not FileAccess.file_exists(data_file_path):
-    return {
-      "scores": [],
-      "high_score": null
-    }
+    return _get_default_data()
 
   return _load_from_file(data_file_path)
 
@@ -19,6 +23,7 @@ static func _load_from_file(path: String) -> Dictionary:
   var data = {
     "scores": [],
     "high_score": null,
+    "money": 0,
   }
 
   var file = FileAccess.open(path, FileAccess.READ)
@@ -31,6 +36,9 @@ static func _load_from_file(path: String) -> Dictionary:
   if file_data.has("high_score"):
     data["high_score"] = file_data["high_score"]
 
+  if file_data.has("money"):
+    data["money"] = file_data["money"]
+
   for score_item in file_data["scores"]:
     data["scores"].append({
       "score": score_item["score"],
@@ -40,10 +48,10 @@ static func _load_from_file(path: String) -> Dictionary:
   return file_data
 
 static func _save_to_file(path: String, data: Dictionary) -> void:
-  var jsonData = {
-    "scores": [],
-    "high_score": null,
-  }
+  var jsonData = _get_default_data()
+
+  if data.has("money"):
+    jsonData["money"] = data["money"]
 
   if data.has("high_score"):
     jsonData["high_score"] = data["high_score"]

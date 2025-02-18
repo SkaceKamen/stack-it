@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyt7x2tqupmy"]
+
+[ext_resource type="Texture2D" uid="uid://bo1fbr5cmfv6r" path="res://icon.svg" id="1_a3oga"]
+[ext_resource type="Script" path="res://skin_shop_item.gd" id="1_aqcaj"]
+
+[node name="SkinShopItem" type="Button" node_paths=PackedStringArray("name_label", "cost_label", "icon_texture")]
+custom_minimum_size = Vector2(200, 220)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -340.0
+offset_bottom = -900.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aqcaj")
+name_label = NodePath("SkinItem/Name")
+cost_label = NodePath("SkinItem/Cost")
+icon_texture = NodePath("SkinItem/Icon")
+
+[node name="SkinItem" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Cost" type="Label" parent="SkinItem"]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="SkinItem"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+texture = ExtResource("1_a3oga")
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="SkinItem"]
+layout_mode = 2
+text = "Blue"
+horizontal_alignment = 1

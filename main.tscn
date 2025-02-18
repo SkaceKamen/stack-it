@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://blw8ke1yno3hd"]
+[gd_scene load_steps=34 format=3 uid="uid://blw8ke1yno3hd"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_qtoss"]
 [ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://BlockPrefab.tscn" id="2_7slrr"]
@@ -9,6 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://br6i7sfxht3ni" path="res://ArrowPath.png" id="5_gxu3u"]
 [ext_resource type="Texture2D" uid="uid://7snokm877tm7" path="res://Play.svg" id="6_lhf5m"]
 [ext_resource type="Script" path="res://menu_screen.gd" id="7_seufq"]
+[ext_resource type="Script" path="res://shop_screen.gd" id="10_03ngn"]
+[ext_resource type="Texture2D" uid="uid://c5yu733vmn37l" path="res://shop_icon.png" id="10_rm021"]
+[ext_resource type="Resource" uid="uid://b1w725cocdhbd" path="res://game_data.tres" id="11_jwuxf"]
+[ext_resource type="Texture2D" uid="uid://dw3kbunj8ch3o" path="res://settings_icon.png" id="11_mi6jo"]
+[ext_resource type="PackedScene" uid="uid://cyt7x2tqupmy" path="res://skin_shop_item.tscn" id="12_xjjeo"]
 
 [sub_resource type="Gradient" id="Gradient_mwp3e"]
 colors = PackedColorArray(0.633593, 0.618866, 1, 1, 6.06447e-06, 0.61791, 0.699729, 1)
@@ -262,7 +267,7 @@ transform = Transform3D(0.91679, 0.240219, -0.319047, 0, 0.798876, 0.601496, 0.3
 
 [node name="Blocks" type="Node3D" parent="."]
 
-[node name="UIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("score_label", "animation_player", "ingame", "menu_screen", "game_end_screen")]
+[node name="UIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("score_label", "animation_player", "ingame", "menu_screen", "game_end_screen", "shop_screen")]
 layer = 3
 script = ExtResource("4_6npex")
 score_label = NodePath("Ingame/Score/ScoreLabel")
@@ -270,6 +275,7 @@ animation_player = NodePath("Ingame/IngameAnimationPlayer")
 ingame = NodePath("Ingame")
 menu_screen = NodePath("MenuScreen")
 game_end_screen = NodePath("GameEndScreen")
+shop_screen = NodePath("ShopScreen")
 
 [node name="Ingame" type="Control" parent="UIManager"]
 visible = false
@@ -449,8 +455,7 @@ text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuScreen" type="Control" parent="UIManager" node_paths=PackedStringArray("start_button", "high_score_label")]
-visible = false
+[node name="MenuScreen" type="Control" parent="UIManager" node_paths=PackedStringArray("start_button", "high_score_label", "shop_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -460,6 +465,7 @@ grow_vertical = 2
 script = ExtResource("7_seufq")
 start_button = NodePath("StartButton")
 high_score_label = NodePath("Highscore")
+shop_button = NodePath("ShopButton")
 
 [node name="Background" type="Panel" parent="UIManager/MenuScreen"]
 layout_mode = 1
@@ -469,6 +475,47 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yusg0")
+
+[node name="ShopButton" type="Button" parent="UIManager/MenuScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 82.0
+offset_top = -88.0
+offset_right = 206.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIManager/MenuScreen/ShopButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UIManager/MenuScreen/ShopButton/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="TextureRect" type="TextureRect" parent="UIManager/MenuScreen/ShopButton/VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("10_rm021")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UIManager/MenuScreen/ShopButton/VBoxContainer"]
+layout_mode = 2
+text = "Shop"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StartButton" type="Button" parent="UIManager/MenuScreen"]
 layout_mode = 1
@@ -491,6 +538,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="UIManager/MenuScreen/StartButton/VBoxContainer"]
 layout_mode = 2
@@ -500,6 +548,47 @@ stretch_mode = 3
 [node name="Label" type="Label" parent="UIManager/MenuScreen/StartButton/VBoxContainer"]
 layout_mode = 2
 text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsButton" type="Button" parent="UIManager/MenuScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -88.0
+offset_right = -82.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIManager/MenuScreen/OptionsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UIManager/MenuScreen/OptionsButton/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="TextureRect" type="TextureRect" parent="UIManager/MenuScreen/OptionsButton/VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("11_mi6jo")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UIManager/MenuScreen/OptionsButton/VBoxContainer"]
+layout_mode = 2
+text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -537,3 +626,85 @@ theme_override_font_sizes/font_size = 100
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ShopScreen" type="Control" parent="UIManager" node_paths=PackedStringArray("skin_items_container", "back_button")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_03ngn")
+game_data = ExtResource("11_jwuxf")
+skin_items_container = NodePath("Scroll/SkinItems")
+skin_item_prefab = ExtResource("12_xjjeo")
+back_button = NodePath("Back")
+
+[node name="Background" type="Panel" parent="UIManager/ShopScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yusg0")
+
+[node name="Label" type="Label" parent="UIManager/ShopScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.5
+offset_top = -424.0
+offset_right = 34.5
+offset_bottom = -259.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.91469, 0.954236, 3.85046e-06, 1)
+theme_override_font_sizes/font_size = 120
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="UIManager/ShopScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -212.0
+offset_top = -244.0
+offset_right = 212.0
+offset_bottom = 391.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SkinItems" type="HFlowContainer" parent="UIManager/ShopScreen/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 20
+alignment = 1
+last_wrap_alignment = 2
+
+[node name="SkinItem" parent="UIManager/ShopScreen/Scroll/SkinItems" instance=ExtResource("12_xjjeo")]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="UIManager/ShopScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -97.0
+offset_top = -157.0
+offset_right = 97.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
