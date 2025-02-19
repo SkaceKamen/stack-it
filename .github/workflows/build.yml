@@ -111,7 +111,7 @@ jobs:
       - name: Initialize Godot
         if: steps.cache-godot.outputs.cache-hit != 'true'
         run: |
-          curl -f -L -o godot.zip https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_${GODOT_VERSION}-stable_win64.exe.zip
+          curl -f -L -o godot.zip https://github.com/godotengine/godot/releases/download/%GODOT_VERSION%-stable/Godot_%GODOT_VERSION%-stable_win64.exe.zip
           unzip ./godot.zip
 
       - name: Cache downloaded templates
@@ -124,7 +124,7 @@ jobs:
       - name: Initialize export templates
         if: steps.cache-godot-templates.outputs.cache-hit != 'true'
         run: |
-          curl -f -L -o export_templates.zip $GODOT_EXPORT_TEMPLATES_DOWNLOAD_URL
+          curl -f -L -o export_templates.zip https://github.com/godotengine/godot/releases/download/%GODOT_VERSION%-stable/Godot_v%GODOT_VERSION%-stable_export_templates.tpz
           unzip export_templates.zip
           mkdir "%APPDATA%\\Godot\\templates\\${{ env.GODOT_VERSION }}.stable"
           mv .\\templates\\* "%APPDATA%\\Godot\\templates\\${{ env.GODOT_VERSION }}.stable"
