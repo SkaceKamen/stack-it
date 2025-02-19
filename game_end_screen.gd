@@ -4,12 +4,12 @@ class_name GameEndScreen
 signal restart_requested
 signal menu_requested
 
-@export() var animation_player: AnimationPlayer
-@export() var restart_button: Button
-@export() var menu_button: Button
-@export() var normal_score_label: Label
-@export() var high_score_label: Label
-@export() var score_value_label: Label
+@export var animation_player: AnimationPlayer
+@export var restart_button: Button
+@export var menu_button: Button
+@export var normal_score_label: Label
+@export var high_score_label: Label
+@export var score_value_label: Label
 
 func _ready():
   restart_button.connect("pressed", func(): restart_requested.emit())

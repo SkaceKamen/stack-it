@@ -5,9 +5,9 @@ enum CutResult {Perfect, Missed, Partial}
 
 signal block_stopped(block: FallingBlock)
 
-@export() var height = 0.2
-@export() var block_cutoff_prefab: PackedScene
-@export() var perfect_effect_prefab: PackedScene
+@export var height = 0.2
+@export var block_cutoff_prefab: PackedScene
+@export var perfect_effect_prefab: PackedScene
 
 var moving = false
 var move_sign = 1

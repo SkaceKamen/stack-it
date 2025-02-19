@@ -1,8 +1,8 @@
 extends CanvasLayer
 class_name BackgroundLayer
 
-@export() var backgroundTexture: TextureRect
-@export() var gradients: Array[Gradient]
+@export var backgroundTexture: TextureRect
+@export var gradients: Array[Gradient]
 
 var target_gradient = 0
 var is_transitioning = true

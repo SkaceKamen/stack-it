@@ -1,7 +1,7 @@
 extends RigidBody3D
 class_name BlockCutoff
 
-@export() var collision_shape: CollisionShape3D
+@export var collision_shape: CollisionShape3D
 
 var skin: PackedScene = null
 var skin_instance: BlockSkin = null

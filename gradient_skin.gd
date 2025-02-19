@@ -1,9 +1,9 @@
 extends BlockSkin
 
-@export() var resetHeight = 5.0
-@export() var gradient: Gradient
-@export() var mesh: MeshInstance3D
-@export() var loop = true
+@export var resetHeight = 5.0
+@export var gradient: Gradient
+@export var mesh: MeshInstance3D
+@export var loop = true
 
 func set_state(height: float, _count: int):
   var delta = (height / resetHeight)
