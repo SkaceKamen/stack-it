@@ -111,7 +111,7 @@ jobs:
       - name: Initialize Godot
         if: steps.cache-godot.outputs.cache-hit != 'true'
         run: |
-          curl -f -L -o godot.zip https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_${{ env.GODOT_VERSION }}-stable_win64.exe.zip
+          curl -f -L -o godot.zip https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_win64.exe.zip
           unzip ./godot.zip
 
       - name: Cache downloaded templates
