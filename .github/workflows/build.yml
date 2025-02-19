@@ -120,6 +120,7 @@ jobs:
           mkdir "C:\Users\runneradmin\AppData\Roaming\Godot\export-templates\${{ env.GODOT_VERSION }}.stable"
           mv .\templates\* "C:\Users\runneradmin\AppData\Roaming\Godot\export-templates\${{ env.GODOT_VERSION }}.stable"
           ls "C:\Users\runneradmin\AppData\Roaming\Godot\export-templates\${{ env.GODOT_VERSION }}.stable"
+          ls "C:/Users/runneradmin/AppData/Roaming/Godot/export_templates/4.3.stable/windows_release_x86_64.exe"
 
       - name: Build windows version
         run: |
