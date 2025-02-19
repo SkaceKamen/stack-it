@@ -1,0 +1,112 @@
+[gd_scene load_steps=5 format=3 uid="uid://whbcl06r6ubh"]
+
+[ext_resource type="Script" path="res://shop_screen.gd" id="1_36m7y"]
+[ext_resource type="Resource" uid="uid://b1w725cocdhbd" path="res://game_data.tres" id="2_ow4cq"]
+[ext_resource type="PackedScene" uid="uid://cyt7x2tqupmy" path="res://skin_shop_item.tscn" id="3_akbq1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yusg0"]
+bg_color = Color(0, 0, 0, 0.211765)
+
+[node name="ShopScreen" type="Control" node_paths=PackedStringArray("money_label", "skin_items_container", "back_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_36m7y")
+game_data = ExtResource("2_ow4cq")
+money_label = NodePath("Label")
+skin_items_container = NodePath("Scroll/SkinItems")
+skin_item_prefab = ExtResource("3_akbq1")
+back_button = NodePath("Back")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yusg0")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.5
+offset_top = -538.0
+offset_right = 34.5
+offset_bottom = -373.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.91469, 0.954236, 3.85046e-06, 1)
+theme_override_font_sizes/font_size = 120
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 200.0
+offset_right = -20.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SkinItems" type="HFlowContainer" parent="Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 20
+alignment = 1
+last_wrap_alignment = 2
+
+[node name="SkinItem" parent="Scroll/SkinItems" instance=ExtResource("3_akbq1")]
+layout_mode = 2
+
+[node name="SkinItem2" parent="Scroll/SkinItems" instance=ExtResource("3_akbq1")]
+layout_mode = 2
+
+[node name="SkinItem3" parent="Scroll/SkinItems" instance=ExtResource("3_akbq1")]
+layout_mode = 2
+
+[node name="SkinItem4" parent="Scroll/SkinItems" instance=ExtResource("3_akbq1")]
+layout_mode = 2
+
+[node name="SkinItem5" parent="Scroll/SkinItems" instance=ExtResource("3_akbq1")]
+layout_mode = 2
+
+[node name="SkinItem6" parent="Scroll/SkinItems" instance=ExtResource("3_akbq1")]
+layout_mode = 2
+
+[node name="SkinItem7" parent="Scroll/SkinItems" instance=ExtResource("3_akbq1")]
+layout_mode = 2
+
+[node name="SkinItem8" parent="Scroll/SkinItems" instance=ExtResource("3_akbq1")]
+layout_mode = 2
+
+[node name="SkinItem9" parent="Scroll/SkinItems" instance=ExtResource("3_akbq1")]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -97.0
+offset_top = -157.0
+offset_right = 97.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"

@@ -13,6 +13,7 @@ offset_right = -340.0
 offset_bottom = -900.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_aqcaj")
 name_label = NodePath("SkinItem/Name")
 cost_label = NodePath("SkinItem/Cost")
