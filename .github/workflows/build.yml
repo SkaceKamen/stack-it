@@ -132,10 +132,10 @@ jobs:
       - name: Build windows version
         run: |
           mkdir "build\\windows"
-          .\\Godot_v${{ env.GODOT_VERSION }}-stable_win64.exe --headless --verbose --export-release "Windows" "./build/windows/stacking.exe"
+          .\\Godot_v${{ env.GODOT_VERSION }}-stable_win64.exe --headless --verbose --export-release "Windows" "build\windows\stacking.exe"
 
       - name: Upload windows
         uses: actions/upload-artifact@v4
         with:
           name: stacking-windows-x64
-          path: build\\windows
+          path: build\windows
