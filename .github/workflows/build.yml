@@ -92,15 +92,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Cache downloaded godot
-        id: cache-godot
-        uses: actions/cache@v4
-        with:
-          path: Godot_v${{ env.GODOT_VERSION }}-stable_win64_console.exe
-          key: ${{ runner.os }}-${{ env.GODOT_VERSION }}-godot-console
-
       - name: Initialize Godot
-        if: steps.cache-godot.outputs.cache-hit != 'true'
         run: |
           curl -f -L -o godot.zip https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_win64.exe.zip
           unzip ./godot.zip
