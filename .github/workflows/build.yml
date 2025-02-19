@@ -109,7 +109,7 @@ jobs:
         id: cache-godot-templates
         uses: actions/cache@v4
         with:
-          path: C:\Users\runneradmin\AppData\Roaming\Godot\export-templates\${{ env.GODOT_VERSION }}.stable
+          path: C:\Users\runneradmin\AppData\Roaming\Godot\export_templates\${{ env.GODOT_VERSION }}.stable
           key: ${{ runner.os }}-${{ env.GODOT_VERSION }}-templates-win
 
       - name: Initialize export templates
@@ -117,10 +117,8 @@ jobs:
         run: |
           curl -f -L -o export_templates.zip https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
           unzip export_templates.zip
-          mkdir "C:\Users\runneradmin\AppData\Roaming\Godot\export-templates\${{ env.GODOT_VERSION }}.stable"
-          mv .\templates\* "C:\Users\runneradmin\AppData\Roaming\Godot\export-templates\${{ env.GODOT_VERSION }}.stable"
-          ls "C:\Users\runneradmin\AppData\Roaming\Godot\export-templates\${{ env.GODOT_VERSION }}.stable"
-          ls "C:/Users/runneradmin/AppData/Roaming/Godot/export_templates/4.3.stable/windows_release_x86_64.exe"
+          mkdir "C:\Users\runneradmin\AppData\Roaming\Godot\export_templates\${{ env.GODOT_VERSION }}.stable"
+          mv .\templates\* "C:\Users\runneradmin\AppData\Roaming\Godot\export_templates\${{ env.GODOT_VERSION }}.stable"
 
       - name: Build windows version
         run: |
