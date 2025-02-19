@@ -96,8 +96,8 @@ jobs:
         id: cache-godot
         uses: actions/cache@v4
         with:
-          path: Godot_v${{ env.GODOT_VERSION }}-stable_win64.exe
-          key: ${{ runner.os }}-${{ env.GODOT_VERSION }}-godot
+          path: Godot_v${{ env.GODOT_VERSION }}-stable_win64_console.exe
+          key: ${{ runner.os }}-${{ env.GODOT_VERSION }}-godot-console
 
       - name: Initialize Godot
         if: steps.cache-godot.outputs.cache-hit != 'true'
@@ -123,7 +123,7 @@ jobs:
       - name: Build windows version
         run: |
           mkdir "build\windows"
-          .\Godot_v${{ env.GODOT_VERSION }}-stable_win64.exe --headless --verbose --export-release "Windows" "build/windows/stacking.exe"
+          .\Godot_v${{ env.GODOT_VERSION }}-stable_win64_console.exe --headless --verbose --export-release "Windows" "build/windows/stacking.exe"
           ls build\windows
 
       - name: Upload windows
