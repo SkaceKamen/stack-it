@@ -123,7 +123,7 @@ jobs:
       - name: Install rcedit
         run: |
           curl -f -L -o rcedit.exe https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe
-          mv rcedit.exe "%SystemRoot%\system32"
+          mv rcedit.exe "$env:SystemRoot\system32"
 
       - name: Build windows version
         run: |
