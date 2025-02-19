@@ -92,15 +92,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: "17"
-          distribution: "temurin"
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Cache downloaded godot
         id: cache-godot
         uses: actions/cache@v4
@@ -126,16 +117,17 @@ jobs:
         run: |
           curl -f -L -o export_templates.zip https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
           unzip export_templates.zip
-          mkdir "%APPDATA%\\Godot\\templates\\${{ env.GODOT_VERSION }}.stable"
-          mv .\\templates\\* "%APPDATA%\\Godot\\templates\\${{ env.GODOT_VERSION }}.stable"
+          mkdir "%APPDATA%\Godot\templates\${{ env.GODOT_VERSION }}.stable"
+          mv .\templates\* "%APPDATA%\Godot\templates\${{ env.GODOT_VERSION }}.stable"
 
       - name: Build windows version
         run: |
-          mkdir "build\\windows"
-          .\\Godot_v${{ env.GODOT_VERSION }}-stable_win64.exe --headless --verbose --export-release "Windows" "build\windows\stacking.exe"
+          mkdir "build\windows"
+          .\Godot_v${{ env.GODOT_VERSION }}-stable_win64.exe --headless --verbose --export-release "Windows" "build/windows/stacking.exe"
+          ls build\windows
 
       - name: Upload windows
         uses: actions/upload-artifact@v4
         with:
           name: stacking-windows-x64
-          path: build\windows
+          path: build/windows
