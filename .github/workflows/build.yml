@@ -120,17 +120,15 @@ jobs:
           mkdir "C:\Users\runneradmin\AppData\Roaming\Godot\export_templates\${{ env.GODOT_VERSION }}.stable"
           mv .\templates\* "C:\Users\runneradmin\AppData\Roaming\Godot\export_templates\${{ env.GODOT_VERSION }}.stable"
 
-      #curl -f -L -o rcedit.exe https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe
-      #mv rcedit.exe "C:\"
-
       - name: Install rcedit
         run: |
-          winget install --id=ElectronCommunity.rcedit  -e
+          curl -f -L -o rcedit.exe https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe
+          mv rcedit.exe "%SystemRoot%\system32"
+
       - name: Build windows version
         run: |
           mkdir "build\windows"
           .\Godot_v${{ env.GODOT_VERSION }}-stable_win64_console.exe --headless --verbose --export-release "Windows" "build/windows/stacking.exe"
-          ls build\windows
 
       - name: Upload windows
         uses: actions/upload-artifact@v4
