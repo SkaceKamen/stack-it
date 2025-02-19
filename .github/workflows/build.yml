@@ -113,7 +113,7 @@ jobs:
           key: ${{ runner.os }}-${{ env.GODOT_VERSION }}-templates-win
 
       - name: Initialize export templates
-        if: steps.cache-godot-templates.outputs.cache-hit != 'true'
+        #if: steps.cache-godot-templates.outputs.cache-hit != 'true'
         run: |
           curl -f -L -o export_templates.zip https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
           unzip export_templates.zip
