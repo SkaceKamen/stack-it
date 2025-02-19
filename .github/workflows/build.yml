@@ -119,6 +119,7 @@ jobs:
           unzip export_templates.zip
           mkdir "C:\Users\runneradmin\AppData\Roaming\Godot\export-templates\${{ env.GODOT_VERSION }}.stable"
           mv .\templates\* "C:\Users\runneradmin\AppData\Roaming\Godot\export-templates\${{ env.GODOT_VERSION }}.stable"
+          ls "C:\Users\runneradmin\AppData\Roaming\Godot\export-templates\${{ env.GODOT_VERSION }}.stable"
 
       - name: Build windows version
         run: |
