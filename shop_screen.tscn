@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://whbcl06r6ubh"]
+[gd_scene load_steps=10 format=3 uid="uid://whbcl06r6ubh"]
 
 [ext_resource type="Script" path="res://shop_screen.gd" id="1_36m7y"]
 [ext_resource type="Resource" uid="uid://b1w725cocdhbd" path="res://game_data.tres" id="2_ow4cq"]
@@ -7,7 +7,39 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yusg0"]
 bg_color = Color(0, 0, 0, 0.211765)
 
-[node name="ShopScreen" type="Control" node_paths=PackedStringArray("money_label", "skin_items_container", "back_button")]
+[sub_resource type="Shader" id="Shader_isgsx"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+
+
+void fragment(){
+  COLOR = vec4(0.4, 0.6, 0.9, 1.0);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kf4fo"]
+shader = SubResource("Shader_isgsx")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sbax"]
+bg_color = Color(0.470076, 0.470076, 0.470076, 0.858824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3uf3"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.909804)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5ne8"]
+bg_color = Color(0.180907, 0.145316, 0, 0.921569)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="ShopScreen" type="Control" node_paths=PackedStringArray("money_label", "skin_items_container", "back_button", "purchase_confirm_container", "purchase_confirm", "purchase_cancel", "purchase_confirm_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +52,10 @@ money_label = NodePath("Label")
 skin_items_container = NodePath("Scroll/SkinItems")
 skin_item_prefab = ExtResource("3_akbq1")
 back_button = NodePath("Back")
+purchase_confirm_container = NodePath("Confirmation")
+purchase_confirm = NodePath("Confirmation/Panel/VBoxContainer/VBoxContainer/Confirm")
+purchase_cancel = NodePath("Confirmation/Panel/VBoxContainer/VBoxContainer/Cancel")
+purchase_confirm_label = NodePath("Confirmation/Panel/VBoxContainer/PanelContainer/MarginContainer/ConfirmLabel")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
@@ -46,6 +82,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Scroll" type="ScrollContainer" parent="."]
+material = SubResource("ShaderMaterial_kf4fo")
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -106,3 +143,83 @@ offset_bottom = -71.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
+
+[node name="Confirmation" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel2" type="Panel" parent="Confirmation"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7sbax")
+
+[node name="Panel" type="Control" parent="Confirmation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -215.0
+offset_top = -181.5
+offset_right = 215.0
+offset_bottom = 181.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Confirmation/Panel"]
+layout_mode = 2
+offset_right = 430.0
+offset_bottom = 363.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Confirmation/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_t3uf3")
+
+[node name="MarginContainer" type="MarginContainer" parent="Confirmation/Panel/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="ConfirmLabel" type="Label" parent="Confirmation/Panel/VBoxContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 6
+text = "Purchase <skin> for <cost>?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Confirmation/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="Confirmation/Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="Confirm" type="Button" parent="Confirmation/Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_e5ne8")
+text = "Purchase"
+
+[node name="Control" type="Control" parent="Confirmation"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

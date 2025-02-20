@@ -10,9 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Stacking"
+config/name="Stack It!"
+config/description="Stack blocks, buy skins and have fun"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/bg_color=Color(0.129538, 0.228273, 0.346299, 1)
+boot_splash/show_image=false
 config/icon="res://logo.png"
 
 [display]

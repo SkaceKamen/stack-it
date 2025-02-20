@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameData" load_steps=13 format=3 uid="uid://b1w725cocdhbd"]
+[gd_resource type="Resource" script_class="GameData" load_steps=6 format=3 uid="uid://b1w725cocdhbd"]
 
 [ext_resource type="Script" path="res://game_data.gd" id="1_qfawb"]
 [ext_resource type="Script" path="res://skin_data.gd" id="2_ckx80"]
@@ -20,62 +20,6 @@ cost = 10
 icon = ExtResource("3_w7a27")
 prefab_path = "res://gradient_skin.tscn"
 
-[sub_resource type="Resource" id="Resource_41sj8"]
-script = ExtResource("2_ckx80")
-id = ""
-name = "Rainbow"
-cost = 20
-icon = ExtResource("3_w7a27")
-prefab_path = "res://gradient_skin.tscn"
-
-[sub_resource type="Resource" id="Resource_g1fks"]
-script = ExtResource("2_ckx80")
-id = ""
-name = "Rainbow"
-cost = 20
-icon = ExtResource("3_w7a27")
-prefab_path = "res://gradient_skin.tscn"
-
-[sub_resource type="Resource" id="Resource_fbt71"]
-script = ExtResource("2_ckx80")
-id = ""
-name = "Rainbow"
-cost = 20
-icon = ExtResource("3_w7a27")
-prefab_path = "res://gradient_skin.tscn"
-
-[sub_resource type="Resource" id="Resource_vcqtr"]
-script = ExtResource("2_ckx80")
-id = ""
-name = "Rainbow"
-cost = 20
-icon = ExtResource("3_w7a27")
-prefab_path = "res://gradient_skin.tscn"
-
-[sub_resource type="Resource" id="Resource_4bbi1"]
-script = ExtResource("2_ckx80")
-id = ""
-name = "Rainbow"
-cost = 20
-icon = ExtResource("3_w7a27")
-prefab_path = "res://gradient_skin.tscn"
-
-[sub_resource type="Resource" id="Resource_2a55a"]
-script = ExtResource("2_ckx80")
-id = ""
-name = "Rainbow"
-cost = 20
-icon = ExtResource("3_w7a27")
-prefab_path = "res://gradient_skin.tscn"
-
-[sub_resource type="Resource" id="Resource_nxc4a"]
-script = ExtResource("2_ckx80")
-id = ""
-name = "Rainbow"
-cost = 20
-icon = ExtResource("3_w7a27")
-prefab_path = "res://gradient_skin.tscn"
-
 [resource]
 script = ExtResource("1_qfawb")
-skins = Array[ExtResource("2_ckx80")]([SubResource("Resource_e6ivh"), SubResource("Resource_4l75o"), SubResource("Resource_41sj8"), SubResource("Resource_g1fks"), SubResource("Resource_fbt71"), SubResource("Resource_vcqtr"), SubResource("Resource_4bbi1"), SubResource("Resource_2a55a"), SubResource("Resource_nxc4a")])
+skins = Array[ExtResource("2_ckx80")]([SubResource("Resource_e6ivh"), SubResource("Resource_4l75o")])
