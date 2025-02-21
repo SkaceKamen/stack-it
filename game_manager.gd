@@ -35,9 +35,10 @@ func _ready():
   spawn_initial_block()
   spawn_block()
 
-  for i in range(30):
-    current_block.position = Vector3(0, current_block.position.y, 0)
-    current_block.stop()
+  # CHEAT:
+  #for i in range(30):
+  #  current_block.position = Vector3(0, current_block.position.y, 0)
+  #  current_block.stop()
   
 func _process(delta: float) -> void:
 
