@@ -21,22 +21,38 @@ var current_block: FallingBlock
 var score = 0
 
 var base_camera_position: Vector3
+var base_camera_size: float
 
 var current_state = State.Menu
 
 func _ready():
   base_camera_position = camera.position * 1
+  base_camera_size = camera.size
 
   ui_manager.restart_requested.connect(reset)
   ui_manager.start_requested.connect(reset)
 
   spawn_initial_block()
+  spawn_block()
+
+  for i in range(30):
+    current_block.position = Vector3(0, current_block.position.y, 0)
+    current_block.stop()
   
 func _process(delta: float) -> void:
-  camera.position = Vector3(camera.position.x, lerp(camera.position.y, base_camera_position.y + height, 10 * delta), camera.position.z)
-  if current_state == State.Playing and current_block != null:
-    if Input.is_action_just_pressed("ui_select"):
-      current_block.stop()
+
+  match current_state:
+    State.Playing:
+      camera.position = Vector3(camera.position.x, lerp(camera.position.y, base_camera_position.y + height, 10 * delta), camera.position.z)
+      camera.size = lerp(camera.size, base_camera_size, 10 * delta)
+
+      if current_block != null:
+        if Input.is_action_just_pressed("ui_select"):
+          current_block.stop()
+
+    State.Menu:
+      camera.position = camera.position.lerp(base_camera_position + Vector3(0, height / 2.0, 0) + camera.quaternion * Vector3(0, 0, height / 2.0), 2 * delta)
+      camera.size = lerp(camera.size, base_camera_size + height, 10 * delta)
 
 func _input(event: InputEvent) -> void:
   if current_state != State.Playing:
@@ -103,9 +119,6 @@ func spawn_block() -> void:
   current_block = block
 
   blocks.append(block)
-
-  if blocks.size() > 15:
-    blocks.pop_front().queue_free()
 
 func block_stopped(block: FallingBlock) -> void:
   var cut_result = block.cut_according_to(last_block, height, count)
