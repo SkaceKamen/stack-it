@@ -17,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l5qi3")
 start_button = NodePath("StartButton")
-high_score_label = NodePath("Highscore")
+high_score_label = NodePath("HighscoreLabel")
 shop_button = NodePath("ShopButton")
 
 [node name="Background" type="Panel" parent="."]
@@ -28,6 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yusg0")
+metadata/_edit_lock_ = true
 
 [node name="ShopButton" type="Button" parent="."]
 layout_mode = 1
@@ -36,32 +37,33 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 82.0
-offset_top = 40.0
-offset_right = 206.0
-offset_bottom = 214.0
+offset_left = -117.5
+offset_top = 286.0
+offset_right = 117.5
+offset_bottom = 376.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_group_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ShopButton"]
+[node name="VBoxContainer" type="HBoxContainer" parent="ShopButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="ShopButton/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="TextureRect" type="TextureRect" parent="ShopButton/VBoxContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("2_sqmx7")
-expand_mode = 5
+expand_mode = 3
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="ShopButton/VBoxContainer"]
@@ -77,10 +79,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.5
-offset_top = 34.0
-offset_right = 64.5
-offset_bottom = 222.0
+offset_left = -64.0
+offset_top = -74.0
+offset_right = 65.0
+offset_bottom = 114.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_group_ = true
@@ -112,32 +114,34 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -206.0
-offset_top = 40.0
-offset_right = -82.0
-offset_bottom = 214.0
+offset_left = -117.5
+offset_top = 184.0
+offset_right = 117.5
+offset_bottom = 274.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_group_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionsButton"]
+[node name="VBoxContainer" type="HBoxContainer" parent="OptionsButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="OptionsButton/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="TextureRect" type="TextureRect" parent="OptionsButton/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("4_bqnrw")
-expand_mode = 5
+expand_mode = 2
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="OptionsButton/VBoxContainer"]
@@ -146,7 +150,7 @@ text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="HighscoreValue" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -154,16 +158,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -108.5
-offset_top = -225.0
+offset_top = -318.0
 offset_right = 108.5
-offset_bottom = -183.0
+offset_bottom = -276.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Highscore"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Highscore" type="Label" parent="."]
+[node name="HighscoreLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -171,9 +175,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -28.5
-offset_top = -180.0
+offset_top = -273.0
 offset_right = 28.5
-offset_bottom = -43.0
+offset_bottom = -136.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 100
@@ -181,7 +185,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="."]
+[node name="Logo" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -192,9 +196,6 @@ offset_right = 20.0
 offset_bottom = 119.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.637942, 0.853716, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 80
 text = "Stack It!"
 horizontal_alignment = 1

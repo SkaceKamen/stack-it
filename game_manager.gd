@@ -33,9 +33,9 @@ func _ready():
   ui_manager.start_requested.connect(reset)
 
   spawn_initial_block()
-  spawn_block()
 
   # CHEAT:
+  #spawn_block()
   #for i in range(30):
   #  current_block.position = Vector3(0, current_block.position.y, 0)
   #  current_block.stop()
