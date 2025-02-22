@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxn0k71cgi7pt"]
+[gd_scene load_steps=8 format=3 uid="uid://dxn0k71cgi7pt"]
 
+[ext_resource type="Script" path="res://perfect_effect.gd" id="1_vbyu1"]
 [ext_resource type="Script" path="res://queue_free_after_animation.gd" id="1_wmj4v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4v60"]
@@ -72,7 +73,9 @@ _data = {
 "RESET": SubResource("Animation_3usp5")
 }
 
-[node name="PerfectEffect" type="Node3D"]
+[node name="PerfectEffect" type="Node3D" node_paths=PackedStringArray("mesh")]
+script = ExtResource("1_vbyu1")
+mesh = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_yqdpd")

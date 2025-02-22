@@ -27,7 +27,6 @@ func _process(delta):
     position += move_direction * move_speed * delta
 
     if (move_axis == 0 and abs(position.z) > 1) or (move_axis == 1 and abs(position.x) > 1):
-
       move_sign *= -1
 
 func set_skin(skin_prefab: PackedScene, stack_height: float, stack_count: int):
@@ -67,10 +66,11 @@ func cut_according_to(block: FallingBlock, stack_height: float, stack_count: int
     position = Vector3(block.position.x, position.y, block.position.z)
     size = block.size
 
-    var effect = perfect_effect_prefab.instantiate()
+    var effect = perfect_effect_prefab.instantiate() as PerfectEffect
+    effect.set_size(Vector3(size.x, 1, size.y))
     get_parent().add_child(effect)
 
-    effect.scale = Vector3(size.x, 1, size.y)
+    #effect.scale = Vector3(size.x, 1, size.y)
     effect.position = Vector3(position.x, position.y - height / 2, position.z)
 
     return CutResult.Perfect
