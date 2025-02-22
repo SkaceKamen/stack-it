@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://cejfcp8k16w0b"]
+
+[ext_resource type="PackedScene" uid="uid://boyodixerm6vf" path="res://textured_skin.tscn" id="1_tq31f"]
+[ext_resource type="Texture2D" uid="uid://bxdkrsyukjpfh" path="res://assets/skins/metal/Metal055A_1K-JPG_Color.jpg" id="2_dp8wc"]
+[ext_resource type="Texture2D" uid="uid://dqdssgwpkhcen" path="res://assets/skins/metal/Metal055A_1K-JPG_Metalness.jpg" id="3_u4qt1"]
+[ext_resource type="Texture2D" uid="uid://ciuuq4pfexmcr" path="res://assets/skins/metal/Metal055A_1K-JPG_NormalDX.jpg" id="4_53ca3"]
+[ext_resource type="Texture2D" uid="uid://c5aerh4v21003" path="res://assets/skins/metal/Metal055A_1K-JPG_Roughness.jpg" id="5_x3gk4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_smw7s"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("2_dp8wc")
+metallic = 1.0
+metallic_texture = ExtResource("3_u4qt1")
+roughness_texture = ExtResource("5_x3gk4")
+normal_enabled = true
+normal_texture = ExtResource("4_53ca3")
+ao_enabled = true
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_hj0qr"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_smw7s")
+size = Vector3(1, 0.2, 1)
+
+[node name="textured_skin" node_paths=PackedStringArray("mesh") instance=ExtResource("1_tq31f")]
+uv_scale = 1.0
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0"]
+mesh = SubResource("BoxMesh_hj0qr")

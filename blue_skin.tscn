@@ -4,7 +4,7 @@
 
 [sub_resource type="Gradient" id="Gradient_iaff2"]
 offsets = PackedFloat32Array(0, 0.507003, 1)
-colors = PackedColorArray(0.557864, 0.626491, 1, 1, 0.701885, 0.710451, 0.932726, 1, 0, 0.518732, 0.875375, 1)
+colors = PackedColorArray(0.429092, 0.490307, 0.999989, 1, 0.511127, 0.506263, 0.856314, 1, 0, 0.435087, 0.739735, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_manhf"]
 resource_local_to_scene = true

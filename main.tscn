@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://b1w725cocdhbd" path="res://game_data.tres" id="11_jwuxf"]
 
 [sub_resource type="Gradient" id="Gradient_mwp3e"]
-colors = PackedColorArray(0.633593, 0.618866, 1, 1, 6.06447e-06, 0.61791, 0.699729, 1)
+colors = PackedColorArray(0.723379, 0.721565, 1, 1, 6.06447e-06, 0.61791, 0.699729, 1)
 
 [sub_resource type="Gradient" id="Gradient_tivq2"]
 colors = PackedColorArray(0.729243, 0.664932, 0.993114, 1, 0.35778, 0.81335, 0.711805, 1)
@@ -47,6 +47,7 @@ background_canvas_max_layer = -100
 sky = SubResource("Sky_ayt6h")
 ambient_light_source = 2
 ambient_light_color = Color(0.556863, 0.533333, 0.937255, 1)
+ambient_light_energy = 2.0
 reflected_light_source = 2
 
 [sub_resource type="Animation" id="Animation_ivkry"]
@@ -192,7 +193,7 @@ near = 0.01
 environment = SubResource("Environment_ade2i")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.91679, 0.240219, -0.319047, 0, 0.798876, 0.601496, 0.39937, -0.551446, 0.732401, 0, 2.78224, 3.51052)
+transform = Transform3D(0.95346, -0.181363, 0.240877, 9.4654e-09, 0.798876, 0.601496, -0.30152, -0.573503, 0.761696, 2.48863, 2.78224, 3.51052)
 
 [node name="Blocks" type="Node3D" parent="."]
 

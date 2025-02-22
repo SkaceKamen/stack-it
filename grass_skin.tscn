@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://veu2kb63fklr"]
+
+[ext_resource type="PackedScene" uid="uid://boyodixerm6vf" path="res://textured_skin.tscn" id="1_ncyud"]
+[ext_resource type="Texture2D" uid="uid://c8c02hb1qdt5h" path="res://assets/skins/grass/Grass006_1K-JPG_Color.jpg" id="2_reerm"]
+[ext_resource type="Texture2D" uid="uid://c8ma2qg65y3t8" path="res://assets/skins/grass/Grass006_1K-JPG_AmbientOcclusion.jpg" id="3_cwkai"]
+[ext_resource type="Texture2D" uid="uid://bd0mdjhn3tbnq" path="res://assets/skins/grass/Grass006_1K-JPG_NormalGL.jpg" id="4_2ev1b"]
+[ext_resource type="Texture2D" uid="uid://cfq40adaqdiee" path="res://assets/skins/grass/Grass006_1K-JPG_Roughness.jpg" id="5_auujb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hdm2j"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("2_reerm")
+roughness_texture = ExtResource("5_auujb")
+normal_enabled = true
+normal_texture = ExtResource("4_2ev1b")
+ao_enabled = true
+ao_texture = ExtResource("3_cwkai")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_e57sm"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_hdm2j")
+size = Vector3(1, 0.2, 1)
+
+[node name="textured_skin" node_paths=PackedStringArray("mesh") instance=ExtResource("1_ncyud")]
+uv_scale = 0.2
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0"]
+mesh = SubResource("BoxMesh_e57sm")
