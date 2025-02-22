@@ -47,7 +47,7 @@ background_canvas_max_layer = -100
 sky = SubResource("Sky_ayt6h")
 ambient_light_source = 2
 ambient_light_color = Color(0.556863, 0.533333, 0.937255, 1)
-ambient_light_energy = 2.0
+ambient_light_energy = 1.5
 reflected_light_source = 2
 
 [sub_resource type="Animation" id="Animation_ivkry"]
@@ -184,7 +184,6 @@ texture = SubResource("GradientTexture2D_yd1gm")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, -0.345013, 0.617224, 0, 0.872887, 0.487922, -0.707107, -0.345013, 0.617224, 1, 1.187, 1)
-environment = SubResource("Environment_ade2i")
 projection = 1
 size = 3.915
 near = 0.01

@@ -34,6 +34,40 @@ func _ready():
 
   spawn_initial_block()
 
+  for item in game_data.skins:
+    if not item.icon:
+      var sub_viewport = SubViewport.new()
+
+      sub_viewport.size = Vector2(512, 512)
+      sub_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+      sub_viewport.transparent_bg = true
+
+      add_child(sub_viewport)
+
+      for i in range(5):
+        var skin_instance = load(item.prefab_path).instantiate() as BlockSkin
+        skin_instance.position = Vector3(0, -100 + i * 0.2, 0)
+        skin_instance.set_state(i * 0.2 * 18.75, i * 5)
+        sub_viewport.add_child(skin_instance)
+
+      var local_camera = Camera3D.new()
+
+      local_camera.projection = Camera3D.ProjectionType.PROJECTION_ORTHOGONAL
+      local_camera.size = base_camera_size * 0.5
+      local_camera.near = 0.001
+      local_camera.far = 5000
+      local_camera.position = base_camera_position + Vector3(0, -100, 0)
+      local_camera.rotation = camera.rotation
+
+      sub_viewport.add_child(local_camera)
+
+      await RenderingServer.frame_post_draw
+
+      item.icon = ImageTexture.create_from_image(sub_viewport.get_texture().get_image())
+
+      sub_viewport.free()
+
+
   # CHEAT:
   #spawn_block()
   #for i in range(30):
@@ -41,7 +75,6 @@ func _ready():
   #  current_block.stop()
   
 func _process(delta: float) -> void:
-
   match current_state:
     State.Playing:
       camera.position = camera.position.lerp(Vector3(base_camera_position.x, base_camera_position.y + height, base_camera_position.z), 10 * delta)
@@ -91,7 +124,7 @@ func spawn_initial_block() -> void:
   var block = block_prefab.instantiate() as FallingBlock
   blocks_container.add_child(block)
 
-  block.position = Vector3(0, -block.height, 0)
+  block.position = Vector3(0, - block.height, 0)
   block.set_skin(get_current_skin(), height, count)
 
   current_block = block
