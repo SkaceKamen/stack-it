@@ -39,6 +39,7 @@ func set_skin(skin_prefab: PackedScene, stack_height: float, stack_count: int):
   add_child(skin_instance)
 
   skin_instance.set_state(stack_height, stack_count)
+  skin_instance.set_size(Vector3(scale.x, scale.y, scale.z))
 
 func cut_according_to(block: FallingBlock, stack_height: float, stack_count: int) -> CutResult:
   var my_position = position.z if move_axis == 0 else position.x

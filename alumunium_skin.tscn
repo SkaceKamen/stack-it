@@ -1,0 +1,34 @@
+[gd_scene load_steps=10 format=3 uid="uid://dmbioxrxqqj3p"]
+
+[ext_resource type="PackedScene" uid="uid://boyodixerm6vf" path="res://textured_skin.tscn" id="1_eqjaw"]
+[ext_resource type="Texture2D" uid="uid://bxnybk6tlvie6" path="res://assets/skins/alluminium/4K-aluminium_foil_1_base_color.png" id="2_23o0i"]
+[ext_resource type="Texture2D" uid="uid://svca66g547io" path="res://assets/skins/alluminium/4K-aluminium_foil_1_ao.png" id="3_guwdo"]
+[ext_resource type="Texture2D" uid="uid://blxtyuwjbjp3e" path="res://assets/skins/alluminium/4K-aluminium_foil_1_displacement.png" id="4_neuy0"]
+[ext_resource type="Texture2D" uid="uid://gkhknjgulupx" path="res://assets/skins/alluminium/4K-aluminium_foil_1_metallic.png" id="5_4elew"]
+[ext_resource type="Texture2D" uid="uid://b7j242kfkwr60" path="res://assets/skins/alluminium/4K-aluminium_foil_1_normal.png" id="6_vvtjg"]
+[ext_resource type="Texture2D" uid="uid://cqp3aoq23wlps" path="res://assets/skins/alluminium/4K-aluminium_foil_1_roughness.png" id="7_4x4hp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u2ymy"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("2_23o0i")
+metallic = 1.0
+metallic_texture = ExtResource("5_4elew")
+roughness_texture = ExtResource("7_4x4hp")
+normal_enabled = true
+normal_texture = ExtResource("6_vvtjg")
+ao_enabled = true
+ao_texture = ExtResource("3_guwdo")
+heightmap_texture = ExtResource("4_neuy0")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_gykp6"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_u2ymy")
+size = Vector3(1, 0.2, 1)
+
+[node name="textured_skin" node_paths=PackedStringArray("mesh") instance=ExtResource("1_eqjaw")]
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0"]
+mesh = SubResource("BoxMesh_gykp6")
+skeleton = NodePath("../MeshInstance3D")

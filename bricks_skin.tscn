@@ -1,0 +1,37 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgf8uwpi00llf"]
+
+[ext_resource type="PackedScene" uid="uid://boyodixerm6vf" path="res://textured_skin.tscn" id="1_q8fk7"]
+[ext_resource type="Texture2D" uid="uid://j0lyal82fgp3" path="res://assets/skins/bricks/Bricks085_1K-JPG_Color.jpg" id="2_ngmue"]
+[ext_resource type="Texture2D" uid="uid://wy2w2myllhmj" path="res://assets/skins/bricks/Bricks085_1K-JPG_NormalGL.jpg" id="3_j4vta"]
+[ext_resource type="Texture2D" uid="uid://qjq2r4em4b3r" path="res://assets/skins/bricks/Bricks085_1K-JPG_AmbientOcclusion.jpg" id="3_n1o6p"]
+[ext_resource type="Texture2D" uid="uid://c1wf2ki8hscne" path="res://assets/skins/bricks/Bricks085_1K-JPG_Displacement.jpg" id="4_fxrq8"]
+[ext_resource type="Texture2D" uid="uid://mfino23lpifm" path="res://assets/skins/bricks/Bricks085_1K-JPG_Roughness.jpg" id="4_g02aj"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mepbe"]
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8p4rp"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("2_ngmue")
+roughness_texture = ExtResource("4_g02aj")
+normal_enabled = true
+normal_texture = ExtResource("3_j4vta")
+ao_enabled = true
+ao_texture = ExtResource("3_n1o6p")
+heightmap_texture = ExtResource("4_fxrq8")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_gravt"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_8p4rp")
+size = Vector3(1, 0.2, 1)
+
+[node name="textured_skin" node_paths=PackedStringArray("mesh") instance=ExtResource("1_q8fk7")]
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.101124, 0)
+mesh = SubResource("PlaneMesh_mepbe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_gravt")

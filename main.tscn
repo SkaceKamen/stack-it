@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://blw8ke1yno3hd"]
+[gd_scene load_steps=25 format=3 uid="uid://blw8ke1yno3hd"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_qtoss"]
 [ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://BlockPrefab.tscn" id="2_7slrr"]
 [ext_resource type="PackedScene" uid="uid://coaea6xflebpp" path="res://blue_skin.tscn" id="3_g8yc7"]
 [ext_resource type="Script" path="res://background_layer.gd" id="3_s2lpx"]
 [ext_resource type="Script" path="res://ui_manager.gd" id="4_6npex"]
+[ext_resource type="Texture2D" uid="uid://csfwpgfxppxyw" path="res://assets/sky/IndoorEnvironmentHDRI005_1K-TONEMAPPED.jpg" id="6_vtyhw"]
 [ext_resource type="PackedScene" uid="uid://cxleofwxn7rlw" path="res://game_end_screen.tscn" id="7_x0gnt"]
 [ext_resource type="PackedScene" uid="uid://cq7vsn1sne0yp" path="res://menu_screen.tscn" id="8_2lipv"]
 [ext_resource type="PackedScene" uid="uid://whbcl06r6ubh" path="res://shop_screen.tscn" id="9_g53qy"]
@@ -33,17 +34,12 @@ gradient = SubResource("Gradient_qv60d")
 fill_from = Vector2(0.536697, 0)
 fill_to = Vector2(0.522936, 1)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_brclc"]
-sky_top_color = Color(0.309804, 0.376471, 0.894118, 1)
-sky_horizon_color = Color(0.572549, 0.690196, 0.592157, 1)
-sky_curve = 0.106066
-sky_cover_modulate = Color(0.380392, 0.607843, 0.941176, 1)
-ground_bottom_color = Color(0.137255, 0.164706, 0.294118, 1)
-ground_horizon_color = Color(0.266667, 0.686275, 1, 1)
-ground_curve = 0.269087
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3k715"]
+panorama = ExtResource("6_vtyhw")
+energy_multiplier = 2.0
 
 [sub_resource type="Sky" id="Sky_ayt6h"]
-sky_material = SubResource("ProceduralSkyMaterial_brclc")
+sky_material = SubResource("PanoramaSkyMaterial_3k715")
 
 [sub_resource type="Environment" id="Environment_ade2i"]
 background_mode = 3
@@ -51,6 +47,7 @@ background_canvas_max_layer = -100
 sky = SubResource("Sky_ayt6h")
 ambient_light_source = 2
 ambient_light_color = Color(0.556863, 0.533333, 0.937255, 1)
+reflected_light_source = 2
 
 [sub_resource type="Animation" id="Animation_ivkry"]
 length = 0.001
@@ -186,6 +183,7 @@ texture = SubResource("GradientTexture2D_yd1gm")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, -0.345013, 0.617224, 0, 0.872887, 0.487922, -0.707107, -0.345013, 0.617224, 1, 1.187, 1)
+environment = SubResource("Environment_ade2i")
 projection = 1
 size = 3.915
 near = 0.01

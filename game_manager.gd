@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 
   match current_state:
     State.Playing:
-      camera.position = Vector3(camera.position.x, lerp(camera.position.y, base_camera_position.y + height, 10 * delta), camera.position.z)
+      camera.position = camera.position.lerp(Vector3(base_camera_position.x, base_camera_position.y + height, base_camera_position.z), 10 * delta)
       camera.size = lerp(camera.size, base_camera_size, 10 * delta)
 
       if current_block != null:
@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 
     State.Menu:
       camera.position = camera.position.lerp(base_camera_position + Vector3(0, height / 2.0, 0) + camera.quaternion * Vector3(0, 0, height / 2.0), 2 * delta)
-      camera.size = lerp(camera.size, base_camera_size + height, 10 * delta)
+      camera.size = lerp(camera.size, base_camera_size + height, 2 * delta)
 
 func _input(event: InputEvent) -> void:
   if current_state != State.Playing:

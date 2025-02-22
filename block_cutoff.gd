@@ -13,6 +13,7 @@ func _process(_delta: float) -> void:
 func set_size(size: Vector2) -> void:
   collision_shape.scale = Vector3(size.x, 1, size.y)
   skin_instance.scale = Vector3(size.x, 1, size.y)
+  skin_instance.set_size(Vector3(size.x, 1, size.y))
 
 func set_skin(skin_prefab: PackedScene, stack_height: float, stack_count: int):
   skin = skin_prefab
