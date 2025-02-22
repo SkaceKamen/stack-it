@@ -54,11 +54,10 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Cost" type="Label" parent="SkinItem"]
+[node name="Name" type="Label" parent="SkinItem"]
 layout_mode = 2
-text = "10"
+text = "Blue"
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Icon" type="TextureRect" parent="SkinItem"]
 custom_minimum_size = Vector2(0, 128)
@@ -67,7 +66,8 @@ texture = ExtResource("1_a3oga")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Name" type="Label" parent="SkinItem"]
+[node name="Cost" type="Label" parent="SkinItem"]
 layout_mode = 2
-text = "Blue"
+text = "10"
 horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://blw8ke1yno3hd"]
+[gd_scene load_steps=26 format=3 uid="uid://blw8ke1yno3hd"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_qtoss"]
 [ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://BlockPrefab.tscn" id="2_7slrr"]
 [ext_resource type="PackedScene" uid="uid://coaea6xflebpp" path="res://blue_skin.tscn" id="3_g8yc7"]
 [ext_resource type="Script" path="res://background_layer.gd" id="3_s2lpx"]
 [ext_resource type="Script" path="res://ui_manager.gd" id="4_6npex"]
+[ext_resource type="PackedScene" uid="uid://dxn0k71cgi7pt" path="res://PerfectEffectPrefab.tscn" id="5_qen4a"]
 [ext_resource type="Texture2D" uid="uid://csfwpgfxppxyw" path="res://assets/sky/IndoorEnvironmentHDRI005_1K-TONEMAPPED.jpg" id="6_vtyhw"]
 [ext_resource type="PackedScene" uid="uid://cxleofwxn7rlw" path="res://game_end_screen.tscn" id="7_x0gnt"]
 [ext_resource type="PackedScene" uid="uid://cq7vsn1sne0yp" path="res://menu_screen.tscn" id="8_2lipv"]
@@ -167,6 +168,7 @@ blocks_container = NodePath("Blocks")
 ui_manager = NodePath("UIManager")
 camera = NodePath("Camera3D")
 background_layer = NodePath("BackgroundLayer")
+preload_prefabs = Array[PackedScene]([ExtResource("5_qen4a")])
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("backgroundTexture")]
 layer = -100

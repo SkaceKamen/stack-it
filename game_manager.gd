@@ -11,6 +11,9 @@ enum State {Playing, Menu}
 @export var camera: Camera3D
 @export var background_layer: BackgroundLayer
 
+# Prefabs to be preloaded when the game starts
+@export var preload_prefabs: Array[PackedScene]
+
 var height = 0
 var count = 0
 var blocks: Array[FallingBlock] = []
@@ -34,18 +37,25 @@ func _ready():
 
   spawn_initial_block()
 
+  for preload_prefab in preload_prefabs:
+    var instance = preload_prefab.instantiate() as Node3D
+    instance.position = Vector3(0, -1000, 0)
+    add_child(instance)
+    await RenderingServer.frame_post_draw
+    instance.queue_free()
+
   for item in game_data.skins:
     if not item.icon:
       var sub_viewport = SubViewport.new()
 
-      sub_viewport.size = Vector2(512, 512)
+      sub_viewport.size = Vector2(128, 128)
       sub_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
       sub_viewport.transparent_bg = true
 
       add_child(sub_viewport)
 
       for i in range(5):
-        var skin_instance = load(item.prefab_path).instantiate() as BlockSkin
+        var skin_instance = item.prefab.instantiate() as BlockSkin
         skin_instance.position = Vector3(0, -100 + i * 0.2, 0)
         skin_instance.set_state(i * 0.2 * 18.75, i * 5)
         sub_viewport.add_child(skin_instance)
@@ -53,7 +63,7 @@ func _ready():
       var local_camera = Camera3D.new()
 
       local_camera.projection = Camera3D.ProjectionType.PROJECTION_ORTHOGONAL
-      local_camera.size = base_camera_size * 0.5
+      local_camera.size = 1.6
       local_camera.near = 0.001
       local_camera.far = 5000
       local_camera.position = base_camera_position + Vector3(0, -100, 0)
@@ -116,7 +126,7 @@ func get_current_skin() -> PackedScene:
   if DataStore.user_data.current_skin != '':
     for skin in game_data.skins:
       if skin.id == DataStore.user_data.current_skin:
-        return load(skin.prefab_path)
+        return skin.prefab
   
   return default_skin_prefab
 
