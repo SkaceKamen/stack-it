@@ -97,6 +97,11 @@ func _process(delta: float) -> void:
     State.Menu:
       camera.position = camera.position.lerp(base_camera_position + Vector3(0, height / 2.0, 0) + camera.quaternion * Vector3(0, 0, height / 2.0), 2 * delta)
       camera.size = lerp(camera.size, base_camera_size + height, 2 * delta)
+  
+  if Input.is_action_just_pressed("screenshot"):
+    var screenshot = get_viewport().get_texture().get_image()
+    var time = str(Time.get_unix_time_from_system())
+    screenshot.save_png("user://screenshot-{0}.png".format([time]))
 
 func _input(event: InputEvent) -> void:
   if current_state != State.Playing:
