@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjm46njos1edi"]
 
-[ext_resource type="PackedScene" uid="uid://2m63hvaa5rmy" path="res://gradient_skin.tscn" id="1_2ub5i"]
+[ext_resource type="PackedScene" uid="uid://2m63hvaa5rmy" path="res://block-skins/gradient_skin.tscn" id="1_2ub5i"]
 
 [sub_resource type="Gradient" id="Gradient_5ihhv"]
 offsets = PackedFloat32Array(0, 0.498599, 1)

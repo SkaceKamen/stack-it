@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://2m63hvaa5rmy"]
 
-[ext_resource type="Script" path="res://gradient_skin.gd" id="1_37e0w"]
+[ext_resource type="Script" path="res://block-skins/gradient_skin.gd" id="1_37e0w"]
 
 [sub_resource type="Gradient" id="Gradient_wt8hh"]
 offsets = PackedFloat32Array(0, 0.498599, 1)

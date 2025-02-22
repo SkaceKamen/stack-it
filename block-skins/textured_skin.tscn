@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://boyodixerm6vf"]
 
-[ext_resource type="Script" path="res://textured_skin.gd" id="1_exp2c"]
+[ext_resource type="Script" path="res://block-skins/textured_skin.gd" id="1_exp2c"]
 
 [node name="textured_skin" type="Node3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_exp2c")

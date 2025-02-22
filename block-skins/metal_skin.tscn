@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cejfcp8k16w0b"]
 
-[ext_resource type="PackedScene" uid="uid://boyodixerm6vf" path="res://textured_skin.tscn" id="1_tq31f"]
+[ext_resource type="PackedScene" uid="uid://boyodixerm6vf" path="res://block-skins/textured_skin.tscn" id="1_tq31f"]
 [ext_resource type="Texture2D" uid="uid://bxdkrsyukjpfh" path="res://assets/skins/metal/Metal055A_1K-JPG_Color.jpg" id="2_dp8wc"]
 [ext_resource type="Texture2D" uid="uid://dqdssgwpkhcen" path="res://assets/skins/metal/Metal055A_1K-JPG_Metalness.jpg" id="3_u4qt1"]
 [ext_resource type="Texture2D" uid="uid://ciuuq4pfexmcr" path="res://assets/skins/metal/Metal055A_1K-JPG_NormalDX.jpg" id="4_53ca3"]

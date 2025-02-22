@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bgf8uwpi00llf"]
 
-[ext_resource type="PackedScene" uid="uid://boyodixerm6vf" path="res://textured_skin.tscn" id="1_q8fk7"]
+[ext_resource type="PackedScene" uid="uid://boyodixerm6vf" path="res://block-skins/textured_skin.tscn" id="1_q8fk7"]
 [ext_resource type="Texture2D" uid="uid://j0lyal82fgp3" path="res://assets/skins/bricks/Bricks085_1K-JPG_Color.jpg" id="2_ngmue"]
 [ext_resource type="Texture2D" uid="uid://wy2w2myllhmj" path="res://assets/skins/bricks/Bricks085_1K-JPG_NormalGL.jpg" id="3_j4vta"]
 [ext_resource type="Texture2D" uid="uid://qjq2r4em4b3r" path="res://assets/skins/bricks/Bricks085_1K-JPG_AmbientOcclusion.jpg" id="3_n1o6p"]

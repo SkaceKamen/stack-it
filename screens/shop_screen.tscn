@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://whbcl06r6ubh"]
 
-[ext_resource type="Script" path="res://shop_screen.gd" id="1_36m7y"]
-[ext_resource type="Resource" uid="uid://b1w725cocdhbd" path="res://game_data.tres" id="2_ow4cq"]
-[ext_resource type="PackedScene" uid="uid://cyt7x2tqupmy" path="res://skin_shop_item.tscn" id="3_akbq1"]
+[ext_resource type="Script" path="res://screens/shop_screen.gd" id="1_36m7y"]
+[ext_resource type="Resource" uid="uid://b1w725cocdhbd" path="res://resources/game_data.tres" id="2_ow4cq"]
+[ext_resource type="PackedScene" uid="uid://cyt7x2tqupmy" path="res://screens/skin_shop_item.tscn" id="3_akbq1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yusg0"]
 bg_color = Color(0, 0, 0, 0.211765)

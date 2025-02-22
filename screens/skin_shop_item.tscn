@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cyt7x2tqupmy"]
 
-[ext_resource type="Texture2D" uid="uid://bo1fbr5cmfv6r" path="res://icon.svg" id="1_a3oga"]
-[ext_resource type="Script" path="res://skin_shop_item.gd" id="1_aqcaj"]
-[ext_resource type="StyleBox" uid="uid://bjirsjp5b605g" path="res://skin_shop_item_selected.tres" id="1_v477e"]
+[ext_resource type="Texture2D" uid="uid://bo1fbr5cmfv6r" path="res://assets/icon.svg" id="1_a3oga"]
+[ext_resource type="Script" path="res://screens/skin_shop_item.gd" id="1_aqcaj"]
+[ext_resource type="StyleBox" uid="uid://bjirsjp5b605g" path="res://screens/skin_shop_item_selected.tres" id="1_v477e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udxdl"]
 bg_color = Color(0.898039, 0.862745, 0, 0.313726)

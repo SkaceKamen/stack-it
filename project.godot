@@ -16,7 +16,7 @@ run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.129538, 0.228273, 0.346299, 1)
 boot_splash/show_image=false
-config/icon="res://logo.png"
+config/icon="res://assets/logo.png"
 
 [display]
 
@@ -32,7 +32,7 @@ project/assembly_name="stacking"
 
 [gui]
 
-theme/custom="res://DefaultTheme.tres"
+theme/custom="res://resources/DefaultTheme.tres"
 
 [input]
 
