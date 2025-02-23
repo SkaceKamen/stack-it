@@ -2,10 +2,10 @@
 
 Simple stacking game
 
-![screenshot-1](.github/images/screenshot-1740256515.288.png | width=200)
-![screenshot-2](.github/images/screenshot-1740256524.156.png | width=200)
-![screenshot-2](.github/images/screenshot-1740256544.016.png | width=200)
-![screenshot-2](.github/images/screenshot-1740256555.356.png | width=200)
+[<img src=".github/images/screenshot-1740256515.288.png" alt="screenshot 1" width="200">](.github/images/screenshot-1740256515.288.png))
+[<img src=".github/images/screenshot-1740256524.156.png" alt="screenshot 2" width="200">](.github/images/screenshot-1740256524.156.png)
+[<img src=".github/images/screenshot-1740256544.016.png" alt="screenshot 3" width="200">](.github/images/screenshot-1740256544.016.png)
+[<img src=".github/images/screenshot-1740256555.356.png" alt="screenshot 4" width="200">](.github/images/screenshot-1740256555.356.png)
 
 ## Download
 
