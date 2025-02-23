@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://blw8ke1yno3hd"]
+[gd_scene load_steps=27 format=3 uid="uid://blw8ke1yno3hd"]
 
 [ext_resource type="Script" path="res://managers/game_manager.gd" id="1_qtoss"]
 [ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://entities/falling_block.tscn" id="2_7slrr"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cq7vsn1sne0yp" path="res://screens/menu_screen.tscn" id="8_2lipv"]
 [ext_resource type="PackedScene" uid="uid://whbcl06r6ubh" path="res://screens/shop_screen.tscn" id="9_g53qy"]
 [ext_resource type="Resource" uid="uid://b1w725cocdhbd" path="res://resources/game_data.tres" id="11_jwuxf"]
+[ext_resource type="Script" path="res://entities/skin_icon_render.gd" id="12_5nx1b"]
 
 [sub_resource type="Gradient" id="Gradient_mwp3e"]
 colors = PackedColorArray(0.723379, 0.721565, 1, 1, 6.06447e-06, 0.61791, 0.699729, 1)
@@ -254,3 +255,8 @@ visible = false
 
 [node name="ShopScreen" parent="UIManager" instance=ExtResource("9_g53qy")]
 visible = false
+
+[node name="SkinIconRenderer" type="Node" parent="." node_paths=PackedStringArray("base_camera")]
+script = ExtResource("12_5nx1b")
+game_data = ExtResource("11_jwuxf")
+base_camera = NodePath("../Camera3D")

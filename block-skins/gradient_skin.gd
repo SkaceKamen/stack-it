@@ -5,7 +5,7 @@ extends BlockSkin
 @export var mesh: MeshInstance3D
 @export var loop = true
 
-func set_state(height: float, _count: int):
+func set_state(height: float, _count: int, _size: Vector3, _offset: Vector3):
   var delta = (height / resetHeight)
   
   if loop:

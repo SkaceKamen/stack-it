@@ -37,8 +37,7 @@ func set_skin(skin_prefab: PackedScene, stack_height: float, stack_count: int):
   skin_instance = skin.instantiate() as BlockSkin
   add_child(skin_instance)
 
-  skin_instance.set_state(stack_height, stack_count)
-  skin_instance.set_size(Vector3(scale.x, scale.y, scale.z))
+  skin_instance.set_state(stack_height, stack_count, scale, position)
 
 func cut_according_to(block: FallingBlock, stack_height: float, stack_count: int) -> CutResult:
   var my_position = position.z if move_axis == 0 else position.x
@@ -77,10 +76,9 @@ func cut_according_to(block: FallingBlock, stack_height: float, stack_count: int
 
   var cutoff = block_cutoff_prefab.instantiate() as BlockCutoff
   get_parent().add_child(cutoff)
-  cutoff.set_skin(skin, stack_height, stack_count)
 
   if my_size - abs(diff) <= 0:
-    cutoff.set_size(size)
+    cutoff.set_skin(skin, stack_height, stack_count, scale, position)
     cutoff.position = Vector3(position.x, position.y, position.z)
 
     queue_free()
@@ -94,15 +92,17 @@ func cut_according_to(block: FallingBlock, stack_height: float, stack_count: int
     scale = Vector3(scale.x, scale.y, size.y)
     position = Vector3(position.x, position.y, position.z - diff / 2)
 
-    cutoff.set_size(Vector2(size.x, abs(diff)))
     cutoff.position = Vector3(position.x, position.y, position.z + my_sign * (previous_size.y / 2))
+    cutoff.set_skin(skin, stack_height, stack_count, Vector3(size.x, 1, abs(diff)), cutoff.position)
   else:
     size.x -= abs(diff)
     scale = Vector3(size.x, scale.y, scale.z)
     position = Vector3(position.x - diff / 2, position.y, position.z)
 
-    cutoff.set_size(Vector2(abs(diff), size.y))
     cutoff.position = Vector3(position.x + my_sign * (previous_size.x / 2), position.y, position.z)
+    cutoff.set_skin(skin, stack_height, stack_count, Vector3(abs(diff), 1, size.y), cutoff.position)
+
+  skin_instance.set_state(stack_height, stack_count, scale, position)
 
   return CutResult.Partial;
   

@@ -10,14 +10,11 @@ func _process(_delta: float) -> void:
   if position.y < -10:
     queue_free()
 
-func set_size(size: Vector2) -> void:
-  collision_shape.scale = Vector3(size.x, 1, size.y)
-  skin_instance.scale = Vector3(size.x, 1, size.y)
-  skin_instance.set_size(Vector3(size.x, 1, size.y))
-
-func set_skin(skin_prefab: PackedScene, stack_height: float, stack_count: int):
+func set_skin(skin_prefab: PackedScene, stack_height: float, stack_count: int, size: Vector3, offset: Vector3) -> void:
   skin = skin_prefab
   skin_instance = skin.instantiate() as BlockSkin
   add_child(skin_instance)
 
-  skin_instance.set_state(stack_height, stack_count)
+  collision_shape.scale = Vector3(size.x, 1, size.z)
+  skin_instance.scale = Vector3(size.x, 1, size.z)
+  skin_instance.set_state(stack_height, stack_count, size, offset)
