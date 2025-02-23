@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="GameData" load_steps=19 format=3 uid="uid://b1w725cocdhbd"]
+
+[ext_resource type="Script" path="res://resources/game_data.gd" id="1_8vm7n"]
+[ext_resource type="Script" path="res://resources/skin_data.gd" id="2_4mctt"]
+[ext_resource type="PackedScene" uid="uid://coaea6xflebpp" path="res://block-skins/blue_skin.tscn" id="3_hvp86"]
+[ext_resource type="PackedScene" uid="uid://cjm46njos1edi" path="res://block-skins/yellow_skin.tscn" id="4_fagyb"]
+[ext_resource type="PackedScene" uid="uid://dkrji788kte3t" path="res://block-skins/raindow_skin.tscn" id="5_d7hhv"]
+[ext_resource type="PackedScene" uid="uid://cejfcp8k16w0b" path="res://block-skins/metal_skin.tscn" id="6_16ayv"]
+[ext_resource type="PackedScene" uid="uid://dmbioxrxqqj3p" path="res://block-skins/alumunium_skin.tscn" id="7_ywwfa"]
+[ext_resource type="PackedScene" uid="uid://veu2kb63fklr" path="res://block-skins/grass_skin.tscn" id="8_sw7hu"]
+[ext_resource type="PackedScene" uid="uid://c0f6cfetbety8" path="res://block-skins/gold_skin.tscn" id="9_7nly7"]
+[ext_resource type="PackedScene" uid="uid://bgf8uwpi00llf" path="res://block-skins/bricks_skin.tscn" id="10_aewtv"]
+
+[sub_resource type="Resource" id="Resource_e6ivh"]
+script = ExtResource("2_4mctt")
+id = "blue"
+name = "Blue"
+cost = 0
+prefab = ExtResource("3_hvp86")
+
+[sub_resource type="Resource" id="Resource_fyhdr"]
+script = ExtResource("2_4mctt")
+id = "yellow"
+name = "Yellow"
+cost = 5
+prefab = ExtResource("4_fagyb")
+
+[sub_resource type="Resource" id="Resource_4l75o"]
+script = ExtResource("2_4mctt")
+id = "rainbow"
+name = "Rainbow"
+cost = 10
+prefab = ExtResource("5_d7hhv")
+
+[sub_resource type="Resource" id="Resource_cpvip"]
+script = ExtResource("2_4mctt")
+id = "metal"
+name = "Metal"
+cost = 20
+prefab = ExtResource("6_16ayv")
+
+[sub_resource type="Resource" id="Resource_gvqbu"]
+script = ExtResource("2_4mctt")
+id = "aluminium"
+name = "Aluminium"
+cost = 30
+prefab = ExtResource("7_ywwfa")
+
+[sub_resource type="Resource" id="Resource_mg7mg"]
+script = ExtResource("2_4mctt")
+id = "grass"
+name = "Grass"
+cost = 30
+prefab = ExtResource("8_sw7hu")
+
+[sub_resource type="Resource" id="Resource_vh3o6"]
+script = ExtResource("2_4mctt")
+id = "gold"
+name = "Gold"
+cost = 35
+prefab = ExtResource("9_7nly7")
+
+[sub_resource type="Resource" id="Resource_36072"]
+script = ExtResource("2_4mctt")
+id = "bricks"
+name = "Bricks"
+cost = 40
+prefab = ExtResource("10_aewtv")
+
+[resource]
+script = ExtResource("1_8vm7n")
+skins = Array[ExtResource("2_4mctt")]([SubResource("Resource_e6ivh"), SubResource("Resource_fyhdr"), SubResource("Resource_4l75o"), SubResource("Resource_cpvip"), SubResource("Resource_gvqbu"), SubResource("Resource_mg7mg"), SubResource("Resource_vh3o6"), SubResource("Resource_36072")])

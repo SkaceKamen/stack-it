@@ -1,0 +1,126 @@
+name: "Build project"
+
+env:
+  GODOT_VERSION: "4.3"
+
+# Disabled because there's something wrong
+on:
+  #push:
+  #  branches:
+  #    - main
+  workflow_dispatch:
+
+jobs:
+  build-linux-android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Cache downloaded godot
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64
+          key: ${{ runner.os }}-${{ env.GODOT_VERSION }}-godot
+
+      - name: Initialize Godot
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          curl -f -L -o godot.zip https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
+          unzip ./godot.zip
+
+      - name: Cache downloaded templates
+        id: cache-godot-templates
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
+          key: ${{ runner.os }}-${{ env.GODOT_VERSION }}-templates
+
+      - name: Initialize export templates
+        if: steps.cache-godot-templates.outputs.cache-hit != 'true'
+        run: |
+          curl -f -L -o export_templates.zip https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
+          unzip ./export_templates.zip
+          mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          mv ./templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      - name: Build linux version
+        run: |
+          set -e
+          mkdir -p ./build/linux
+          ./Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --verbose --export-release "Linux/X11" "./build/linux/stacking"
+
+      - name: Build android version
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEYSTORE_ENCODED: ${{ secrets.KEYSTORE_ENCODED }}
+        run: |
+          set -e
+          mkdir -p ./build/android
+          base64 -d <<< "$KEYSTORE_ENCODED" > release
+          envsubst < export_credentials.template > .godot/export_credentials.cfg
+          ./Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --verbose --export-release "Android" "./build/android/stacking.apk"
+
+      - name: Upload linux
+        uses: actions/upload-artifact@v4
+        with:
+          name: stacking-linux-x11-x64
+          path: build/linux
+
+      - name: Upload android
+        uses: actions/upload-artifact@v4
+        with:
+          name: stacking-android
+          path: build/android/stacking.apk
+
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Initialize Godot
+        run: |
+          curl -f -L -o godot.zip https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_win64.exe.zip
+          unzip ./godot.zip
+
+      - name: Cache downloaded templates
+        id: cache-godot-templates
+        uses: actions/cache@v4
+        with:
+          path: C:\Users\runneradmin\AppData\Roaming\Godot\export_templates\${{ env.GODOT_VERSION }}.stable
+          key: ${{ runner.os }}-${{ env.GODOT_VERSION }}-templates-win
+
+      - name: Initialize export templates
+        if: steps.cache-godot-templates.outputs.cache-hit != 'true'
+        run: |
+          curl -f -L -o export_templates.zip https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
+          unzip export_templates.zip
+          mkdir "C:\Users\runneradmin\AppData\Roaming\Godot\export_templates\${{ env.GODOT_VERSION }}.stable"
+          mv .\templates\* "C:\Users\runneradmin\AppData\Roaming\Godot\export_templates\${{ env.GODOT_VERSION }}.stable"
+
+      - name: Install rcedit
+        run: |
+          curl -f -L -o rcedit.exe https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe
+          mv rcedit.exe "$env:SystemRoot\system32"
+
+      - name: Build windows version
+        run: |
+          mkdir "build\windows"
+          .\Godot_v${{ env.GODOT_VERSION }}-stable_win64_console.exe --headless --verbose --export-release "Windows" "build/windows/stacking.exe"
+
+      - name: Upload windows
+        uses: actions/upload-artifact@v4
+        with:
+          name: stacking-windows-x64
+          path: build/windows
