@@ -4,3 +4,4 @@
 .artifacts
 *.tmp
 *.blend1
+build/
