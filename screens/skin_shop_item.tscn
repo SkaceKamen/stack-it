@@ -44,6 +44,8 @@ selected_style = ExtResource("1_v477e")
 owned_style = SubResource("StyleBoxFlat_sk7pj")
 unaffordable_style = SubResource("StyleBoxFlat_dl6hb")
 affordable_style = SubResource("StyleBoxFlat_udxdl")
+affordable_color = Color(1, 1, 1, 1)
+unaffordable_color = Color(0.699653, 0.699653, 0.699653, 1)
 
 [node name="SkinItem" type="VBoxContainer" parent="."]
 layout_mode = 1
