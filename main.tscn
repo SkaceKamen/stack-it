@@ -171,6 +171,11 @@ camera = NodePath("Camera3D")
 background_layer = NodePath("BackgroundLayer")
 preload_prefabs = Array[PackedScene]([ExtResource("5_qen4a")])
 
+[node name="SkinIconRenderer" type="Node" parent="." node_paths=PackedStringArray("base_camera")]
+script = ExtResource("12_5nx1b")
+game_data = ExtResource("11_jwuxf")
+base_camera = NodePath("../Camera3D")
+
 [node name="BackgroundLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("backgroundTexture")]
 layer = -100
 script = ExtResource("3_s2lpx")
@@ -255,8 +260,3 @@ visible = false
 
 [node name="ShopScreen" parent="UIManager" instance=ExtResource("9_g53qy")]
 visible = false
-
-[node name="SkinIconRenderer" type="Node" parent="." node_paths=PackedStringArray("base_camera")]
-script = ExtResource("12_5nx1b")
-game_data = ExtResource("11_jwuxf")
-base_camera = NodePath("../Camera3D")
