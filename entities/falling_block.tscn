@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5xxv7xrp8brk"]
+
+[ext_resource type="Script" path="res://entities/falling_block.gd" id="1_210ol"]
+[ext_resource type="PackedScene" uid="uid://ggs5bxnpy16c" path="res://entities/block_cutoff.tscn" id="2_bu8cb"]
+[ext_resource type="PackedScene" uid="uid://dxn0k71cgi7pt" path="res://entities/perfect_effect.tscn" id="3_lar82"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2j3kt"]
+size = Vector3(0.9, 0.2, 0.9)
+
+[node name="Block" type="Node3D"]
+script = ExtResource("1_210ol")
+block_cutoff_prefab = ExtResource("2_bu8cb")
+perfect_effect_prefab = ExtResource("3_lar82")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_2j3kt")

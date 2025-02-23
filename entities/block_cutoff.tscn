@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ggs5bxnpy16c"]
+
+[ext_resource type="Script" path="res://entities/block_cutoff.gd" id="1_404px"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_axnj8"]
+size = Vector3(0.98, 0.19, 0.98)
+
+[node name="BlockCutoff" type="RigidBody3D" node_paths=PackedStringArray("collision_shape")]
+script = ExtResource("1_404px")
+collision_shape = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_axnj8")

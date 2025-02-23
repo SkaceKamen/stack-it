@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjm46njos1edi"]
+
+[ext_resource type="PackedScene" uid="uid://2m63hvaa5rmy" path="res://block-skins/gradient_skin.tscn" id="1_2ub5i"]
+
+[sub_resource type="Gradient" id="Gradient_5ihhv"]
+offsets = PackedFloat32Array(0, 0.498599, 1)
+colors = PackedColorArray(0.651324, 0.648943, 0, 1, 0.749883, 0.789684, 0, 1, 0.606924, 0.595973, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ft1m4"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_1vlft"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ft1m4")
+size = Vector3(1, 0.2, 1)
+
+[node name="gradient_skin" instance=ExtResource("1_2ub5i")]
+gradient = SubResource("Gradient_5ihhv")
+
+[node name="MeshInstance3D" parent="." index="0"]
+mesh = SubResource("BoxMesh_1vlft")

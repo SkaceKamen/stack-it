@@ -1,31 +1,63 @@
-[gd_scene load_steps=11 format=3 uid="uid://blw8ke1yno3hd"]
+[gd_scene load_steps=27 format=3 uid="uid://blw8ke1yno3hd"]
 
-[ext_resource type="Script" path="res://GameManager.cs" id="1_vkaln"]
-[ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://BlockPrefab.tscn" id="2_7slrr"]
-[ext_resource type="Script" path="res://UIManager.cs" id="3_3uxi8"]
+[ext_resource type="Script" path="res://managers/game_manager.gd" id="1_qtoss"]
+[ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://entities/falling_block.tscn" id="2_7slrr"]
+[ext_resource type="PackedScene" uid="uid://coaea6xflebpp" path="res://block-skins/blue_skin.tscn" id="3_g8yc7"]
+[ext_resource type="Script" path="res://entities/background_layer.gd" id="3_s2lpx"]
+[ext_resource type="Script" path="res://managers/ui_manager.gd" id="4_6npex"]
+[ext_resource type="PackedScene" uid="uid://dxn0k71cgi7pt" path="res://entities/perfect_effect.tscn" id="5_qen4a"]
+[ext_resource type="Texture2D" uid="uid://csfwpgfxppxyw" path="res://assets/sky/IndoorEnvironmentHDRI005_1K-TONEMAPPED.jpg" id="6_vtyhw"]
+[ext_resource type="PackedScene" uid="uid://cxleofwxn7rlw" path="res://screens/game_end_screen.tscn" id="7_x0gnt"]
+[ext_resource type="PackedScene" uid="uid://cq7vsn1sne0yp" path="res://screens/menu_screen.tscn" id="8_2lipv"]
+[ext_resource type="PackedScene" uid="uid://whbcl06r6ubh" path="res://screens/shop_screen.tscn" id="9_g53qy"]
+[ext_resource type="Resource" uid="uid://b1w725cocdhbd" path="res://resources/game_data.tres" id="11_jwuxf"]
+[ext_resource type="Script" path="res://entities/skin_icon_render.gd" id="12_5nx1b"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_brclc"]
-sky_top_color = Color(0.309804, 0.376471, 0.894118, 1)
-sky_horizon_color = Color(0.572549, 0.690196, 0.592157, 1)
-sky_curve = 0.106066
-sky_cover_modulate = Color(0.380392, 0.607843, 0.941176, 1)
-ground_bottom_color = Color(0.137255, 0.164706, 0.294118, 1)
-ground_horizon_color = Color(0.266667, 0.686275, 1, 1)
-ground_curve = 0.269087
+[sub_resource type="Gradient" id="Gradient_mwp3e"]
+colors = PackedColorArray(0.723379, 0.721565, 1, 1, 6.06447e-06, 0.61791, 0.699729, 1)
+
+[sub_resource type="Gradient" id="Gradient_tivq2"]
+colors = PackedColorArray(0.729243, 0.664932, 0.993114, 1, 0.35778, 0.81335, 0.711805, 1)
+
+[sub_resource type="Gradient" id="Gradient_6dvsi"]
+colors = PackedColorArray(0.893111, 0.501013, 0.998511, 1, 0.636222, 0.727729, 0.490493, 1)
+
+[sub_resource type="Gradient" id="Gradient_jfo47"]
+colors = PackedColorArray(0.999085, 0.730445, 0.72213, 1, 0.888731, 0.528967, 0.334523, 1)
+
+[sub_resource type="Gradient" id="Gradient_sxvrg"]
+colors = PackedColorArray(1, 0.625747, 0.524758, 1, 0.979343, 0.42418, 0.52024, 1)
+
+[sub_resource type="Gradient" id="Gradient_qv60d"]
+colors = PackedColorArray(9.62615e-08, 0.676969, 0.691997, 1, 0.840773, 0.807218, 0.94851, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yd1gm"]
+gradient = SubResource("Gradient_qv60d")
+fill_from = Vector2(0.536697, 0)
+fill_to = Vector2(0.522936, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3k715"]
+panorama = ExtResource("6_vtyhw")
+energy_multiplier = 2.0
 
 [sub_resource type="Sky" id="Sky_ayt6h"]
-sky_material = SubResource("ProceduralSkyMaterial_brclc")
+sky_material = SubResource("PanoramaSkyMaterial_3k715")
 
 [sub_resource type="Environment" id="Environment_ade2i"]
-background_mode = 2
+background_mode = 3
+background_canvas_max_layer = -100
 sky = SubResource("Sky_ayt6h")
+ambient_light_source = 2
+ambient_light_color = Color(0.556863, 0.533333, 0.937255, 1)
+ambient_light_energy = 1.5
+reflected_light_source = 2
 
 [sub_resource type="Animation" id="Animation_ivkry"]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UIManager/Score:scale:x")
+tracks/0/path = NodePath("UIManager/Ingame/Score:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -36,7 +68,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UIManager/Score:scale:y")
+tracks/1/path = NodePath("UIManager/Ingame/Score:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -47,7 +79,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("UIManager/Score/ScoreLabel:self_modulate")
+tracks/2/path = NodePath("UIManager/Ingame/Score/ScoreLabel:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -63,7 +95,7 @@ length = 0.75
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UIManager/Score:scale:x")
+tracks/0/path = NodePath("UIManager/Ingame/Score:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -74,7 +106,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UIManager/Score:scale:y")
+tracks/1/path = NodePath("UIManager/Ingame/Score:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -89,7 +121,7 @@ length = 0.75
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UIManager/Score:scale:x")
+tracks/0/path = NodePath("UIManager/Ingame/Score:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -100,7 +132,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UIManager/Score:scale:y")
+tracks/1/path = NodePath("UIManager/Ingame/Score:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -111,7 +143,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("UIManager/Score/ScoreLabel:self_modulate")
+tracks/2/path = NodePath("UIManager/Ingame/Score/ScoreLabel:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -128,45 +160,78 @@ _data = {
 "ScorePerfect": SubResource("Animation_wsile")
 }
 
-[node name="GameManager" type="Node3D" node_paths=PackedStringArray("BlocksContainer", "UIManager", "Camera")]
-script = ExtResource("1_vkaln")
-BlockPrefab = ExtResource("2_7slrr")
-BlocksContainer = NodePath("Blocks")
-UIManager = NodePath("UIManager")
-Camera = NodePath("Camera3D")
+[node name="GameManager" type="Node3D" node_paths=PackedStringArray("blocks_container", "ui_manager", "camera", "background_layer")]
+script = ExtResource("1_qtoss")
+game_data = ExtResource("11_jwuxf")
+block_prefab = ExtResource("2_7slrr")
+default_skin_prefab = ExtResource("3_g8yc7")
+blocks_container = NodePath("Blocks")
+ui_manager = NodePath("UIManager")
+camera = NodePath("Camera3D")
+background_layer = NodePath("BackgroundLayer")
+preload_prefabs = Array[PackedScene]([ExtResource("5_qen4a")])
+
+[node name="SkinIconRenderer" type="Node" parent="." node_paths=PackedStringArray("base_camera")]
+script = ExtResource("12_5nx1b")
+game_data = ExtResource("11_jwuxf")
+base_camera = NodePath("../Camera3D")
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("backgroundTexture")]
+layer = -100
+script = ExtResource("3_s2lpx")
+backgroundTexture = NodePath("TextureRect")
+gradients = Array[Gradient]([SubResource("Gradient_mwp3e"), SubResource("Gradient_tivq2"), SubResource("Gradient_6dvsi"), SubResource("Gradient_jfo47"), SubResource("Gradient_sxvrg")])
+
+[node name="TextureRect" type="TextureRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_yd1gm")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.707107, -0.345013, 0.617224, 0, 0.872887, 0.487922, -0.707107, -0.345013, 0.617224, 1, 1.1869, 1)
+transform = Transform3D(0.707107, -0.345013, 0.617224, 0, 0.872887, 0.487922, -0.707107, -0.345013, 0.617224, 1, 1.187, 1)
 projection = 1
 size = 3.915
+near = 0.01
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ade2i")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.91679, 0.240219, -0.319047, 0, 0.798876, 0.601496, 0.39937, -0.551446, 0.732401, 0, 2.78224, 3.51052)
+transform = Transform3D(0.95346, -0.181363, 0.240877, 9.4654e-09, 0.798876, 0.601496, -0.30152, -0.573503, 0.761696, 2.48863, 2.78224, 3.51052)
 
 [node name="Blocks" type="Node3D" parent="."]
 
-[node name="Block" parent="Blocks" instance=ExtResource("2_7slrr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+[node name="UIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("score_label", "animation_player", "ingame", "menu_screen", "game_end_screen", "shop_screen")]
+layer = 3
+script = ExtResource("4_6npex")
+score_label = NodePath("Ingame/Score/ScoreLabel")
+animation_player = NodePath("Ingame/IngameAnimationPlayer")
+ingame = NodePath("Ingame")
+menu_screen = NodePath("MenuScreen")
+game_end_screen = NodePath("GameEndScreen")
+shop_screen = NodePath("ShopScreen")
 
-[node name="UIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("ScoreLabel", "AnimationPlayer", "GameEndScreen", "RestartButton")]
-script = ExtResource("3_3uxi8")
-ScoreLabel = NodePath("Score/ScoreLabel")
-AnimationPlayer = NodePath("AnimationPlayer")
-GameEndScreen = NodePath("GameEndScreen")
-RestartButton = NodePath("GameEndScreen/Button")
+[node name="Ingame" type="Control" parent="UIManager"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UIManager"]
-root_node = NodePath("../..")
+[node name="IngameAnimationPlayer" type="AnimationPlayer" parent="UIManager/Ingame"]
+root_node = NodePath("../../..")
 libraries = {
 "": SubResource("AnimationLibrary_uohg3")
 }
 speed_scale = 5.0
 
-[node name="Score" type="Control" parent="UIManager"]
-layout_mode = 3
+[node name="Score" type="Control" parent="UIManager/Ingame"]
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 68.0
@@ -174,7 +239,7 @@ offset_bottom = 193.0
 grow_horizontal = 2
 pivot_offset = Vector2(270, 62)
 
-[node name="ScoreLabel" type="Label" parent="UIManager/Score"]
+[node name="ScoreLabel" type="Label" parent="UIManager/Ingame/Score"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -188,26 +253,10 @@ text = "0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameEndScreen" type="Control" parent="UIManager"]
+[node name="GameEndScreen" parent="UIManager" instance=ExtResource("7_x0gnt")]
 visible = false
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -88.5
-offset_top = -35.0
-offset_right = 88.5
-offset_bottom = 35.0
-grow_horizontal = 2
-grow_vertical = 2
 
-[node name="Button" type="Button" parent="UIManager/GameEndScreen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Restart"
+[node name="MenuScreen" parent="UIManager" instance=ExtResource("8_2lipv")]
+
+[node name="ShopScreen" parent="UIManager" instance=ExtResource("9_g53qy")]
+visible = false
