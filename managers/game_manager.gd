@@ -28,6 +28,8 @@ var base_camera_size: float
 
 var current_state = State.Menu
 
+var was_any_key_just_pressed = false
+
 func _ready():
   base_camera_position = camera.position * 1
   base_camera_size = camera.size
@@ -55,7 +57,7 @@ func _process(delta: float) -> void:
       camera.size = lerp(camera.size, base_camera_size, 10 * delta)
 
       if current_block != null:
-        if Input.is_action_just_pressed("ui_select"):
+        if was_any_key_just_pressed:
           current_block.stop()
 
     State.Menu:
@@ -67,12 +69,17 @@ func _process(delta: float) -> void:
     var time = str(Time.get_unix_time_from_system())
     screenshot.save_png("user://screenshot-{0}.png".format([time]))
 
+  was_any_key_just_pressed = false
+
 func _input(event: InputEvent) -> void:
   if current_state != State.Playing:
     return
 
   if event is InputEventScreenTouch and event.pressed:
     current_block.stop()
+
+  if event is InputEventKey and event.is_pressed():
+    was_any_key_just_pressed = true
 
 func reset() -> void:
   blocks.clear()
