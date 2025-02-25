@@ -166,7 +166,8 @@ func game_over() -> void:
   user_data.scores.append(
     DataStore.UserDataScore.new(
       score,
-      Time.get_datetime_string_from_system()
+      Time.get_datetime_string_from_system(),
+      current_mode.id
     )
   )
 

@@ -4,19 +4,22 @@ class_name DataStore
 class UserDataScore:
   var score: int
   var date: String
+  var mode: String
 
-  func _init(set_score: int, set_date: String):
+  func _init(set_score: int, set_date: String, set_mode: String):
     score = set_score
     date = set_date
+    mode = set_mode
 
   func to_dict() -> Dictionary:
     return {
       "score": score,
-      "date": date
+      "date": date,
+      "mode": mode
     }
 
   static func from_dict(data: Dictionary) -> UserDataScore:
-    return UserDataScore.new(data["score"], data["date"])
+    return UserDataScore.new(data["score"], data["date"], data["mode"] if data.has("mode") else 'standard')
 
 class UserData:
   var scores: Array[UserDataScore] = []

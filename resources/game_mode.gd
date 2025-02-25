@@ -1,6 +1,7 @@
 extends Resource
 class_name GameMode
 
+@export var id: String = ""
 @export var name: String = ""
 @export_multiline var description: String = ""
 @export var block_bounces: bool = true

@@ -52,6 +52,11 @@ func _on_start_requested():
   new_game_screen.visible = false
 
 func _on_new_game_requested():
+  # For the first time we just start the standard game mode to not confuse the player
+  if DataStore.user_data.scores.size() == 0:
+    _on_start_requested()
+    return
+
   menu_screen.visible = false
   new_game_screen.visible = true
 

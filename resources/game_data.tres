@@ -14,6 +14,7 @@
 
 [sub_resource type="Resource" id="Resource_m4ksv"]
 script = ExtResource("1_bxflp")
+id = "standard"
 name = "Standard"
 description = "Normal speed
 Blocks bounce
@@ -27,6 +28,7 @@ score_perfect_multiplier = 2
 
 [sub_resource type="Resource" id="Resource_yhkp1"]
 script = ExtResource("1_bxflp")
+id = "no_bounce"
 name = "No bounce"
 description = "Normal speed
 No bounce
@@ -40,12 +42,13 @@ score_perfect_multiplier = 2
 
 [sub_resource type="Resource" id="Resource_ahd6s"]
 script = ExtResource("1_bxflp")
+id = "speed"
 name = "Speed"
 description = "High speed
 No bounce
 2 score per 1 block"
 block_bounces = false
-base_speed = 2.0
+base_speed = 2.5
 acceleration = 0.1
 acceleration_blocks = 5
 score = 2
@@ -53,6 +56,7 @@ score_perfect_multiplier = 2
 
 [sub_resource type="Resource" id="Resource_sstqd"]
 script = ExtResource("1_bxflp")
+id = "nightmare"
 name = "Nightmare"
 description = "Ridicilous speed
 No bounce
