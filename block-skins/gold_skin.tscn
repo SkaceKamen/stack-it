@@ -1,20 +1,24 @@
 [gd_scene load_steps=8 format=3 uid="uid://c0f6cfetbety8"]
 
 [ext_resource type="PackedScene" uid="uid://boyodixerm6vf" path="res://block-skins/textured_skin.tscn" id="1_qwew0"]
-[ext_resource type="Texture2D" uid="uid://dieby6bm8pkt7" path="res://assets/skins/gold/Metal048A_1K-PNG_Color.png" id="2_u46f7"]
-[ext_resource type="Texture2D" uid="uid://dfcvd3whj0wad" path="res://assets/skins/gold/Metal048A_1K-PNG_Metalness.png" id="3_xissk"]
-[ext_resource type="Texture2D" uid="uid://d0io25d8idphw" path="res://assets/skins/gold/Metal048A_1K-PNG_NormalGL.png" id="4_c0yni"]
-[ext_resource type="Texture2D" uid="uid://ea3imk4fscr1" path="res://assets/skins/gold/Metal048A_1K-PNG_Roughness.png" id="5_e4rfd"]
+[ext_resource type="Texture2D" uid="uid://d6ugf6vtoyfu" path="res://assets/skins/gold/Metal048A_1K-PNG_Color.jpg" id="2_ardus"]
+[ext_resource type="Texture2D" uid="uid://mqntsrwcba40" path="res://assets/skins/gold/Metal048A_1K-PNG_Metalness.jpg" id="3_rpmpd"]
+[ext_resource type="Texture2D" uid="uid://np7bi445eram" path="res://assets/skins/gold/Metal048A_1K-PNG_NormalGL.jpg" id="4_1wcp8"]
+[ext_resource type="Texture2D" uid="uid://b0mlebbmlwylj" path="res://assets/skins/gold/Metal048A_1K-PNG_Roughness.jpg" id="5_7n66h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i675k"]
 resource_local_to_scene = true
-albedo_texture = ExtResource("2_u46f7")
+albedo_texture = ExtResource("2_ardus")
 metallic = 1.0
-metallic_texture = ExtResource("3_xissk")
-roughness_texture = ExtResource("5_e4rfd")
+metallic_texture = ExtResource("3_rpmpd")
+roughness_texture = ExtResource("5_7n66h")
 normal_enabled = true
-normal_texture = ExtResource("4_c0yni")
+normal_scale = 5.75
+normal_texture = ExtResource("4_1wcp8")
+anisotropy_enabled = true
+anisotropy = 0.25
 uv1_triplanar = true
+texture_filter = 5
 
 [sub_resource type="BoxMesh" id="BoxMesh_nn0hi"]
 resource_local_to_scene = true

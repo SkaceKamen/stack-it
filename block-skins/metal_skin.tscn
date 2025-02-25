@@ -13,9 +13,13 @@ metallic = 1.0
 metallic_texture = ExtResource("3_u4qt1")
 roughness_texture = ExtResource("5_x3gk4")
 normal_enabled = true
+normal_scale = 9.26
 normal_texture = ExtResource("4_53ca3")
+anisotropy_enabled = true
+anisotropy = 0.18
 ao_enabled = true
 uv1_triplanar = true
+texture_filter = 5
 
 [sub_resource type="BoxMesh" id="BoxMesh_hj0qr"]
 resource_local_to_scene = true

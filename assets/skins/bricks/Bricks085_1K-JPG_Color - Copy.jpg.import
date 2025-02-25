@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cto5df5gph4f4"
-path="res://.godot/imported/Grass006_1K-JPG_Displacement.jpg-8d0b77bacee33ac265a8f2273d86fc39.ctex"
+uid="uid://bdfdomfgbk18m"
+path="res://.godot/imported/Bricks085_1K-JPG_Color - Copy.jpg-3fd428209febfd2fd9b334cf2bfaea41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/skins/grass/Grass006_1K-JPG_Displacement.jpg"
-dest_files=["res://.godot/imported/Grass006_1K-JPG_Displacement.jpg-8d0b77bacee33ac265a8f2273d86fc39.ctex"]
+source_file="res://assets/skins/bricks/Bricks085_1K-JPG_Color - Copy.jpg"
+dest_files=["res://.godot/imported/Bricks085_1K-JPG_Color - Copy.jpg-3fd428209febfd2fd9b334cf2bfaea41.ctex"]
 
 [params]
 

@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://svca66g547io"
-path.s3tc="res://.godot/imported/4K-aluminium_foil_1_ao.png-6af7d705a3ae79c16132ed747fc45de2.s3tc.ctex"
-path.etc2="res://.godot/imported/4K-aluminium_foil_1_ao.png-6af7d705a3ae79c16132ed747fc45de2.etc2.ctex"
+uid="uid://crwcvj5ctpd36"
+path.s3tc="res://.godot/imported/4K-aluminium_foil_1_normal.jpg-e789db25e177f9b9e4dbf5d32997987b.s3tc.ctex"
+path.etc2="res://.godot/imported/4K-aluminium_foil_1_normal.jpg-e789db25e177f9b9e4dbf5d32997987b.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/skins/alluminium/4K-aluminium_foil_1_ao.png"
-dest_files=["res://.godot/imported/4K-aluminium_foil_1_ao.png-6af7d705a3ae79c16132ed747fc45de2.s3tc.ctex", "res://.godot/imported/4K-aluminium_foil_1_ao.png-6af7d705a3ae79c16132ed747fc45de2.etc2.ctex"]
+source_file="res://assets/skins/alluminium/4K-aluminium_foil_1_normal.jpg"
+dest_files=["res://.godot/imported/4K-aluminium_foil_1_normal.jpg-e789db25e177f9b9e4dbf5d32997987b.s3tc.ctex", "res://.godot/imported/4K-aluminium_foil_1_normal.jpg-e789db25e177f9b9e4dbf5d32997987b.etc2.ctex"]
 
 [params]
 
@@ -21,11 +21,11 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=8
+roughness/mode=1
 roughness/src_normal="res://assets/skins/alluminium/4K-aluminium_foil_1_normal.jpg"
 process/fix_alpha_border=true
 process/premult_alpha=false

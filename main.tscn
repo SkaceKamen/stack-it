@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://blw8ke1yno3hd"]
+[gd_scene load_steps=25 format=3 uid="uid://blw8ke1yno3hd"]
 
 [ext_resource type="Script" path="res://managers/game_manager.gd" id="1_qtoss"]
 [ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://entities/falling_block.tscn" id="2_7slrr"]
@@ -6,9 +6,9 @@
 [ext_resource type="Script" path="res://entities/background_layer.gd" id="3_s2lpx"]
 [ext_resource type="Script" path="res://managers/ui_manager.gd" id="4_6npex"]
 [ext_resource type="PackedScene" uid="uid://dxn0k71cgi7pt" path="res://entities/perfect_effect.tscn" id="5_qen4a"]
-[ext_resource type="Texture2D" uid="uid://csfwpgfxppxyw" path="res://assets/sky/IndoorEnvironmentHDRI005_1K-TONEMAPPED.jpg" id="6_vtyhw"]
 [ext_resource type="PackedScene" uid="uid://cxleofwxn7rlw" path="res://screens/game_end_screen.tscn" id="7_x0gnt"]
 [ext_resource type="PackedScene" uid="uid://cq7vsn1sne0yp" path="res://screens/menu_screen.tscn" id="8_2lipv"]
+[ext_resource type="Environment" uid="uid://4lvqwjxvgp1e" path="res://resources/environment.tres" id="8_r3jv4"]
 [ext_resource type="PackedScene" uid="uid://whbcl06r6ubh" path="res://screens/shop_screen.tscn" id="9_g53qy"]
 [ext_resource type="Resource" uid="uid://b1w725cocdhbd" path="res://resources/game_data.tres" id="11_jwuxf"]
 [ext_resource type="Script" path="res://entities/skin_icon_render.gd" id="12_5nx1b"]
@@ -36,22 +36,6 @@ colors = PackedColorArray(9.62615e-08, 0.676969, 0.691997, 1, 0.840773, 0.807218
 gradient = SubResource("Gradient_qv60d")
 fill_from = Vector2(0.536697, 0)
 fill_to = Vector2(0.522936, 1)
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3k715"]
-panorama = ExtResource("6_vtyhw")
-energy_multiplier = 2.0
-
-[sub_resource type="Sky" id="Sky_ayt6h"]
-sky_material = SubResource("PanoramaSkyMaterial_3k715")
-
-[sub_resource type="Environment" id="Environment_ade2i"]
-background_mode = 3
-background_canvas_max_layer = -100
-sky = SubResource("Sky_ayt6h")
-ambient_light_source = 2
-ambient_light_color = Color(0.556863, 0.533333, 0.937255, 1)
-ambient_light_energy = 1.5
-reflected_light_source = 2
 
 [sub_resource type="Animation" id="Animation_ivkry"]
 length = 0.001
@@ -198,7 +182,7 @@ size = 3.915
 near = 0.01
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ade2i")
+environment = ExtResource("8_r3jv4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.95346, -0.181363, 0.240877, 9.4654e-09, 0.798876, 0.601496, -0.30152, -0.573503, 0.761696, 2.48863, 2.78224, 3.51052)

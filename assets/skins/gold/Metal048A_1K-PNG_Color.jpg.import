@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1wf2ki8hscne"
-path.s3tc="res://.godot/imported/Bricks085_1K-JPG_Displacement.jpg-1e1910b955ea2592111dbf0790300a1f.s3tc.ctex"
-path.etc2="res://.godot/imported/Bricks085_1K-JPG_Displacement.jpg-1e1910b955ea2592111dbf0790300a1f.etc2.ctex"
+uid="uid://d6ugf6vtoyfu"
+path.s3tc="res://.godot/imported/Metal048A_1K-PNG_Color.jpg-56fd44900463ebe0116559b12b92fd8f.s3tc.ctex"
+path.etc2="res://.godot/imported/Metal048A_1K-PNG_Color.jpg-56fd44900463ebe0116559b12b92fd8f.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/skins/bricks/Bricks085_1K-JPG_Displacement.jpg"
-dest_files=["res://.godot/imported/Bricks085_1K-JPG_Displacement.jpg-1e1910b955ea2592111dbf0790300a1f.s3tc.ctex", "res://.godot/imported/Bricks085_1K-JPG_Displacement.jpg-1e1910b955ea2592111dbf0790300a1f.etc2.ctex"]
+source_file="res://assets/skins/gold/Metal048A_1K-PNG_Color.jpg"
+dest_files=["res://.godot/imported/Metal048A_1K-PNG_Color.jpg-56fd44900463ebe0116559b12b92fd8f.s3tc.ctex", "res://.godot/imported/Metal048A_1K-PNG_Color.jpg-56fd44900463ebe0116559b12b92fd8f.etc2.ctex"]
 
 [params]
 

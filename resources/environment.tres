@@ -1,0 +1,19 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://4lvqwjxvgp1e"]
+
+[ext_resource type="Texture2D" uid="uid://csfwpgfxppxyw" path="res://assets/sky/IndoorEnvironmentHDRI005_1K-TONEMAPPED.jpg" id="1_ktpd5"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3k715"]
+panorama = ExtResource("1_ktpd5")
+energy_multiplier = 2.0
+
+[sub_resource type="Sky" id="Sky_ayt6h"]
+sky_material = SubResource("PanoramaSkyMaterial_3k715")
+
+[resource]
+background_mode = 3
+background_canvas_max_layer = -100
+sky = SubResource("Sky_ayt6h")
+ambient_light_source = 2
+ambient_light_color = Color(0.556863, 0.533333, 0.937255, 1)
+ambient_light_energy = 1.5
+reflected_light_source = 2

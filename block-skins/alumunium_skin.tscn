@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmbioxrxqqj3p"]
+[gd_scene load_steps=9 format=3 uid="uid://dmbioxrxqqj3p"]
 
 [ext_resource type="PackedScene" uid="uid://boyodixerm6vf" path="res://block-skins/textured_skin.tscn" id="1_eqjaw"]
 [ext_resource type="Texture2D" uid="uid://bxnybk6tlvie6" path="res://assets/skins/alluminium/4K-aluminium_foil_1_base_color.png" id="2_23o0i"]
-[ext_resource type="Texture2D" uid="uid://svca66g547io" path="res://assets/skins/alluminium/4K-aluminium_foil_1_ao.png" id="3_guwdo"]
-[ext_resource type="Texture2D" uid="uid://blxtyuwjbjp3e" path="res://assets/skins/alluminium/4K-aluminium_foil_1_displacement.png" id="4_neuy0"]
+[ext_resource type="Texture2D" uid="uid://brmrpttu8a5ke" path="res://assets/skins/alluminium/4K-aluminium_foil_1_ao.jpg" id="3_yfl8y"]
 [ext_resource type="Texture2D" uid="uid://gkhknjgulupx" path="res://assets/skins/alluminium/4K-aluminium_foil_1_metallic.png" id="5_4elew"]
-[ext_resource type="Texture2D" uid="uid://b7j242kfkwr60" path="res://assets/skins/alluminium/4K-aluminium_foil_1_normal.png" id="6_vvtjg"]
+[ext_resource type="Texture2D" uid="uid://crwcvj5ctpd36" path="res://assets/skins/alluminium/4K-aluminium_foil_1_normal.jpg" id="5_xpsvf"]
 [ext_resource type="Texture2D" uid="uid://cqp3aoq23wlps" path="res://assets/skins/alluminium/4K-aluminium_foil_1_roughness.png" id="7_4x4hp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u2ymy"]
@@ -15,10 +14,9 @@ metallic = 1.0
 metallic_texture = ExtResource("5_4elew")
 roughness_texture = ExtResource("7_4x4hp")
 normal_enabled = true
-normal_texture = ExtResource("6_vvtjg")
+normal_texture = ExtResource("5_xpsvf")
 ao_enabled = true
-ao_texture = ExtResource("3_guwdo")
-heightmap_texture = ExtResource("4_neuy0")
+ao_texture = ExtResource("3_yfl8y")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_gykp6"]
