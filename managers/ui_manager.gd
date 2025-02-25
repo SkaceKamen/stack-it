@@ -29,6 +29,7 @@ func _ready():
   shop_screen.menu_requested.connect(_on_menu_requested)
   new_game_screen.game_mode_changed.connect(func(mode: GameMode): mode_changed.emit(mode))
   new_game_screen.game_start_requested.connect(_on_start_requested)
+  new_game_screen.back_requested.connect(_on_menu_requested)
 
 func _on_shop_requested():
   shop_screen.visible = true
@@ -44,12 +45,13 @@ func _on_menu_requested():
   game_end_screen.visible = false
   shop_screen.visible = false
   menu_screen.visible = true
+  new_game_screen.hide_animated()
 
 func _on_start_requested():
   start_requested.emit()
   ingame.visible = true
   menu_screen.visible = false
-  new_game_screen.visible = false
+  new_game_screen.hide_animated()
 
 func _on_new_game_requested():
   # For the first time we just start the standard game mode to not confuse the player
@@ -58,7 +60,7 @@ func _on_new_game_requested():
     return
 
   menu_screen.visible = false
-  new_game_screen.visible = true
+  new_game_screen.show_animated()
 
 func show_game_over(final_score: int, is_high_score: bool):
   ingame.visible = false
