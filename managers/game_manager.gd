@@ -83,6 +83,9 @@ func _input(event: InputEvent) -> void:
   if event is InputEventScreenTouch and event.pressed:
     current_block.stop()
 
+  if event is InputEventMouseButton and event.pressed:
+    current_block.stop()
+
   if event is InputEventKey and event.is_pressed():
     was_any_key_just_pressed = true
 
