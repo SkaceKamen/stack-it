@@ -13,12 +13,16 @@ signal mode_changed(mode: GameMode)
 @export var shop_screen: ShopScreen
 @export var new_game_screen: NewGameScreen
 
+var screens: Array[Control] = []
+
 func _ready():
-  ingame.visible = false
-  game_end_screen.visible = false
-  shop_screen.visible = false
+  screens = [ingame, menu_screen, game_end_screen, shop_screen, new_game_screen]
+
+  for screen in screens:
+    if screen != menu_screen:
+      screen.visible = false
+
   menu_screen.visible = true
-  new_game_screen.visible = false
 
   score_label.text = "0"
 
@@ -31,27 +35,30 @@ func _ready():
   new_game_screen.game_start_requested.connect(_on_start_requested)
   new_game_screen.back_requested.connect(_on_menu_requested)
 
+func switch_to_screen(target: Control):
+  for screen in screens:
+    if screen.visible and screen != target:
+      var tween = get_tree().create_tween()
+      tween.tween_property(screen, "modulate:a", 0, 0.2)
+      tween.finished.connect(func(): screen.visible = false)
+  
+  var target_tween = get_tree().create_tween()
+  target_tween.tween_property(target, "modulate:a", 1, 0.2)
+  target.visible = true
+
 func _on_shop_requested():
-  shop_screen.visible = true
-  menu_screen.visible = false
+  switch_to_screen(shop_screen)
 
 func _on_restart_requested():
   restart_requested.emit()
-  ingame.visible = true
-  game_end_screen.visible = false
+  switch_to_screen(ingame)
 
 func _on_menu_requested():
-  ingame.visible = false
-  game_end_screen.visible = false
-  shop_screen.visible = false
-  menu_screen.visible = true
-  new_game_screen.hide_animated()
+  switch_to_screen(menu_screen)
 
 func _on_start_requested():
   start_requested.emit()
-  ingame.visible = true
-  menu_screen.visible = false
-  new_game_screen.hide_animated()
+  switch_to_screen(ingame)
 
 func _on_new_game_requested():
   # For the first time we just start the standard game mode to not confuse the player
@@ -59,11 +66,10 @@ func _on_new_game_requested():
     _on_start_requested()
     return
 
-  menu_screen.visible = false
-  new_game_screen.show_animated()
+  switch_to_screen(new_game_screen)
 
 func show_game_over(final_score: int, is_high_score: bool):
-  ingame.visible = false
+  switch_to_screen(game_end_screen)
   game_end_screen.display(final_score, is_high_score)
 
 func update_score(score: int, highlight: bool):

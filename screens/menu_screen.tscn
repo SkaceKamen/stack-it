@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://7snokm877tm7" path="res://assets/icons/Play.svg" id="3_f84d5"]
 [ext_resource type="Texture2D" uid="uid://dw3kbunj8ch3o" path="res://assets/icons/settings_icon.png" id="4_bqnrw"]
 
-[node name="MenuScreen" type="Control" node_paths=PackedStringArray("start_button", "high_score_label", "shop_button")]
+[node name="MenuScreen" type="Control" node_paths=PackedStringArray("start_button", "high_score_label", "shop_button", "screen_fader")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +17,7 @@ script = ExtResource("1_l5qi3")
 start_button = NodePath("StartButton")
 high_score_label = NodePath("HighscoreLabel")
 shop_button = NodePath("ShopButton")
+screen_fader = NodePath("")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1

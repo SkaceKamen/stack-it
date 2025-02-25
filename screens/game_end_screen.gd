@@ -4,7 +4,6 @@ class_name GameEndScreen
 signal restart_requested
 signal menu_requested
 
-@export var animation_player: AnimationPlayer
 @export var restart_button: Button
 @export var menu_button: Button
 @export var normal_score_label: Label
@@ -24,7 +23,3 @@ func display(score: int, is_new_high_score: bool):
     high_score_label.visible = false
 
   score_value_label.text = str(score)
-
-  animation_player.stop()
-  animation_player.play("Show")
-  visible = true
