@@ -14,6 +14,7 @@ var move_sign = 1
 var move_speed = 2
 var move_axis = 0
 var size = Vector2(1, 1)
+var bounces = true
 
 var skin: PackedScene = null
 var skin_instance: BlockSkin = null
@@ -27,7 +28,10 @@ func _process(delta):
     position += move_direction * move_speed * delta
 
     if (move_axis == 0 and abs(position.z) > 1) or (move_axis == 1 and abs(position.x) > 1):
-      move_sign *= -1
+      if bounces:
+        move_sign *= -1
+      else:
+        stop()
 
 func set_skin(skin_prefab: PackedScene, stack_height: float, stack_count: int):
   if skin_instance != null:
