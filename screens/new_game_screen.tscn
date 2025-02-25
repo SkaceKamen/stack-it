@@ -1,0 +1,125 @@
+[gd_scene load_steps=6 format=3 uid="uid://jpmmtys4j27d"]
+
+[ext_resource type="Script" path="res://screens/new_game_screen.gd" id="1_xwhvi"]
+[ext_resource type="PackedScene" uid="uid://dpwjnuxmaoe3e" path="res://screens/new_game_screen_mode_button.tscn" id="2_01d7j"]
+[ext_resource type="Texture2D" uid="uid://7snokm877tm7" path="res://assets/icons/Play.svg" id="2_3ibyh"]
+[ext_resource type="Resource" uid="uid://b1w725cocdhbd" path="res://resources/game_data.tres" id="2_npb15"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3pcyd"]
+bg_color = Color(0, 0, 0, 0.627451)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="NewGameScreen" type="Control" node_paths=PackedStringArray("modes_container", "start_button", "info_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xwhvi")
+game_data = ExtResource("2_npb15")
+modes_container = NodePath("HBoxContainer/MarginContainer/GridContainer")
+start_button = NodePath("HBoxContainer/CenterContainer/StartButton")
+info_label = NodePath("HBoxContainer/CenterContainer2/PanelContainer/MarginContainer/ModeInfo")
+mode_button_prefab = ExtResource("2_01d7j")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Button" parent="HBoxContainer/MarginContainer/GridContainer" instance=ExtResource("2_01d7j")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_3pcyd")
+
+[node name="Button2" type="Button" parent="HBoxContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "No retries"
+
+[node name="Button3" type="Button" parent="HBoxContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Speed"
+
+[node name="Button4" type="Button" parent="HBoxContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Nightmare"
+
+[node name="Spacer2" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/CenterContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CenterContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 15
+
+[node name="ModeInfo" type="Label" parent="HBoxContainer/CenterContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.787759, 0.787759, 0.787759, 1)
+text = "Standard game speed
+Blocks bounce back
+1 score per block"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="HBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(180, 200)
+layout_mode = 2
+text = "Start"
+icon = ExtResource("2_3ibyh")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true

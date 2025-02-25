@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://blw8ke1yno3hd"]
+[gd_scene load_steps=28 format=3 uid="uid://blw8ke1yno3hd"]
 
 [ext_resource type="Script" path="res://managers/game_manager.gd" id="1_qtoss"]
 [ext_resource type="PackedScene" uid="uid://c5xxv7xrp8brk" path="res://entities/falling_block.tscn" id="2_7slrr"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://whbcl06r6ubh" path="res://screens/shop_screen.tscn" id="9_g53qy"]
 [ext_resource type="Resource" uid="uid://b1w725cocdhbd" path="res://resources/game_data.tres" id="11_jwuxf"]
 [ext_resource type="Script" path="res://entities/skin_icon_render.gd" id="12_5nx1b"]
+[ext_resource type="PackedScene" uid="uid://jpmmtys4j27d" path="res://screens/new_game_screen.tscn" id="13_ls7kx"]
 
 [sub_resource type="Gradient" id="Gradient_mwp3e"]
 colors = PackedColorArray(0.723379, 0.721565, 1, 1, 6.06447e-06, 0.61791, 0.699729, 1)
@@ -204,7 +205,7 @@ transform = Transform3D(0.95346, -0.181363, 0.240877, 9.4654e-09, 0.798876, 0.60
 
 [node name="Blocks" type="Node3D" parent="."]
 
-[node name="UIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("score_label", "animation_player", "ingame", "menu_screen", "game_end_screen", "shop_screen")]
+[node name="UIManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("score_label", "animation_player", "ingame", "menu_screen", "game_end_screen", "shop_screen", "new_game_screen")]
 layer = 3
 script = ExtResource("4_6npex")
 score_label = NodePath("Ingame/Score/ScoreLabel")
@@ -213,6 +214,7 @@ ingame = NodePath("Ingame")
 menu_screen = NodePath("MenuScreen")
 game_end_screen = NodePath("GameEndScreen")
 shop_screen = NodePath("ShopScreen")
+new_game_screen = NodePath("NewGameScreen")
 
 [node name="Ingame" type="Control" parent="UIManager"]
 visible = false
@@ -257,6 +259,9 @@ vertical_alignment = 1
 visible = false
 
 [node name="MenuScreen" parent="UIManager" instance=ExtResource("8_2lipv")]
+visible = false
 
 [node name="ShopScreen" parent="UIManager" instance=ExtResource("9_g53qy")]
 visible = false
+
+[node name="NewGameScreen" parent="UIManager" instance=ExtResource("13_ls7kx")]

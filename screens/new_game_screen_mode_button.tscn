@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpwjnuxmaoe3e"]
+
+[ext_resource type="Script" path="res://screens/new_game_screen_mode_button.gd" id="1_yb6gl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_usogy"]
+bg_color = Color(0, 0, 0, 0.627451)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(0, 80)
+size_flags_horizontal = 3
+text = "Standard"
+script = ExtResource("1_yb6gl")
+selected_style = SubResource("StyleBoxFlat_usogy")

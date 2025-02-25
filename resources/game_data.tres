@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="GameData" load_steps=19 format=3 uid="uid://b1w725cocdhbd"]
+[gd_resource type="Resource" script_class="GameData" load_steps=24 format=3 uid="uid://b1w725cocdhbd"]
 
 [ext_resource type="Script" path="res://resources/game_data.gd" id="1_8vm7n"]
+[ext_resource type="Script" path="res://resources/game_mode.gd" id="1_bxflp"]
 [ext_resource type="Script" path="res://resources/skin_data.gd" id="2_4mctt"]
 [ext_resource type="PackedScene" uid="uid://coaea6xflebpp" path="res://block-skins/blue_skin.tscn" id="3_hvp86"]
 [ext_resource type="PackedScene" uid="uid://cjm46njos1edi" path="res://block-skins/yellow_skin.tscn" id="4_fagyb"]
@@ -10,6 +11,58 @@
 [ext_resource type="PackedScene" uid="uid://veu2kb63fklr" path="res://block-skins/grass_skin.tscn" id="8_sw7hu"]
 [ext_resource type="PackedScene" uid="uid://c0f6cfetbety8" path="res://block-skins/gold_skin.tscn" id="9_7nly7"]
 [ext_resource type="PackedScene" uid="uid://bgf8uwpi00llf" path="res://block-skins/bricks_skin.tscn" id="10_aewtv"]
+
+[sub_resource type="Resource" id="Resource_m4ksv"]
+script = ExtResource("1_bxflp")
+name = "Standard"
+description = "Normal speed
+Blocks bounce
+1 score per 1 block"
+block_bounces = true
+base_speed = 1.5
+acceleration = 0.1
+acceleration_blocks = 10
+score = 1
+score_perfect_multiplier = 2
+
+[sub_resource type="Resource" id="Resource_yhkp1"]
+script = ExtResource("1_bxflp")
+name = "No bounce"
+description = "Normal speed
+No bounce
+1 score per 1 blocks"
+block_bounces = false
+base_speed = 1.5
+acceleration = 0.1
+acceleration_blocks = 10
+score = 1
+score_perfect_multiplier = 2
+
+[sub_resource type="Resource" id="Resource_ahd6s"]
+script = ExtResource("1_bxflp")
+name = "Speed"
+description = "High speed
+No bounce
+2 score per 1 block"
+block_bounces = false
+base_speed = 2.0
+acceleration = 0.1
+acceleration_blocks = 5
+score = 2
+score_perfect_multiplier = 2
+
+[sub_resource type="Resource" id="Resource_sstqd"]
+script = ExtResource("1_bxflp")
+name = "Nightmare"
+description = "Ridicilous speed
+No bounce
+3 score per 1 block"
+block_bounces = true
+base_speed = 3.5
+acceleration = 0.1
+acceleration_blocks = 2
+score = 3
+score_perfect_multiplier = 2
 
 [sub_resource type="Resource" id="Resource_e6ivh"]
 script = ExtResource("2_4mctt")
@@ -70,3 +123,4 @@ prefab = ExtResource("10_aewtv")
 [resource]
 script = ExtResource("1_8vm7n")
 skins = Array[ExtResource("2_4mctt")]([SubResource("Resource_e6ivh"), SubResource("Resource_fyhdr"), SubResource("Resource_4l75o"), SubResource("Resource_cpvip"), SubResource("Resource_gvqbu"), SubResource("Resource_mg7mg"), SubResource("Resource_vh3o6"), SubResource("Resource_36072")])
+modes = Array[ExtResource("1_bxflp")]([SubResource("Resource_m4ksv"), SubResource("Resource_yhkp1"), SubResource("Resource_ahd6s"), SubResource("Resource_sstqd")])

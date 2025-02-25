@@ -28,14 +28,19 @@ var base_camera_size: float
 
 var current_state = State.Menu
 
+var current_mode: GameMode
+
 var was_any_key_just_pressed = false
 
 func _ready():
+  current_mode = game_data.modes[0]
+
   base_camera_position = camera.position * 1
   base_camera_size = camera.size
 
   ui_manager.restart_requested.connect(reset)
   ui_manager.start_requested.connect(reset)
+  ui_manager.mode_changed.connect(func(mode: GameMode): current_mode = mode)
 
   spawn_initial_block()
 
@@ -118,9 +123,6 @@ func spawn_initial_block() -> void:
 
   blocks.append(block)
 
-func get_movement_speed() -> float:
-  return 1.5 + round(count / 10.0) / 10.0
-
 func spawn_block() -> void:
   var new_axis = 1 if last_block.move_axis == 0 else 0
 
@@ -133,7 +135,8 @@ func spawn_block() -> void:
   block.moving = true
   block.size = Vector2(last_block.size.x, last_block.size.y)
   block.scale = Vector3(last_block.scale.x, last_block.scale.y, last_block.scale.z)
-  block.move_speed = get_movement_speed()
+  block.move_speed = current_mode.get_speed(count, height)
+  block.bounces = current_mode.block_bounces
   block.set_skin(get_current_skin(), height, count)
 
   current_block = block
@@ -149,7 +152,7 @@ func block_stopped(block: FallingBlock) -> void:
 
   last_block = block
   height += block.height
-  score += 2 if cut_result == FallingBlock.CutResult.Perfect else 1
+  score += current_mode.score * (current_mode.score_perfect_multiplier if cut_result == FallingBlock.CutResult.Perfect else 1)
   count += 1
 
   background_layer.set_target(count / 30.0)
